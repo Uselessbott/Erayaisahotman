@@ -27,150 +27,606 @@
             --font-cursive: 'Georgia', 'Palatino Linotype', 'Book Antiqua', serif;
         }
 
-        * { margin:0; padding:0; box-sizing:border-box; }
-        html { scroll-behavior:smooth; overflow-x:hidden; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
         body {
-            font-family:var(--font-main);
+            font-family: var(--font-main);
             background: #fef5f0;
-            background-attachment:fixed;
-            color:var(--text);
-            min-height:100vh;
-            overflow-x:hidden;
-            cursor:default;
-            position:relative;
-            -webkit-tap-highlight-color:transparent;
-            user-select:none; -webkit-user-select:none;
+            background-attachment: fixed;
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            cursor: default;
+            position: relative;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            -webkit-user-select: none;
         }
 
-        #tulipCanvas, #particleCanvas, #confettiCanvas, #balloonCanvas, #fireworkCanvas {
-            position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none;
+        #tulipCanvas,
+        #particleCanvas,
+        #confettiCanvas,
+        #balloonCanvas,
+        #fireworkCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
         }
-        #tulipCanvas { z-index:0; }
-        #particleCanvas { z-index:1; }
-        #confettiCanvas { z-index:2; }
-        #balloonCanvas { z-index:3; }
-        #fireworkCanvas { z-index:4; display:none; }
+        #tulipCanvas {
+            z-index: 0;
+        }
+        #particleCanvas {
+            z-index: 1;
+        }
+        #confettiCanvas {
+            z-index: 2;
+        }
+        #balloonCanvas {
+            z-index: 3;
+        }
+        #fireworkCanvas {
+            z-index: 4;
+            display: none;
+        }
 
-        .floating-decor { position:fixed; pointer-events:none; z-index:0; animation:floatAround 18s ease-in-out infinite; opacity:0.7; font-size:2rem; }
-        .floating-decor:nth-child(1){top:8%;left:5%;animation-delay:0s;animation-duration:20s;}
-        .floating-decor:nth-child(2){top:15%;right:8%;animation-delay:-3s;animation-duration:22s;}
-        .floating-decor:nth-child(3){top:60%;left:4%;animation-delay:-7s;animation-duration:19s;}
-        .floating-decor:nth-child(4){top:70%;right:6%;animation-delay:-11s;animation-duration:24s;}
-        .floating-decor:nth-child(5){top:35%;left:90%;animation-delay:-5s;animation-duration:21s;}
-        .floating-decor:nth-child(6){top:45%;left:3%;animation-delay:-14s;animation-duration:23s;}
-        .floating-decor:nth-child(7){top:80%;right:12%;animation-delay:-9s;animation-duration:20s;}
-        .floating-decor:nth-child(8){top:25%;left:50%;animation-delay:-16s;animation-duration:25s;}
+        .floating-decor {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            animation: floatAround 18s ease-in-out infinite;
+            opacity: 0.7;
+            font-size: 2rem;
+        }
+        .floating-decor:nth-child(1) {
+            top: 8%;
+            left: 5%;
+            animation-delay: 0s;
+            animation-duration: 20s;
+        }
+        .floating-decor:nth-child(2) {
+            top: 15%;
+            right: 8%;
+            animation-delay: -3s;
+            animation-duration: 22s;
+        }
+        .floating-decor:nth-child(3) {
+            top: 60%;
+            left: 4%;
+            animation-delay: -7s;
+            animation-duration: 19s;
+        }
+        .floating-decor:nth-child(4) {
+            top: 70%;
+            right: 6%;
+            animation-delay: -11s;
+            animation-duration: 24s;
+        }
+        .floating-decor:nth-child(5) {
+            top: 35%;
+            left: 90%;
+            animation-delay: -5s;
+            animation-duration: 21s;
+        }
+        .floating-decor:nth-child(6) {
+            top: 45%;
+            left: 3%;
+            animation-delay: -14s;
+            animation-duration: 23s;
+        }
+        .floating-decor:nth-child(7) {
+            top: 80%;
+            right: 12%;
+            animation-delay: -9s;
+            animation-duration: 20s;
+        }
+        .floating-decor:nth-child(8) {
+            top: 25%;
+            left: 50%;
+            animation-delay: -16s;
+            animation-duration: 25s;
+        }
 
         @keyframes floatAround {
-            0%,100%{transform:translate(0,0) rotate(0deg) scale(1);}
-            15%{transform:translate(30px,-40px) rotate(8deg) scale(1.1);}
-            30%{transform:translate(-20px,-70px) rotate(-5deg) scale(0.9);}
-            45%{transform:translate(-35px,-20px) rotate(12deg) scale(1.05);}
-            60%{transform:translate(25px,-55px) rotate(-8deg) scale(0.95);}
-            75%{transform:translate(-15px,-35px) rotate(4deg) scale(1.08);}
-            90%{transform:translate(20px,-60px) rotate(-3deg) scale(1.02);}
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+            }
+            15% {
+                transform: translate(30px, -40px) rotate(8deg) scale(1.1);
+            }
+            30% {
+                transform: translate(-20px, -70px) rotate(-5deg) scale(0.9);
+            }
+            45% {
+                transform: translate(-35px, -20px) rotate(12deg) scale(1.05);
+            }
+            60% {
+                transform: translate(25px, -55px) rotate(-8deg) scale(0.95);
+            }
+            75% {
+                transform: translate(-15px, -35px) rotate(4deg) scale(1.08);
+            }
+            90% {
+                transform: translate(20px, -60px) rotate(-3deg) scale(1.02);
+            }
         }
 
         .music-control {
-            position:fixed; top:20px; right:20px; z-index:100; background:var(--glass-bg);
-            backdrop-filter:blur(30px); -webkit-backdrop-filter:blur(30px);
-            border:2px solid var(--glass-border); border-radius:50%; width:50px; height:50px;
-            display:flex; align-items:center; justify-content:center; cursor:pointer;
-            box-shadow:0 8px 25px var(--glass-shadow); transition:all var(--transition-smooth);
-            font-size:1.4rem; animation:gentlePulse 3s ease-in-out infinite;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background: var(--glass-bg);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 2px solid var(--glass-border);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 25px var(--glass-shadow);
+            transition: all var(--transition-smooth);
+            font-size: 1.4rem;
+            animation: gentlePulse 3s ease-in-out infinite;
         }
-        .music-control:hover{transform:scale(1.1);box-shadow:0 12px 35px rgba(0,0,0,0.12);border-color:var(--gold);}
-        .music-control.playing{border-color:var(--gold-deep);background:rgba(255,248,240,0.45);}
-        @keyframes gentlePulse{0%,100%{box-shadow:0 8px 25px var(--glass-shadow);}50%{box-shadow:0 8px 35px rgba(200,160,200,0.25);}}
+        .music-control:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+            border-color: var(--gold);
+        }
+        .music-control.playing {
+            border-color: var(--gold-deep);
+            background: rgba(255, 248, 240, 0.45);
+        }
+        @keyframes gentlePulse {
+            0%,
+            100% {
+                box-shadow: 0 8px 25px var(--glass-shadow);
+            }
+            50% {
+                box-shadow: 0 8px 35px rgba(200, 160, 200, 0.25);
+            }
+        }
 
-        .main-container { position:relative; z-index:5; max-width:700px; margin:0 auto; padding:20px 16px 60px; display:flex; flex-direction:column; align-items:center; min-height:100vh; }
-        .section { width:100%; display:none; flex-direction:column; align-items:center; animation:sectionFadeIn 0.8s ease-out forwards; padding:20px 0; }
-        .section.active { display:flex; }
-        @keyframes sectionFadeIn{ from{opacity:0;transform:translateY(30px);} to{opacity:1;transform:translateY(0);} }
+        .main-container {
+            position: relative;
+            z-index: 5;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px 16px 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .section {
+            width: 100%;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            animation: sectionFadeIn 0.8s ease-out forwards;
+            padding: 20px 0;
+        }
+        .section.active {
+            display: flex;
+        }
+        @keyframes sectionFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
         .glass-card {
-            background:var(--glass-bg); backdrop-filter:blur(35px); -webkit-backdrop-filter:blur(35px);
-            border:2px solid var(--glass-border); border-radius:var(--card-radius); padding:30px 24px;
-            margin:16px 0; box-shadow:0 10px 40px var(--glass-shadow),0 2px 8px rgba(0,0,0,0.03);
-            width:100%; text-align:center; transition:all var(--transition-smooth); position:relative; overflow:hidden;
+            background: var(--glass-bg);
+            backdrop-filter: blur(35px);
+            -webkit-backdrop-filter: blur(35px);
+            border: 2px solid var(--glass-border);
+            border-radius: var(--card-radius);
+            padding: 30px 24px;
+            margin: 16px 0;
+            box-shadow: 0 10px 40px var(--glass-shadow), 0 2px 8px rgba(0, 0, 0, 0.03);
+            width: 100%;
+            text-align: center;
+            transition: all var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
         }
-        .glass-card::before{ content:''; position:absolute; top:-30%; left:-20%; width:140%; height:160%; background:radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.6) 0%, transparent 60%); pointer-events:none; z-index:0; }
-        .glass-card>*{ position:relative; z-index:1; }
-        .glass-card:hover{box-shadow:0 16px 50px rgba(0,0,0,0.1),0 4px 16px rgba(0,0,0,0.04);transform:translateY(-2px);}
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            left: -20%;
+            width: 140%;
+            height: 160%;
+            background: radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.6) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .glass-card>* {
+            position: relative;
+            z-index: 1;
+        }
+        .glass-card:hover {
+            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.1), 0 4px 16px rgba(0, 0, 0, 0.04);
+            transform: translateY(-2px);
+        }
 
-        .typing-text { font-family:var(--font-cursive); font-size:2rem; font-weight:700; color:#5a3a50; line-height:1.4; letter-spacing:0.02em; text-align:center; min-height:1.4em; }
-        .typing-cursor { display:inline-block; width:3px; height:1.2em; background:#d4a843; margin-left:2px; animation:blink 0.7s step-end infinite; vertical-align:text-bottom; }
-        @keyframes blink{50%{opacity:0;}}
-        .typing-subtitle { font-size:1.15rem; color:var(--text-light); margin-top:12px; font-style:italic; opacity:0; animation:fadeSlideIn 0.6s ease-out forwards; }
-        @keyframes fadeSlideIn{ from{opacity:0;transform:translateY(10px);} to{opacity:1;transform:translateY(0);} }
+        .typing-text {
+            font-family: var(--font-cursive);
+            font-size: 2rem;
+            font-weight: 700;
+            color: #5a3a50;
+            line-height: 1.4;
+            letter-spacing: 0.02em;
+            text-align: center;
+            min-height: 1.4em;
+        }
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.2em;
+            background: #d4a843;
+            margin-left: 2px;
+            animation: blink 0.7s step-end infinite;
+            vertical-align: text-bottom;
+        }
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+        .typing-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            margin-top: 12px;
+            font-style: italic;
+            opacity: 0;
+            animation: fadeSlideIn 0.6s ease-out forwards;
+        }
+        @keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-        .btn { display:inline-block; padding:14px 32px; border-radius:50px; font-size:1.05rem; font-weight:600; cursor:pointer; border:none; transition:all var(--transition-smooth); letter-spacing:0.03em; font-family:var(--font-main); position:relative; overflow:hidden; text-decoration:none; color:#fff; background:linear-gradient(135deg, #e8b4c8, #d5a8c8); box-shadow:0 6px 20px rgba(200,150,180,0.35); z-index:1; }
-        .btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(200,150,180,0.5);}
-        .btn:active{transform:scale(0.96);box-shadow:0 4px 12px rgba(200,150,180,0.3);}
-        .btn-gold{background:linear-gradient(135deg, #e8c878, #d4a843);box-shadow:0 6px 20px rgba(200,160,80,0.35);}
-        .btn-gold:hover{box-shadow:0 10px 30px rgba(200,160,80,0.5);}
-        .btn-outline{background:transparent;border:2px solid #d5a8c8;color:#5a3a50;box-shadow:none;}
-        .btn-outline:hover{background:rgba(213,168,200,0.15);box-shadow:0 8px 25px rgba(200,150,180,0.2);}
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all var(--transition-smooth);
+            letter-spacing: 0.03em;
+            font-family: var(--font-main);
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: #fff;
+            background: linear-gradient(135deg, #e8b4c8, #d5a8c8);
+            box-shadow: 0 6px 20px rgba(200, 150, 180, 0.35);
+            z-index: 1;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(200, 150, 180, 0.5);
+        }
+        .btn:active {
+            transform: scale(0.96);
+            box-shadow: 0 4px 12px rgba(200, 150, 180, 0.3);
+        }
+        .btn-gold {
+            background: linear-gradient(135deg, #e8c878, #d4a843);
+            box-shadow: 0 6px 20px rgba(200, 160, 80, 0.35);
+        }
+        .btn-gold:hover {
+            box-shadow: 0 10px 30px rgba(200, 160, 80, 0.5);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #d5a8c8;
+            color: #5a3a50;
+            box-shadow: none;
+        }
+        .btn-outline:hover {
+            background: rgba(213, 168, 200, 0.15);
+            box-shadow: 0 8px 25px rgba(200, 150, 180, 0.2);
+        }
 
-        .quiz-options { display:flex; flex-direction:column; gap:10px; width:100%; margin-top:16px; }
-        .quiz-option { padding:14px 18px; border-radius:16px; cursor:pointer; background:rgba(255,255,255,0.5); border:2px solid rgba(220,200,210,0.5); transition:all 0.25s ease; font-size:1rem; text-align:left; font-family:var(--font-main); color:var(--text); position:relative; }
-        .quiz-option:hover{background:rgba(255,240,245,0.7);border-color:#e0b8c8;transform:translateX(4px);box-shadow:0 4px 16px rgba(200,150,180,0.2);}
-        .quiz-option:active{transform:scale(0.97);}
-        .quiz-option.selected-pick{background:rgba(240,220,255,0.7)!important;border-color:#c8a8d8!important;animation:teaseGlow 0.6s ease-out;}
-        @keyframes teaseGlow{0%{box-shadow:0 0 0 0 rgba(180,140,200,0.6);}100%{box-shadow:0 0 0 20px rgba(180,140,200,0);}}
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            margin-top: 16px;
+        }
+        .quiz-option {
+            padding: 14px 18px;
+            border-radius: 16px;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(220, 200, 210, 0.5);
+            transition: all 0.25s ease;
+            font-size: 1rem;
+            text-align: left;
+            font-family: var(--font-main);
+            color: var(--text);
+            position: relative;
+        }
+        .quiz-option:hover {
+            background: rgba(255, 240, 245, 0.7);
+            border-color: #e0b8c8;
+            transform: translateX(4px);
+            box-shadow: 0 4px 16px rgba(200, 150, 180, 0.2);
+        }
+        .quiz-option:active {
+            transform: scale(0.97);
+        }
+        .quiz-option.selected-pick {
+            background: rgba(240, 220, 255, 0.7) !important;
+            border-color: #c8a8d8 !important;
+            animation: teaseGlow 0.6s ease-out;
+        }
+        @keyframes teaseGlow {
+            0% {
+                box-shadow: 0 0 0 0 rgba(180, 140, 200, 0.6);
+            }
+            100% {
+                box-shadow: 0 0 0 20px rgba(180, 140, 200, 0);
+            }
+        }
 
         .cat-reaction {
-            position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(0); z-index:200; background:var(--white);
-            border-radius:20px; padding:20px 28px; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.2);
-            transition:transform 0.4s cubic-bezier(0.175,0.885,0.32,1.275); pointer-events:none; max-width:90vw;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            z-index: 200;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 20px 28px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+            max-width: 90vw;
         }
-        .cat-reaction.show{transform:translate(-50%,-50%) scale(1);}
-        .cat-reaction .cat-emoji{font-size:4rem;animation:catBounce 0.6s ease-out;display:block;}
-        @keyframes catBounce{0%{transform:scale(0) rotate(-20deg);}50%{transform:scale(1.3) rotate(5deg);}70%{transform:scale(0.9) rotate(-3deg);}100%{transform:scale(1) rotate(0deg);}}
-        .cat-reaction .reaction-text{margin-top:8px;font-size:1rem;color:var(--text);font-weight:500;}
+        .cat-reaction.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .cat-reaction .cat-emoji {
+            font-size: 4rem;
+            animation: catBounce 0.6s ease-out;
+            display: block;
+        }
+        @keyframes catBounce {
+            0% {
+                transform: scale(0) rotate(-20deg);
+            }
+            50% {
+                transform: scale(1.3) rotate(5deg);
+            }
+            70% {
+                transform: scale(0.9) rotate(-3deg);
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+            }
+        }
+        .cat-reaction .reaction-text {
+            margin-top: 8px;
+            font-size: 1rem;
+            color: var(--text);
+            font-weight: 500;
+        }
 
         .wish-card {
-            background:var(--glass-bg); backdrop-filter:blur(25px); -webkit-backdrop-filter:blur(25px);
-            border:2px solid var(--glass-border); border-radius:20px; padding:24px 20px; margin:10px 0;
-            text-align:center; font-size:1.15rem; color:var(--text); box-shadow:0 8px 30px var(--glass-shadow);
-            animation:wishFadeIn 0.7s ease-out forwards; opacity:0; width:100%; font-family:var(--font-cursive);
-            letter-spacing:0.02em; line-height:1.5;
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 2px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 24px 20px;
+            margin: 10px 0;
+            text-align: center;
+            font-size: 1.15rem;
+            color: var(--text);
+            box-shadow: 0 8px 30px var(--glass-shadow);
+            animation: wishFadeIn 0.7s ease-out forwards;
+            opacity: 0;
+            width: 100%;
+            font-family: var(--font-cursive);
+            letter-spacing: 0.02em;
+            line-height: 1.5;
         }
-        @keyframes wishFadeIn{ from{opacity:0;transform:translateY(20px) scale(0.95);} to{opacity:1;transform:translateY(0) scale(1);} }
+        @keyframes wishFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
 
-        .stars-container { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; opacity:0; transition:opacity 2s ease; }
-        .stars-container.visible{opacity:1;}
-        .star { position:absolute; background:white; border-radius:50%; animation:twinkle 3s ease-in-out infinite; }
-        @keyframes twinkle{0%,100%{opacity:0.3;transform:scale(1);}50%{opacity:1;transform:scale(1.6);}}
+        .stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 2s ease;
+        }
+        .stars-container.visible {
+            opacity: 1;
+        }
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+        @keyframes twinkle {
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.6);
+            }
+        }
 
-        .sparkle-text{background:linear-gradient(135deg, #d4a843, #e8c878, #d4a843); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; font-weight:700;}
+        .sparkle-text {
+            background: linear-gradient(135deg, #d4a843, #e8c878, #d4a843);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
 
         #startOverlay {
-            position: fixed; top:0; left:0; width:100%; height:100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: rgba(255, 248, 240, 0.7);
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            z-index: 999; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            transition: opacity 0.6s ease; font-family: var(--font-cursive); cursor: pointer;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s ease;
+            font-family: var(--font-cursive);
+            cursor: pointer;
         }
-        #startOverlay.fade-out { opacity: 0; pointer-events: none; }
+        #startOverlay.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
         #startOverlay .start-btn {
-            margin-top: 20px; padding: 16px 36px; font-size: 1.4rem;
+            margin-top: 20px;
+            padding: 16px 36px;
+            font-size: 1.4rem;
             background: linear-gradient(135deg, #f8c8dc, #e8b4c8);
-            border: none; border-radius: 50px; color: white; font-weight: bold;
-            cursor: pointer; box-shadow: 0 10px 30px rgba(200,150,180,0.5);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(200, 150, 180, 0.5);
             transition: transform 0.2s;
         }
-        #startOverlay .start-btn:active { transform: scale(0.95); }
-
-        @media (max-width:480px){
-            .typing-text{font-size:1.4rem;} .glass-card{padding:20px 16px;border-radius:18px;margin:10px 0;}
-            .quiz-option{padding:12px 14px;font-size:0.9rem;border-radius:12px;} .btn{padding:12px 24px;font-size:0.95rem;}
-            .music-control{width:40px;height:40px;top:12px;right:12px;font-size:1.1rem;} .wish-card{font-size:1rem;padding:18px 14px;}
-            .floating-decor{font-size:1.3rem;} .cat-reaction .cat-emoji{font-size:3rem;}
+        #startOverlay .start-btn:active {
+            transform: scale(0.95);
         }
-        @media (min-width:481px) and (max-width:768px){ .typing-text{font-size:1.7rem;} .glass-card{padding:24px 20px;} }
-        @media (min-width:769px){ .typing-text{font-size:2.2rem;} .glass-card{padding:36px 30px;} }
-        .hidden{display:none!important;}
+
+        @media (max-width:480px) {
+            .typing-text {
+                font-size: 1.4rem;
+            }
+            .glass-card {
+                padding: 20px 16px;
+                border-radius: 18px;
+                margin: 10px 0;
+            }
+            .quiz-option {
+                padding: 12px 14px;
+                font-size: 0.9rem;
+                border-radius: 12px;
+            }
+            .btn {
+                padding: 12px 24px;
+                font-size: 0.95rem;
+            }
+            .music-control {
+                width: 40px;
+                height: 40px;
+                top: 12px;
+                right: 12px;
+                font-size: 1.1rem;
+            }
+            .wish-card {
+                font-size: 1rem;
+                padding: 18px 14px;
+            }
+            .floating-decor {
+                font-size: 1.3rem;
+            }
+            .cat-reaction .cat-emoji {
+                font-size: 3rem;
+            }
+        }
+        @media (min-width:481px) and (max-width:768px) {
+            .typing-text {
+                font-size: 1.7rem;
+            }
+            .glass-card {
+                padding: 24px 20px;
+            }
+        }
+        @media (min-width:769px) {
+            .typing-text {
+                font-size: 2.2rem;
+            }
+            .glass-card {
+                padding: 36px 30px;
+            }
+        }
+        .hidden {
+            display: none !important;
+        }
+        .mt-8 {
+            margin-top: 8px;
+        }
+        .mt-16 {
+            margin-top: 16px;
+        }
+        .mt-24 {
+            margin-top: 24px;
+        }
+        .emoji-lg {
+            font-size: 2.8rem;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .emoji-xl {
+            font-size: 3.6rem;
+            display: block;
+            margin-bottom: 8px;
+        }
     </style>
 </head>
 <body>
@@ -181,14 +637,8 @@
         <button class="start-btn" id="startButton">💖 Tap to Begin 💖</button>
     </div>
 
-    <!-- Hidden audio element for "I love you so" by The Walters -->
+    <!-- Background music: "double take" by The Walters (local file) -->
     <audio id="bgMusic" loop preload="auto">
-        <!-- 
-        ⚠️ REPLACE THIS SRC with your own audio file of "I love you so" by The Walters.
-        You can use a direct link to an mp3 file, e.g.:
-        src="https://your-server.com/iloveyouso.mp3"
-        For now it's empty, so it will fall back to the birthday melody.
-        -->
         <source src="music/double_take.m4a" type="audio/mp4">
         Your browser does not support the audio element.
     </audio>
@@ -273,74 +723,239 @@
             const musicToggle = document.getElementById('musicToggle');
             let started = false;
 
+            // ─────────────────────────────────────
+            // MUSIC SYSTEM — only uses the <audio> element
+            // ─────────────────────────────────────
+            const bgMusic = document.getElementById('bgMusic');
+            bgMusic.volume = 0.0; // start silent, we'll fade in
+            bgMusic.loop = true;
+
+            let isMusicPlaying = false;
+            let fadeInterval = null;
+            const TARGET_VOLUME = 0.75; // ~75% — nice and clear
+            const FADE_DURATION = 2000; // 2 seconds
+            const FADE_STEP = 0.025;
+            const FADE_INTERVAL = 30; // ms
+
+            function fadeInMusic() {
+                if (fadeInterval) {
+                    clearInterval(fadeInterval);
+                    fadeInterval = null;
+                }
+                bgMusic.volume = 0.0;
+                let vol = 0.0;
+                const step = FADE_STEP;
+                const target = TARGET_VOLUME;
+                fadeInterval = setInterval(() => {
+                    vol = Math.min(vol + step, target);
+                    bgMusic.volume = vol;
+                    if (vol >= target) {
+                        clearInterval(fadeInterval);
+                        fadeInterval = null;
+                    }
+                }, FADE_INTERVAL);
+            }
+
+            function startMusic() {
+                if (isMusicPlaying) return;
+                isMusicPlaying = true;
+                musicToggle.classList.add('playing');
+                musicToggle.textContent = '🎶';
+                // Resume AudioContext if needed (mobile autoplay workaround)
+                if (window.AudioContext || window.webkitAudioContext) {
+                    try {
+                        const ctx = new(window.AudioContext || window.webkitAudioContext)();
+                        if (ctx.state === 'suspended') ctx.resume();
+                    } catch (_) { /* ignore */ }
+                }
+                bgMusic.play().then(() => {
+                    fadeInMusic();
+                }).catch(e => {
+                    console.warn('🎵 Playback failed:', e);
+                    // Still mark as playing so toggle can retry
+                });
+            }
+
+            function stopMusic(keepPosition = false) {
+                if (!isMusicPlaying) return;
+                isMusicPlaying = false;
+                musicToggle.classList.remove('playing');
+                musicToggle.textContent = '🎵';
+                if (fadeInterval) {
+                    clearInterval(fadeInterval);
+                    fadeInterval = null;
+                }
+                bgMusic.pause();
+                if (!keepPosition) {
+                    bgMusic.currentTime = 0;
+                }
+            }
+
+            function toggleMusic() {
+                if (isMusicPlaying) {
+                    stopMusic(true); // pause, keep position
+                } else {
+                    startMusic();
+                }
+            }
+
+            // ─────────────────────────────────────
+            // START EVERYTHING (user tap)
+            // ─────────────────────────────────────
             function startEverything() {
                 if (started) return;
                 started = true;
                 startOverlay.classList.add('fade-out');
                 setTimeout(() => { startOverlay.style.display = 'none'; }, 600);
-                initMusicSystem();
+
+                // Start music with fade-in
                 startMusic();
+
+                // Spawn initial confetti & balloons
                 spawnConfetti(60);
                 for (let i = 0; i < 5; i++) spawnBalloon();
+
+                // Type the main greeting
                 typeText(typingMain, 'Happy Birthday, Eraya!', 55);
             }
 
             startButton.addEventListener('click', startEverything);
-            startOverlay.addEventListener('click', (e) => { if (e.target === startOverlay) startEverything(); });
+            startOverlay.addEventListener('click', (e) => {
+                if (e.target === startOverlay) startEverything();
+            });
+
+            // Toggle button
+            musicToggle.addEventListener('click', toggleMusic);
 
             // ─────────────────────────────────────
-            // ANIMATED TULIP FARM (unchanged)
+            // ANIMATED TULIP FARM
             // ─────────────────────────────────────
             const tulipCanvas = document.getElementById('tulipCanvas');
             const ctxTulip = tulipCanvas.getContext('2d');
-            function setupTulipCanvas() { tulipCanvas.width = window.innerWidth; tulipCanvas.height = window.innerHeight; }
-            setupTulipCanvas();
-            window.addEventListener('resize', () => { setupTulipCanvas(); initTulips(); });
 
-            const tulipColors = ['#f8c8dc','#e8a0b8','#d5c6e0','#b8a0cc','#fddcc4','#f5c5a3','#f0d78c','#e8c878','#ffb3c6','#c9d8f8','#f9d5e5','#e8d5f5'];
-            let tulips = [], petals = [];
+            function setupTulipCanvas() {
+                tulipCanvas.width = window.innerWidth;
+                tulipCanvas.height = window.innerHeight;
+            }
+            setupTulipCanvas();
+            window.addEventListener('resize', () => {
+                setupTulipCanvas();
+                initTulips();
+            });
+
+            const tulipColors = ['#f8c8dc', '#e8a0b8', '#d5c6e0', '#b8a0cc', '#fddcc4', '#f5c5a3', '#f0d78c', '#e8c878',
+                '#ffb3c6', '#c9d8f8', '#f9d5e5', '#e8d5f5'
+            ];
+            let tulips = [],
+                petals = [];
+
             function initTulips() {
                 tulips = [];
-                const num = Math.floor(tulipCanvas.width/35);
-                for(let i=0;i<num;i++) {
-                    const baseX = (i*(tulipCanvas.width/num))+(Math.random()*20-10);
-                    tulips.push({x:baseX, y:tulipCanvas.height-15+Math.random()*10, height:40+Math.random()*60, swayAmp:3+Math.random()*7, swayPhase:Math.random()*Math.PI*2, color:tulipColors[Math.floor(Math.random()*tulipColors.length)]});
+                const num = Math.floor(tulipCanvas.width / 35);
+                for (let i = 0; i < num; i++) {
+                    const baseX = (i * (tulipCanvas.width / num)) + (Math.random() * 20 - 10);
+                    tulips.push({
+                        x: baseX,
+                        y: tulipCanvas.height - 15 + Math.random() * 10,
+                        height: 40 + Math.random() * 60,
+                        swayAmp: 3 + Math.random() * 7,
+                        swayPhase: Math.random() * Math.PI * 2,
+                        color: tulipColors[Math.floor(Math.random() * tulipColors.length)]
+                    });
                 }
             }
+
             function spawnPetal() {
-                if(petals.length>30) return;
-                petals.push({x:Math.random()*tulipCanvas.width, y:tulipCanvas.height+10, size:4+Math.random()*8, vy:-(0.3+Math.random()*0.8), vx:(Math.random()-0.5)*0.5, rotation:Math.random()*360, rotSpeed:(Math.random()-0.5)*2, opacity:0.6+Math.random()*0.4, color:tulipColors[Math.floor(Math.random()*tulipColors.length)]});
+                if (petals.length > 30) return;
+                petals.push({
+                    x: Math.random() * tulipCanvas.width,
+                    y: tulipCanvas.height + 10,
+                    size: 4 + Math.random() * 8,
+                    vy: -(0.3 + Math.random() * 0.8),
+                    vx: (Math.random() - 0.5) * 0.5,
+                    rotation: Math.random() * 360,
+                    rotSpeed: (Math.random() - 0.5) * 2,
+                    opacity: 0.6 + Math.random() * 0.4,
+                    color: tulipColors[Math.floor(Math.random() * tulipColors.length)]
+                });
             }
+
             function updateAndDrawTulips() {
-                ctxTulip.clearRect(0,0,tulipCanvas.width,tulipCanvas.height);
-                const grad = ctxTulip.createLinearGradient(0,0,0,tulipCanvas.height);
-                grad.addColorStop(0,'#fef5f0'); grad.addColorStop(0.5,'#fdf0f5'); grad.addColorStop(1,'#e8f5e9');
-                ctxTulip.fillStyle = grad; ctxTulip.fillRect(0,0,tulipCanvas.width,tulipCanvas.height);
-                ctxTulip.fillStyle='#c8e6c9'; ctxTulip.fillRect(0,tulipCanvas.height-20,tulipCanvas.width,20);
-                ctxTulip.fillStyle='#a5d6a7';
-                for(let i=0;i<20;i++) { const x=(i*tulipCanvas.width/20)+Math.random()*10; ctxTulip.beginPath(); ctxTulip.arc(x,tulipCanvas.height-10+Math.random()*5,5+Math.random()*10,0,Math.PI); ctxTulip.fill(); }
-                const time = performance.now()/1000;
+                ctxTulip.clearRect(0, 0, tulipCanvas.width, tulipCanvas.height);
+                const grad = ctxTulip.createLinearGradient(0, 0, 0, tulipCanvas.height);
+                grad.addColorStop(0, '#fef5f0');
+                grad.addColorStop(0.5, '#fdf0f5');
+                grad.addColorStop(1, '#e8f5e9');
+                ctxTulip.fillStyle = grad;
+                ctxTulip.fillRect(0, 0, tulipCanvas.width, tulipCanvas.height);
+                ctxTulip.fillStyle = '#c8e6c9';
+                ctxTulip.fillRect(0, tulipCanvas.height - 20, tulipCanvas.width, 20);
+                ctxTulip.fillStyle = '#a5d6a7';
+                for (let i = 0; i < 20; i++) {
+                    const x = (i * tulipCanvas.width / 20) + Math.random() * 10;
+                    ctxTulip.beginPath();
+                    ctxTulip.arc(x, tulipCanvas.height - 10 + Math.random() * 5, 5 + Math.random() * 10, 0, Math.PI);
+                    ctxTulip.fill();
+                }
+                const time = performance.now() / 1000;
                 tulips.forEach(t => {
-                    const sway = Math.sin(time*1.5+t.swayPhase)*t.swayAmp;
-                    const topX = t.x+sway, topY = t.y-t.height;
-                    ctxTulip.beginPath(); ctxTulip.moveTo(t.x,t.y); ctxTulip.quadraticCurveTo(t.x+sway*0.7, t.y-t.height*0.5, topX, topY);
-                    ctxTulip.strokeStyle='#7aa07a'; ctxTulip.lineWidth=3; ctxTulip.stroke();
-                    const leafY = t.y-t.height*0.4;
-                    ctxTulip.beginPath(); ctxTulip.moveTo(t.x,leafY); ctxTulip.quadraticCurveTo(t.x+12+sway*0.5,leafY-10,t.x+15,leafY-2); ctxTulip.quadraticCurveTo(t.x+10,leafY+5,t.x,leafY);
-                    ctxTulip.fillStyle='#b9e0b0'; ctxTulip.fill(); ctxTulip.strokeStyle='#7aa07a'; ctxTulip.lineWidth=1.5; ctxTulip.stroke();
-                    ctxTulip.save(); ctxTulip.translate(topX,topY); ctxTulip.rotate(sway*0.02);
-                    ctxTulip.beginPath(); ctxTulip.moveTo(0,-10); ctxTulip.bezierCurveTo(-8,-18,-8,-8,0,-2); ctxTulip.bezierCurveTo(8,-8,8,-18,0,-10);
-                    ctxTulip.fillStyle=t.color; ctxTulip.fill(); ctxTulip.strokeStyle='#d4a0b0'; ctxTulip.lineWidth=1.5; ctxTulip.stroke();
-                    ctxTulip.beginPath(); ctxTulip.arc(-1,-7,3,0,Math.PI*2); ctxTulip.fillStyle='rgba(255,255,255,0.5)'; ctxTulip.fill();
+                    const sway = Math.sin(time * 1.5 + t.swayPhase) * t.swayAmp;
+                    const topX = t.x + sway,
+                        topY = t.y - t.height;
+                    ctxTulip.beginPath();
+                    ctxTulip.moveTo(t.x, t.y);
+                    ctxTulip.quadraticCurveTo(t.x + sway * 0.7, t.y - t.height * 0.5, topX, topY);
+                    ctxTulip.strokeStyle = '#7aa07a';
+                    ctxTulip.lineWidth = 3;
+                    ctxTulip.stroke();
+                    const leafY = t.y - t.height * 0.4;
+                    ctxTulip.beginPath();
+                    ctxTulip.moveTo(t.x, leafY);
+                    ctxTulip.quadraticCurveTo(t.x + 12 + sway * 0.5, leafY - 10, t.x + 15, leafY - 2);
+                    ctxTulip.quadraticCurveTo(t.x + 10, leafY + 5, t.x, leafY);
+                    ctxTulip.fillStyle = '#b9e0b0';
+                    ctxTulip.fill();
+                    ctxTulip.strokeStyle = '#7aa07a';
+                    ctxTulip.lineWidth = 1.5;
+                    ctxTulip.stroke();
+                    ctxTulip.save();
+                    ctxTulip.translate(topX, topY);
+                    ctxTulip.rotate(sway * 0.02);
+                    ctxTulip.beginPath();
+                    ctxTulip.moveTo(0, -10);
+                    ctxTulip.bezierCurveTo(-8, -18, -8, -8, 0, -2);
+                    ctxTulip.bezierCurveTo(8, -8, 8, -18, 0, -10);
+                    ctxTulip.fillStyle = t.color;
+                    ctxTulip.fill();
+                    ctxTulip.strokeStyle = '#d4a0b0';
+                    ctxTulip.lineWidth = 1.5;
+                    ctxTulip.stroke();
+                    ctxTulip.beginPath();
+                    ctxTulip.arc(-1, -7, 3, 0, Math.PI * 2);
+                    ctxTulip.fillStyle = 'rgba(255,255,255,0.5)';
+                    ctxTulip.fill();
                     ctxTulip.restore();
                 });
-                petals.forEach((p,idx) => {
-                    p.y+=p.vy; p.x+=p.vx; p.rotation+=p.rotSpeed; p.vy+=0.002;
-                    if(p.y<-30||p.y>tulipCanvas.height+30) { petals.splice(idx,1); return; }
-                    ctxTulip.save(); ctxTulip.translate(p.x,p.y); ctxTulip.rotate(p.rotation*Math.PI/180); ctxTulip.globalAlpha=p.opacity; ctxTulip.fillStyle=p.color;
-                    ctxTulip.beginPath(); ctxTulip.ellipse(0,0,p.size*0.6,p.size*0.3,0,0,Math.PI*2); ctxTulip.fill(); ctxTulip.restore();
+                petals.forEach((p, idx) => {
+                    p.y += p.vy;
+                    p.x += p.vx;
+                    p.rotation += p.rotSpeed;
+                    p.vy += 0.002;
+                    if (p.y < -30 || p.y > tulipCanvas.height + 30) {
+                        petals.splice(idx, 1);
+                        return;
+                    }
+                    ctxTulip.save();
+                    ctxTulip.translate(p.x, p.y);
+                    ctxTulip.rotate(p.rotation * Math.PI / 180);
+                    ctxTulip.globalAlpha = p.opacity;
+                    ctxTulip.fillStyle = p.color;
+                    ctxTulip.beginPath();
+                    ctxTulip.ellipse(0, 0, p.size * 0.6, p.size * 0.3, 0, 0, Math.PI * 2);
+                    ctxTulip.fill();
+                    ctxTulip.restore();
                 });
-                if(Math.random()<0.05) spawnPetal();
+                if (Math.random() < 0.05) spawnPetal();
             }
             initTulips();
 
@@ -348,180 +963,432 @@
             // DOM REFERENCES
             // ─────────────────────────────────────
             const $ = (sel) => document.querySelector(sel);
-            const sectionOpening = $('#sectionOpening'), sectionQuiz = $('#sectionQuiz'), sectionWishes = $('#sectionWishes'), sectionEmotional = $('#sectionEmotional'), sectionEnding = $('#sectionEnding');
+            const sectionOpening = $('#sectionOpening'),
+                sectionQuiz = $('#sectionQuiz'),
+                sectionWishes = $('#sectionWishes'),
+                sectionEmotional = $('#sectionEmotional'),
+                sectionEnding = $('#sectionEnding');
             const allSections = [sectionOpening, sectionQuiz, sectionWishes, sectionEmotional, sectionEnding];
-            const confettiCanvas = $('#confettiCanvas'), balloonCanvas = $('#balloonCanvas'), particleCanvas = $('#particleCanvas'), fireworkCanvas = $('#fireworkCanvas');
-            const ctxConfetti = confettiCanvas.getContext('2d'), ctxBalloon = balloonCanvas.getContext('2d'), ctxParticle = particleCanvas.getContext('2d'), ctxFirework = fireworkCanvas.getContext('2d');
-            const catReaction = $('#catReaction'), catEmoji = $('#catEmoji'), catReactionText = $('#catReactionText');
-            const starsContainer = $('#starsContainer'), wishesContainer = $('#wishesContainer'), btnProceedToEmotional = $('#btnProceedToEmotional');
-            const quizQuestion = $('#quizQuestion'), quizOptions = $('#quizOptions'), quizCounter = $('#quizCounter');
-            const emoQuestion = $('#emoQuestion'), emoOptions = $('#emoOptions'), emoCounter = $('#emoCounter');
+            const confettiCanvas = $('#confettiCanvas'),
+                balloonCanvas = $('#balloonCanvas'),
+                particleCanvas = $('#particleCanvas'),
+                fireworkCanvas = $('#fireworkCanvas');
+            const ctxConfetti = confettiCanvas.getContext('2d'),
+                ctxBalloon = balloonCanvas.getContext('2d'),
+                ctxParticle = particleCanvas.getContext('2d'),
+                ctxFirework = fireworkCanvas.getContext('2d');
+            const catReaction = $('#catReaction'),
+                catEmoji = $('#catEmoji'),
+                catReactionText = $('#catReactionText');
+            const starsContainer = $('#starsContainer'),
+                wishesContainer = $('#wishesContainer'),
+                btnProceedToEmotional = $('#btnProceedToEmotional');
+            const quizQuestion = $('#quizQuestion'),
+                quizOptions = $('#quizOptions'),
+                quizCounter = $('#quizCounter');
+            const emoQuestion = $('#emoQuestion'),
+                emoOptions = $('#emoOptions'),
+                emoCounter = $('#emoCounter');
             const typingMain = $('#typingMain');
 
-            function setupCanvas(c) { c.width = window.innerWidth; c.height = window.innerHeight; }
-            setupCanvas(confettiCanvas); setupCanvas(balloonCanvas); setupCanvas(particleCanvas); setupCanvas(fireworkCanvas);
+            function setupCanvas(c) {
+                c.width = window.innerWidth;
+                c.height = window.innerHeight;
+            }
+            setupCanvas(confettiCanvas);
+            setupCanvas(balloonCanvas);
+            setupCanvas(particleCanvas);
+            setupCanvas(fireworkCanvas);
             let resizeTimeout;
-            window.addEventListener('resize', () => { clearTimeout(resizeTimeout); resizeTimeout = setTimeout(() => { setupCanvas(confettiCanvas); setupCanvas(balloonCanvas); setupCanvas(particleCanvas); setupCanvas(fireworkCanvas); }, 250); });
-            window.addEventListener('load', () => { setupCanvas(confettiCanvas); setupCanvas(balloonCanvas); setupCanvas(particleCanvas); setupCanvas(fireworkCanvas); });
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    setupCanvas(confettiCanvas);
+                    setupCanvas(balloonCanvas);
+                    setupCanvas(particleCanvas);
+                    setupCanvas(fireworkCanvas);
+                }, 250);
+            });
+            window.addEventListener('load', () => {
+                setupCanvas(confettiCanvas);
+                setupCanvas(balloonCanvas);
+                setupCanvas(particleCanvas);
+                setupCanvas(fireworkCanvas);
+            });
 
             // ─────────────────────────────────────
-            // MUSIC SYSTEM (I love you so + fallback)
+            // CONFETTI
             // ─────────────────────────────────────
-            const bgMusic = document.getElementById('bgMusic');
-            bgMusic.volume = 0.5; // Twice as loud as before
-            let audioCtx = null, musicGainNode = null, fallbackInterval = null;
-            let isMusicPlaying = false;
-            let useFallback = true; // Assume fallback until song loads
-
-            function initMusicSystem() {
-                if (!audioCtx) {
-                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                    musicGainNode = audioCtx.createGain();
-                    musicGainNode.gain.value = 0.3; // twice as loud (was 0.15)
-                    musicGainNode.connect(audioCtx.destination);
-                }
-                if (audioCtx.state === 'suspended') audioCtx.resume();
-
-                // Try to load the song if a source is provided
-                const source = bgMusic.querySelector('source');
-                if (source && source.getAttribute('src') && source.getAttribute('src').trim() !== '') {
-                    bgMusic.load();
-                    bgMusic.addEventListener('canplaythrough', () => {
-                        if (bgMusic.readyState >= 3) {
-                            useFallback = false; // Song is ready, use it
-                        }
-                    }, { once: true });
-                    // also check immediately
-                    if (bgMusic.readyState >= 3) {
-                        useFallback = false;
-                    }
-                }
-            }
-
-            function startMusic() {
-                isMusicPlaying = true;
-                musicToggle.classList.add('playing');
-                musicToggle.textContent = '🎶';
-
-                if (!useFallback && bgMusic.readyState >= 3) {
-                    bgMusic.play().catch(e => {
-                        console.warn('Could not play song, falling back to melody', e);
-                        startFallbackMelody();
-                    });
-                } else {
-                    startFallbackMelody();
-                }
-            }
-
-            function stopMusic() {
-                isMusicPlaying = false;
-                musicToggle.classList.remove('playing');
-                musicToggle.textContent = '🎵';
-                if (!useFallback) {
-                    bgMusic.pause();
-                }
-                if (fallbackInterval) {
-                    clearTimeout(fallbackInterval);
-                    fallbackInterval = null;
-                }
-            }
-
-            const birthdayNotes = [{freq:523.25,dur:0.4},{freq:523.25,dur:0.4},{freq:587.33,dur:0.4},{freq:523.25,dur:0.4},{freq:698.46,dur:0.4},{freq:659.25,dur:0.6},{freq:523.25,dur:0.4},{freq:523.25,dur:0.4},{freq:587.33,dur:0.4},{freq:523.25,dur:0.4},{freq:783.99,dur:0.4},{freq:698.46,dur:0.6},{freq:523.25,dur:0.4},{freq:523.25,dur:0.4},{freq:1046.5,dur:0.4},{freq:880.0,dur:0.4},{freq:698.46,dur:0.4},{freq:659.25,dur:0.4},{freq:587.33,dur:0.7}];
-            function playNote(freq, dur, startTime) { if (!audioCtx || !musicGainNode) return; const osc = audioCtx.createOscillator(), env = audioCtx.createGain(); osc.type = 'triangle'; osc.frequency.value = freq; env.gain.setValueAtTime(0.08, startTime); env.gain.exponentialRampToValueAtTime(0.001, startTime + dur * 0.9); osc.connect(env); env.connect(musicGainNode); osc.start(startTime); osc.stop(startTime + dur); }
-            function startFallbackMelody() {
-                if (fallbackInterval) return;
-                if (!audioCtx) initMusicSystem();
-                let noteIndex = 0;
-                const loopLen = birthdayNotes.length, totalTime = birthdayNotes.reduce((s,n)=>s+n.dur,0)+1.5;
-                function schedule() {
-                    if (!isMusicPlaying || !useFallback) return;
-                    let time = audioCtx.currentTime + 0.05;
-                    for (let i=0;i<loopLen;i++) {
-                        const note = birthdayNotes[(noteIndex+i)%loopLen];
-                        playNote(note.freq, note.dur, time);
-                        time += note.dur;
-                    }
-                    noteIndex = (noteIndex+1)%loopLen;
-                    fallbackInterval = setTimeout(schedule, totalTime*1000);
-                }
-                schedule();
-            }
-
-            function toggleMusic() {
-                initMusicSystem();
-                if (isMusicPlaying) {
-                    stopMusic();
-                } else {
-                    startMusic();
-                }
-            }
-            musicToggle.addEventListener('click', toggleMusic);
-
-            // Rest of animation functions unchanged
             let confettiParticles = [];
-            const confettiColors = ['#f8c8dc','#d5c6e0','#fddcc4','#f0d78c','#ffb3c6','#c9b8e8','#ffe0c0','#fff','#f9d5e5','#e8d5f5'];
-            function spawnConfetti(count=80) { for (let i=0;i<count;i++) confettiParticles.push({x:Math.random()*confettiCanvas.width,y:-20-Math.random()*200,w:Math.random()*10+4,h:Math.random()*6+2,color:confettiColors[Math.floor(Math.random()*confettiColors.length)],vy:Math.random()*2.5+1.5,vx:(Math.random()-0.5)*1.8,rot:Math.random()*360,rotSpeed:(Math.random()-0.5)*6,opacity:Math.random()*0.7+0.3}); }
-            function updateConfetti() { ctxConfetti.clearRect(0,0,confettiCanvas.width,confettiCanvas.height); if(confettiParticles.length>300) confettiParticles = confettiParticles.slice(-250); for(let i=confettiParticles.length-1;i>=0;i--) { const p = confettiParticles[i]; p.y+=p.vy; p.x+=p.vx; p.rot+=p.rotSpeed; p.vy+=0.01; if(p.y>confettiCanvas.height+50) { confettiParticles.splice(i,1); continue; } ctxConfetti.save(); ctxConfetti.translate(p.x,p.y); ctxConfetti.rotate(p.rot*Math.PI/180); ctxConfetti.globalAlpha=p.opacity; ctxConfetti.fillStyle=p.color; ctxConfetti.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctxConfetti.restore(); } if(confettiParticles.length<30 && isMusicPlaying) spawnConfetti(15); }
+            const confettiColors = ['#f8c8dc', '#d5c6e0', '#fddcc4', '#f0d78c', '#ffb3c6', '#c9b8e8', '#ffe0c0', '#fff',
+                '#f9d5e5', '#e8d5f5'
+            ];
 
+            function spawnConfetti(count = 80) {
+                for (let i = 0; i < count; i++) {
+                    confettiParticles.push({
+                        x: Math.random() * confettiCanvas.width,
+                        y: -20 - Math.random() * 200,
+                        w: Math.random() * 10 + 4,
+                        h: Math.random() * 6 + 2,
+                        color: confettiColors[Math.floor(Math.random() * confettiColors.length)],
+                        vy: Math.random() * 2.5 + 1.5,
+                        vx: (Math.random() - 0.5) * 1.8,
+                        rot: Math.random() * 360,
+                        rotSpeed: (Math.random() - 0.5) * 6,
+                        opacity: Math.random() * 0.7 + 0.3
+                    });
+                }
+            }
+
+            function updateConfetti() {
+                ctxConfetti.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+                if (confettiParticles.length > 300) confettiParticles = confettiParticles.slice(-250);
+                for (let i = confettiParticles.length - 1; i >= 0; i--) {
+                    const p = confettiParticles[i];
+                    p.y += p.vy;
+                    p.x += p.vx;
+                    p.rot += p.rotSpeed;
+                    p.vy += 0.01;
+                    if (p.y > confettiCanvas.height + 50) {
+                        confettiParticles.splice(i, 1);
+                        continue;
+                    }
+                    ctxConfetti.save();
+                    ctxConfetti.translate(p.x, p.y);
+                    ctxConfetti.rotate(p.rot * Math.PI / 180);
+                    ctxConfetti.globalAlpha = p.opacity;
+                    ctxConfetti.fillStyle = p.color;
+                    ctxConfetti.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+                    ctxConfetti.restore();
+                }
+                if (confettiParticles.length < 30 && isMusicPlaying) spawnConfetti(15);
+            }
+
+            // ─────────────────────────────────────
+            // BALLOONS
+            // ─────────────────────────────────────
             let balloons = [];
-            const balloonColors = ['#f8c8dc','#d5c6e0','#fddcc4','#f0d78c','#ffb3c6','#e8c878','#c9d8f8'];
-            function spawnBalloon() { balloons.push({x:Math.random()*balloonCanvas.width*0.8+balloonCanvas.width*0.1,y:balloonCanvas.height+60,radius:Math.random()*22+16,color:balloonColors[Math.floor(Math.random()*balloonColors.length)],vy:-(Math.random()*1.2+0.6),vx:(Math.random()-0.5)*0.5,sway:Math.random()*0.03,swayOffset:Math.random()*Math.PI*2,stringLen:Math.random()*40+30}); }
-            function updateBalloons() { ctxBalloon.clearRect(0,0,balloonCanvas.width,balloonCanvas.height); for(let i=balloons.length-1;i>=0;i--) { const b=balloons[i]; b.y+=b.vy; b.x+=Math.sin(b.y*b.sway+b.swayOffset)*0.7; b.x+=b.vx; if(b.y<-120){ balloons.splice(i,1); continue; } ctxBalloon.strokeStyle='rgba(180,160,150,0.6)'; ctxBalloon.lineWidth=1.2; ctxBalloon.beginPath(); ctxBalloon.moveTo(b.x,b.y+b.radius); ctxBalloon.quadraticCurveTo(b.x+5,b.y+b.radius+b.stringLen*0.6,b.x+3,b.y+b.radius+b.stringLen); ctxBalloon.stroke(); const grad=ctxBalloon.createRadialGradient(b.x-b.radius*0.25,b.y-b.radius*0.3,b.radius*0.1,b.x,b.y,b.radius); grad.addColorStop(0,'rgba(255,255,255,0.7)'); grad.addColorStop(0.5,b.color); grad.addColorStop(1,'rgba(0,0,0,0.08)'); ctxBalloon.fillStyle=grad; ctxBalloon.beginPath(); ctxBalloon.arc(b.x,b.y,b.radius,0,Math.PI*2); ctxBalloon.fill(); ctxBalloon.fillStyle='rgba(150,130,120,0.7)'; ctxBalloon.beginPath(); ctxBalloon.arc(b.x,b.y+b.radius-1,b.radius*0.12,0,Math.PI*2); ctxBalloon.fill(); } if(balloons.length<6) spawnBalloon(); }
+            const balloonColors = ['#f8c8dc', '#d5c6e0', '#fddcc4', '#f0d78c', '#ffb3c6', '#e8c878', '#c9d8f8'];
 
-            let bgParticles=[];
-            function spawnBgParticle(){ bgParticles.push({x:Math.random()*particleCanvas.width,y:Math.random()*particleCanvas.height,size:Math.random()*3+1,opacity:Math.random()*0.5+0.1,vy:-(Math.random()*0.3+0.1),vx:(Math.random()-0.5)*0.2,life:Math.random()*300+200,maxLife:500}); }
-            function updateBgParticles(){ ctxParticle.clearRect(0,0,particleCanvas.width,particleCanvas.height); for(let i=bgParticles.length-1;i>=0;i--) { const p=bgParticles[i]; p.y+=p.vy; p.x+=p.vx; p.life--; if(p.life<=0||p.y<-10||p.y>particleCanvas.height+10){ bgParticles.splice(i,1); continue; } const alpha=p.opacity*(p.life/p.maxLife); ctxParticle.fillStyle=`rgba(255,220,200,${alpha})`; ctxParticle.beginPath(); ctxParticle.arc(p.x,p.y,p.size,0,Math.PI*2); ctxParticle.fill(); } if(bgParticles.length<50) spawnBgParticle(); }
-            for(let i=0;i<60;i++) spawnBgParticle();
+            function spawnBalloon() {
+                balloons.push({
+                    x: Math.random() * balloonCanvas.width * 0.8 + balloonCanvas.width * 0.1,
+                    y: balloonCanvas.height + 60,
+                    radius: Math.random() * 22 + 16,
+                    color: balloonColors[Math.floor(Math.random() * balloonColors.length)],
+                    vy: -(Math.random() * 1.2 + 0.6),
+                    vx: (Math.random() - 0.5) * 0.5,
+                    sway: Math.random() * 0.03,
+                    swayOffset: Math.random() * Math.PI * 2,
+                    stringLen: Math.random() * 40 + 30
+                });
+            }
 
-            let fireworks=[]; let fireworkInterval=null;
-            function spawnFirework(){ const cx=Math.random()*fireworkCanvas.width*0.6+fireworkCanvas.width*0.2,cy=Math.random()*fireworkCanvas.height*0.5+fireworkCanvas.height*0.1,count=Math.floor(Math.random()*40+30),color=['#f8c8dc','#d5c6e0','#fddcc4','#f0d78c','#ffb3c6','#fff','#e8c878'][Math.floor(Math.random()*7)]; for(let i=0;i<count;i++){ const angle=(Math.PI*2*i)/count+(Math.random()-0.5)*0.3,speed=Math.random()*5+2; fireworks.push({x:cx,y:cy,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,life:Math.random()*50+40,maxLife:90,color:color,size:Math.random()*3+1.5}); } }
-            function updateFireworks(){ ctxFirework.clearRect(0,0,fireworkCanvas.width,fireworkCanvas.height); for(let i=fireworks.length-1;i>=0;i--) { const f=fireworks[i]; f.x+=f.vx; f.y+=f.vy; f.vy+=0.04; f.life--; if(f.life<=0){ fireworks.splice(i,1); continue; } const alpha=f.life/f.maxLife; ctxFirework.fillStyle=f.color.replace(')',`,${alpha})`).replace('rgb','rgba'); if(f.color.startsWith('#')){ ctxFirework.globalAlpha=alpha; ctxFirework.fillStyle=f.color; } ctxFirework.beginPath(); ctxFirework.arc(f.x,f.y,f.size,0,Math.PI*2); ctxFirework.fill(); ctxFirework.globalAlpha=1; } }
-            function startFireworks(){ fireworkCanvas.style.display='block'; for(let i=0;i<5;i++) spawnFirework(); fireworkInterval=setInterval(()=>{ if(fireworks.length<60) spawnFirework(); },600); setTimeout(()=>{ if(fireworkInterval) clearInterval(fireworkInterval); setTimeout(()=>{ fireworkCanvas.style.display='none'; fireworks=[]; },3000); },15000); }
+            function updateBalloons() {
+                ctxBalloon.clearRect(0, 0, balloonCanvas.width, balloonCanvas.height);
+                for (let i = balloons.length - 1; i >= 0; i--) {
+                    const b = balloons[i];
+                    b.y += b.vy;
+                    b.x += Math.sin(b.y * b.sway + b.swayOffset) * 0.7;
+                    b.x += b.vx;
+                    if (b.y < -120) {
+                        balloons.splice(i, 1);
+                        continue;
+                    }
+                    ctxBalloon.strokeStyle = 'rgba(180,160,150,0.6)';
+                    ctxBalloon.lineWidth = 1.2;
+                    ctxBalloon.beginPath();
+                    ctxBalloon.moveTo(b.x, b.y + b.radius);
+                    ctxBalloon.quadraticCurveTo(b.x + 5, b.y + b.radius + b.stringLen * 0.6, b.x + 3, b.y + b.radius + b
+                        .stringLen);
+                    ctxBalloon.stroke();
+                    const grad = ctxBalloon.createRadialGradient(b.x - b.radius * 0.25, b.y - b.radius * 0.3, b.radius *
+                        0.1, b.x, b.y, b.radius);
+                    grad.addColorStop(0, 'rgba(255,255,255,0.7)');
+                    grad.addColorStop(0.5, b.color);
+                    grad.addColorStop(1, 'rgba(0,0,0,0.08)');
+                    ctxBalloon.fillStyle = grad;
+                    ctxBalloon.beginPath();
+                    ctxBalloon.arc(b.x, b.y, b.radius, 0, Math.PI * 2);
+                    ctxBalloon.fill();
+                    ctxBalloon.fillStyle = 'rgba(150,130,120,0.7)';
+                    ctxBalloon.beginPath();
+                    ctxBalloon.arc(b.x, b.y + b.radius - 1, b.radius * 0.12, 0, Math.PI * 2);
+                    ctxBalloon.fill();
+                }
+                if (balloons.length < 6) spawnBalloon();
+            }
 
-            function createStars(){ starsContainer.innerHTML=''; for(let i=0;i<80;i++){ const star=document.createElement('div'); star.className='star'; star.style.left=Math.random()*100+'%'; star.style.top=Math.random()*100+'%'; star.style.width=(Math.random()*3+1)+'px'; star.style.height=star.style.width; star.style.animationDelay=Math.random()*4+'s'; star.style.animationDuration=(Math.random()*3+2)+'s'; starsContainer.appendChild(star); } }
+            // ─────────────────────────────────────
+            // BACKGROUND PARTICLES
+            // ─────────────────────────────────────
+            let bgParticles = [];
+
+            function spawnBgParticle() {
+                bgParticles.push({
+                    x: Math.random() * particleCanvas.width,
+                    y: Math.random() * particleCanvas.height,
+                    size: Math.random() * 3 + 1,
+                    opacity: Math.random() * 0.5 + 0.1,
+                    vy: -(Math.random() * 0.3 + 0.1),
+                    vx: (Math.random() - 0.5) * 0.2,
+                    life: Math.random() * 300 + 200,
+                    maxLife: 500
+                });
+            }
+
+            function updateBgParticles() {
+                ctxParticle.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
+                for (let i = bgParticles.length - 1; i >= 0; i--) {
+                    const p = bgParticles[i];
+                    p.y += p.vy;
+                    p.x += p.vx;
+                    p.life--;
+                    if (p.life <= 0 || p.y < -10 || p.y > particleCanvas.height + 10) {
+                        bgParticles.splice(i, 1);
+                        continue;
+                    }
+                    const alpha = p.opacity * (p.life / p.maxLife);
+                    ctxParticle.fillStyle = `rgba(255,220,200,${alpha})`;
+                    ctxParticle.beginPath();
+                    ctxParticle.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctxParticle.fill();
+                }
+                if (bgParticles.length < 50) spawnBgParticle();
+            }
+            for (let i = 0; i < 60; i++) spawnBgParticle();
+
+            // ─────────────────────────────────────
+            // FIREWORKS
+            // ─────────────────────────────────────
+            let fireworks = [];
+            let fireworkInterval = null;
+
+            function spawnFirework() {
+                const cx = Math.random() * fireworkCanvas.width * 0.6 + fireworkCanvas.width * 0.2,
+                    cy = Math.random() * fireworkCanvas.height * 0.5 + fireworkCanvas.height * 0.1,
+                    count = Math.floor(Math.random() * 40 + 30),
+                    color = ['#f8c8dc', '#d5c6e0', '#fddcc4', '#f0d78c', '#ffb3c6', '#fff', '#e8c878'][Math.floor(Math
+                    .random() * 7)];
+                for (let i = 0; i < count; i++) {
+                    const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.3,
+                        speed = Math.random() * 5 + 2;
+                    fireworks.push({
+                        x: cx,
+                        y: cy,
+                        vx: Math.cos(angle) * speed,
+                        vy: Math.sin(angle) * speed,
+                        life: Math.random() * 50 + 40,
+                        maxLife: 90,
+                        color: color,
+                        size: Math.random() * 3 + 1.5
+                    });
+                }
+            }
+
+            function updateFireworks() {
+                ctxFirework.clearRect(0, 0, fireworkCanvas.width, fireworkCanvas.height);
+                for (let i = fireworks.length - 1; i >= 0; i--) {
+                    const f = fireworks[i];
+                    f.x += f.vx;
+                    f.y += f.vy;
+                    f.vy += 0.04;
+                    f.life--;
+                    if (f.life <= 0) {
+                        fireworks.splice(i, 1);
+                        continue;
+                    }
+                    const alpha = f.life / f.maxLife;
+                    ctxFirework.fillStyle = f.color.replace(')', `,${alpha})`).replace('rgb', 'rgba');
+                    if (f.color.startsWith('#')) {
+                        ctxFirework.globalAlpha = alpha;
+                        ctxFirework.fillStyle = f.color;
+                    }
+                    ctxFirework.beginPath();
+                    ctxFirework.arc(f.x, f.y, f.size, 0, Math.PI * 2);
+                    ctxFirework.fill();
+                    ctxFirework.globalAlpha = 1;
+                }
+            }
+
+            function startFireworks() {
+                fireworkCanvas.style.display = 'block';
+                for (let i = 0; i < 5; i++) spawnFirework();
+                fireworkInterval = setInterval(() => {
+                    if (fireworks.length < 60) spawnFirework();
+                }, 600);
+                setTimeout(() => {
+                    if (fireworkInterval) clearInterval(fireworkInterval);
+                    setTimeout(() => {
+                        fireworkCanvas.style.display = 'none';
+                        fireworks = [];
+                    }, 3000);
+                }, 15000);
+            }
+
+            // ─────────────────────────────────────
+            // STARS
+            // ─────────────────────────────────────
+            function createStars() {
+                starsContainer.innerHTML = '';
+                for (let i = 0; i < 80; i++) {
+                    const star = document.createElement('div');
+                    star.className = 'star';
+                    star.style.left = Math.random() * 100 + '%';
+                    star.style.top = Math.random() * 100 + '%';
+                    star.style.width = (Math.random() * 3 + 1) + 'px';
+                    star.style.height = star.style.width;
+                    star.style.animationDelay = Math.random() * 4 + 's';
+                    star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    starsContainer.appendChild(star);
+                }
+            }
             createStars();
 
-            function typeText(element,text,speed=60,callback=null){ element.innerHTML=''; let i=0; const cursor=document.createElement('span'); cursor.className='typing-cursor'; element.appendChild(cursor); function type(){ if(i<text.length){ cursor.before(document.createTextNode(text[i])); i++; setTimeout(type,speed+Math.random()*30); } else { cursor.remove(); if(callback) setTimeout(callback,400); } } type(); }
+            // ─────────────────────────────────────
+            // TYPING
+            // ─────────────────────────────────────
+            function typeText(element, text, speed = 60, callback = null) {
+                element.innerHTML = '';
+                let i = 0;
+                const cursor = document.createElement('span');
+                cursor.className = 'typing-cursor';
+                element.appendChild(cursor);
 
+                function type() {
+                    if (i < text.length) {
+                        cursor.before(document.createTextNode(text[i]));
+                        i++;
+                        setTimeout(type, speed + Math.random() * 30);
+                    } else {
+                        cursor.remove();
+                        if (callback) setTimeout(callback, 400);
+                    }
+                }
+                type();
+            }
+
+            // ─────────────────────────────────────
+            // CAT REACTIONS
+            // ─────────────────────────────────────
             const teaseReactions = [
-                {emoji:'🐒💖',text:"Eraya, you absolute gaymonkey! 🏳️‍🌈 I love that answer!"},
-                {emoji:'🐵✨',text:"Haha, classic gaymonkey behavior. Adorable!"},
-                {emoji:'🙈💕',text:"Only a true gaymonkey would pick that. Love it!"},
-                {emoji:'🐒🎀',text:"Gaymonkey Eraya strikes again! That's so you."},
-                {emoji:'🙉🌈',text:"Yep, that answer has 'gaymonkey' written all over it."},
-                {emoji:'🐵💘',text:"You're such a lovable gaymonkey, you know that?"},
-                {emoji:'🐒💫',text:"100% certified gaymonkey choice. No doubt."},
-                {emoji:'🙊💖',text:"Could you BE any more of a gaymonkey? 😂"},
+                { emoji: '🐒💖', text: "Eraya, you absolute gaymonkey! 🏳️‍🌈 I love that answer!" },
+                { emoji: '🐵✨', text: "Haha, classic gaymonkey behavior. Adorable!" },
+                { emoji: '🙈💕', text: "Only a true gaymonkey would pick that. Love it!" },
+                { emoji: '🐒🎀', text: "Gaymonkey Eraya strikes again! That's so you." },
+                { emoji: '🙉🌈', text: "Yep, that answer has 'gaymonkey' written all over it." },
+                { emoji: '🐵💘', text: "You're such a lovable gaymonkey, you know that?" },
+                { emoji: '🐒💫', text: "100% certified gaymonkey choice. No doubt." },
+                { emoji: '🙊💖', text: "Could you BE any more of a gaymonkey? 😂" },
             ];
             const manipulativeReaction = { emoji: '💔🐾', text: "Oh… I see. That hurts a little. But I hope you're really happy then…" };
 
             function showTeaseReaction(isManipulative = false) {
-                const reaction = isManipulative ? manipulativeReaction : teaseReactions[Math.floor(Math.random()*teaseReactions.length)];
+                const reaction = isManipulative ? manipulativeReaction : teaseReactions[Math.floor(Math.random() *
+                teaseReactions.length)];
                 catEmoji.textContent = reaction.emoji;
                 catReactionText.textContent = reaction.text;
                 catReaction.classList.add('show');
                 setTimeout(() => { catReaction.classList.remove('show'); }, 2500);
             }
 
-            const STORAGE_KEY='eraya_birthday_answers_2026';
-            function getStoredAnswers(){ try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||[];}catch(e){return[];} }
-            function storeAnswer(question,selectedOption){ try{ const answers=getStoredAnswers(); if(answers.length>500) answers.shift(); answers.push({question,selectedOption,timestamp:new Date().toISOString()}); localStorage.setItem(STORAGE_KEY,JSON.stringify(answers)); }catch(e){ if(e.name==='QuotaExceededError'){ localStorage.clear(); console.warn('Storage cleared'); } } }
+            // ─────────────────────────────────────
+            // STORAGE
+            // ─────────────────────────────────────
+            const STORAGE_KEY = 'eraya_birthday_answers_2026';
 
+            function getStoredAnswers() {
+                try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch (e) { return []; }
+            }
+
+            function storeAnswer(question, selectedOption) {
+                try {
+                    const answers = getStoredAnswers();
+                    if (answers.length > 500) answers.shift();
+                    answers.push({ question, selectedOption, timestamp: new Date().toISOString() });
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(answers));
+                } catch (e) {
+                    if (e.name === 'QuotaExceededError') {
+                        localStorage.clear();
+                        console.warn('Storage cleared');
+                    }
+                }
+            }
+
+            // ─────────────────────────────────────
+            // QUIZ DATA
+            // ─────────────────────────────────────
             const quizData = [
-                {q:"What's Eraya's true spirit animal?",options:["A chaotic raccoon 🦝","A sleepy sloth 🦥","A dramatic peacock 🦚","A sneaky cat 🐱"]},
-                {q:"If Eraya were a weather phenomenon, she'd be...",options:["A sudden rainstorm that cancels plans 🌧️","A heatwave that melts ice cream 🥵","A tornado of emotions 🌪️","A sunny day that's way too bright ☀️"]},
-                {q:"What does Eraya say right before doing something silly?",options:["'Watch this, it'll be hilarious' 😆","'Trust me, I'm a genius' 🧠","'Hold my bubble tea' ","'What's the worst that could happen?' 🤷"]},
-                {q:"What's Eraya's secret talent?",options:["Turning any conversation into chaos 🌀","Falling asleep anywhere, anytime 😴","Making people laugh until they cry 😂","Finding the best snacks in a 5-mile radius 🍿"]},
-                {q:"Why is Eraya called gaymonkey sometimes?",options:["Because she's a lovable rainbow monkey 🏳️‍🌈🐒","It's a term of endearment, obviously 💖","She literally swings from chandeliers (probably) 🔮","All of the above, honestly"]},
-                {q:"What would Eraya do with 100 kittens?",options:["Start a tiny adorable army 🐱","Try to name every single one","Build a blanket fort kingdom 🏰","Become the cat queen she was meant to be 👑"]},
-                {q:"What's the real reason Eraya is amazing?",options:["She's a beautiful disaster in the best way 🌪️💖","She spreads happiness like confetti 🎉","She's fiercely herself, and that's magic ✨","She's a one-of-a-kind gaymonkey, that's why 🐒🏳️‍🌈"]}
+                { q: "What's Eraya's true spirit animal?", options: ["A chaotic raccoon 🦝", "A sleepy sloth 🦥",
+                        "A dramatic peacock 🦚", "A sneaky cat 🐱"
+                    ] },
+                { q: "If Eraya were a weather phenomenon, she'd be...", options: [
+                        "A sudden rainstorm that cancels plans 🌧️",
+                        "A heatwave that melts ice cream 🥵",
+                        "A tornado of emotions 🌪️",
+                        "A sunny day that's way too bright ☀️"
+                    ] },
+                { q: "What does Eraya say right before doing something silly?", options: [
+                        "'Watch this, it'll be hilarious' 😆",
+                        "'Trust me, I'm a genius' 🧠",
+                        "'Hold my bubble tea' ",
+                        "'What's the worst that could happen?' 🤷"
+                    ] },
+                { q: "What's Eraya's secret talent?", options: [
+                        "Turning any conversation into chaos 🌀",
+                        "Falling asleep anywhere, anytime 😴",
+                        "Making people laugh until they cry 😂",
+                        "Finding the best snacks in a 5-mile radius 🍿"
+                    ] },
+                { q: "Why is Eraya called gaymonkey sometimes?", options: [
+                        "Because she's a lovable rainbow monkey 🏳️‍🌈🐒",
+                        "It's a term of endearment, obviously 💖",
+                        "She literally swings from chandeliers (probably) 🔮",
+                        "All of the above, honestly"
+                    ] },
+                { q: "What would Eraya do with 100 kittens?", options: [
+                        "Start a tiny adorable army 🐱",
+                        "Try to name every single one",
+                        "Build a blanket fort kingdom 🏰",
+                        "Become the cat queen she was meant to be 👑"
+                    ] },
+                { q: "What's the real reason Eraya is amazing?", options: [
+                        "She's a beautiful disaster in the best way 🌪️💖",
+                        "She spreads happiness like confetti 🎉",
+                        "She's fiercely herself, and that's magic ✨",
+                        "She's a one-of-a-kind gaymonkey, that's why 🐒🏳️‍🌈"
+                    ] }
             ];
             const emotionalData = [
-                {q:"What's a memory that always makes you smile?",options:["That time you were a total gaymonkey and loved every second 🐒💕","A random Tuesday that turned into pure chaos ✨","A moment where you felt completely free 🌈","Eating cake for breakfast without judgment 🎂"]},
-                {q:"What's a dream you secretly hold?",options:["World domination (with kindness) 🌍","To never run out of snacks 🍿","To find a place where all the gaymonkeys are celebrated 🏳️‍🌈🐒","To be remembered for making life brighter 💡"]},
-                {q:"When do you feel most like yourself?",options:["When I'm surrounded by people who get my weirdness 🤪","In the middle of a spontaneous dance party 💃","Wrapped in a blanket burrito 🌯","Whenever someone calls me 'gaymonkey' with love 🐒💖"]},
-                {q:"What's something you're proud of?",options:["Surviving every single Monday 💪","My impeccable taste in memes 🐸","Being unapologetically soft and strong 🌸","My ability to make any situation 10x gayer 🏳️‍🌈✨"]},
-                {q:"What if one day I suddenly disappeared from your life... how do you think you'd feel? 💭", options:["Happy 😊","Very Happy 😄","Most happiest person in the world 🥳","Finally I got rid of him 🥹"], isManipulative: true}
+                { q: "What's a memory that always makes you smile?", options: [
+                        "That time you were a total gaymonkey and loved every second 🐒💕",
+                        "A random Tuesday that turned into pure chaos ✨",
+                        "A moment where you felt completely free 🌈",
+                        "Eating cake for breakfast without judgment 🎂"
+                    ] },
+                { q: "What's a dream you secretly hold?", options: [
+                        "World domination (with kindness) 🌍",
+                        "To never run out of snacks 🍿",
+                        "To find a place where all the gaymonkeys are celebrated 🏳️‍🌈🐒",
+                        "To be remembered for making life brighter 💡"
+                    ] },
+                { q: "When do you feel most like yourself?", options: [
+                        "When I'm surrounded by people who get my weirdness 🤪",
+                        "In the middle of a spontaneous dance party 💃",
+                        "Wrapped in a blanket burrito 🌯",
+                        "Whenever someone calls me 'gaymonkey' with love 🐒💖"
+                    ] },
+                { q: "What's something you're proud of?", options: [
+                        "Surviving every single Monday 💪",
+                        "My impeccable taste in memes 🐸",
+                        "Being unapologetically soft and strong 🌸",
+                        "My ability to make any situation 10x gayer 🏳️‍🌈✨"
+                    ] },
+                { q: "What if one day I suddenly disappeared from your life... how do you think you'd feel? 💭",
+                    options: ["Happy 😊", "Very Happy 😄", "Most happiest person in the world 🥳",
+                        "Finally I got rid of him 🥹"
+                    ], isManipulative: true }
             ];
             const birthdayWishes = [
                 'You genuinely have a kind heart. 💗',
@@ -531,30 +1398,157 @@
                 'You deserve love, peace, adventure, success, and beautiful memories. 💖',
             ];
 
-            function switchSection(target){ allSections.forEach(s=>s.classList.remove('active')); target.classList.add('active'); target.style.animation='none'; target.offsetHeight; target.style.animation='sectionFadeIn 0.8s ease-out forwards'; setTimeout(()=>{ if(window.innerWidth<768) window.scrollTo({top:0,behavior:'auto'}); else target.scrollIntoView({behavior:'smooth',block:'start'}); },100); }
-
-            let currentQuizIndex=0, quizAnswered=false;
-            function renderQuizQuestion(){ if(currentQuizIndex>=quizData.length){ finishQuiz(); return; } quizAnswered=false; const data=quizData[currentQuizIndex]; quizQuestion.textContent=data.q; quizCounter.textContent=`Question ${currentQuizIndex+1} of ${quizData.length}`; quizOptions.innerHTML=''; data.options.forEach(opt=>{ const btn=document.createElement('button'); btn.className='quiz-option'; btn.textContent=opt; btn.addEventListener('click',()=>handleQuizAnswer(opt,btn)); quizOptions.appendChild(btn); }); const card=$('#quizCard'); card.style.animation='none'; card.offsetHeight; card.style.animation='sectionFadeIn 0.5s ease-out forwards'; }
-            function handleQuizAnswer(optionText,clickedBtn){ if(quizAnswered) return; quizAnswered=true; const allBtns=quizOptions.querySelectorAll('.quiz-option'); allBtns.forEach(b=>b.style.pointerEvents='none'); clickedBtn.classList.add('selected-pick'); storeAnswer(quizData[currentQuizIndex].q,optionText); showTeaseReaction(false); setTimeout(()=>{ currentQuizIndex++; renderQuizQuestion(); },2200); }
-            function finishQuiz(){ switchSection(sectionWishes); renderWishes(); spawnConfetti(120); for(let i=0;i<4;i++) spawnBalloon(); }
-
-            let wishIndex=0;
-            function renderWishes(){ wishesContainer.innerHTML=''; wishIndex=0; btnProceedToEmotional.classList.add('hidden'); showNextWish(); }
-            function showNextWish(){ if(wishIndex>=birthdayWishes.length){ btnProceedToEmotional.classList.remove('hidden'); btnProceedToEmotional.style.animation='fadeSlideIn 0.6s ease-out forwards'; btnProceedToEmotional.style.opacity='1'; return; } const wish=birthdayWishes[wishIndex]; const card=document.createElement('div'); card.className='wish-card'; card.textContent=wish; wishesContainer.appendChild(card); card.offsetHeight; card.style.opacity='1'; wishIndex++; setTimeout(showNextWish,1800); }
-            btnProceedToEmotional.addEventListener('click',()=>{ switchSection(sectionEmotional); starsContainer.classList.add('visible'); currentEmoIndex=0; renderEmoQuestion(); confettiParticles=[]; });
-
-            let currentEmoIndex=0, emoAnswered=false;
-            function renderEmoQuestion(){ if(currentEmoIndex>=emotionalData.length){ finishEmotional(); return; } emoAnswered=false; const data=emotionalData[currentEmoIndex]; emoQuestion.textContent=data.q; emoCounter.textContent=`Reflection ${currentEmoIndex+1} of ${emotionalData.length}`; emoOptions.innerHTML=''; data.options.forEach(opt=>{ const btn=document.createElement('button'); btn.className='quiz-option'; btn.textContent=opt; btn.addEventListener('click',()=>handleEmoAnswer(opt,btn,data.isManipulative)); emoOptions.appendChild(btn); }); const card=sectionEmotional.querySelector('.glass-card'); if(card){ card.style.animation='none'; card.offsetHeight; card.style.animation='sectionFadeIn 0.5s ease-out forwards'; } }
-            function handleEmoAnswer(optionText,clickedBtn,isManipulative = false){
-                if(emoAnswered) return; emoAnswered=true;
-                const allBtns=emoOptions.querySelectorAll('.quiz-option'); allBtns.forEach(b=>b.style.pointerEvents='none');
-                clickedBtn.classList.add('selected-pick');
-                storeAnswer('[Reflection] '+emotionalData[currentEmoIndex].q,optionText);
-                showTeaseReaction(isManipulative);
-                setTimeout(()=>{ currentEmoIndex++; renderEmoQuestion(); }, isManipulative ? 3000 : 2200);
+            // ─────────────────────────────────────
+            // SECTION SWITCHING
+            // ─────────────────────────────────────
+            function switchSection(target) {
+                allSections.forEach(s => s.classList.remove('active'));
+                target.classList.add('active');
+                target.style.animation = 'none';
+                target.offsetHeight;
+                target.style.animation = 'sectionFadeIn 0.8s ease-out forwards';
+                setTimeout(() => {
+                    if (window.innerWidth < 768) window.scrollTo({ top: 0, behavior: 'auto' });
+                    else target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
             }
-            function finishEmotional(){ starsContainer.classList.remove('visible'); if(fireworkInterval) clearInterval(fireworkInterval); switchSection(sectionEnding); startFireworks(); document.getElementById('endingCatContainer').style.animation='catBounce 0.8s ease-out infinite'; spawnConfetti(200); for(let i=0;i<8;i++) spawnBalloon(); }
 
+            // ─────────────────────────────────────
+            // QUIZ LOGIC
+            // ─────────────────────────────────────
+            let currentQuizIndex = 0,
+                quizAnswered = false;
+
+            function renderQuizQuestion() {
+                if (currentQuizIndex >= quizData.length) { finishQuiz(); return; }
+                quizAnswered = false;
+                const data = quizData[currentQuizIndex];
+                quizQuestion.textContent = data.q;
+                quizCounter.textContent = `Question ${currentQuizIndex+1} of ${quizData.length}`;
+                quizOptions.innerHTML = '';
+                data.options.forEach(opt => {
+                    const btn = document.createElement('button');
+                    btn.className = 'quiz-option';
+                    btn.textContent = opt;
+                    btn.addEventListener('click', () => handleQuizAnswer(opt, btn));
+                    quizOptions.appendChild(btn);
+                });
+                const card = $('#quizCard');
+                card.style.animation = 'none';
+                card.offsetHeight;
+                card.style.animation = 'sectionFadeIn 0.5s ease-out forwards';
+            }
+
+            function handleQuizAnswer(optionText, clickedBtn) {
+                if (quizAnswered) return;
+                quizAnswered = true;
+                const allBtns = quizOptions.querySelectorAll('.quiz-option');
+                allBtns.forEach(b => b.style.pointerEvents = 'none');
+                clickedBtn.classList.add('selected-pick');
+                storeAnswer(quizData[currentQuizIndex].q, optionText);
+                showTeaseReaction(false);
+                setTimeout(() => { currentQuizIndex++;
+                    renderQuizQuestion(); }, 2200);
+            }
+
+            function finishQuiz() {
+                switchSection(sectionWishes);
+                renderWishes();
+                spawnConfetti(120);
+                for (let i = 0; i < 4; i++) spawnBalloon();
+            }
+
+            // ─────────────────────────────────────
+            // WISHES
+            // ─────────────────────────────────────
+            let wishIndex = 0;
+
+            function renderWishes() {
+                wishesContainer.innerHTML = '';
+                wishIndex = 0;
+                btnProceedToEmotional.classList.add('hidden');
+                showNextWish();
+            }
+
+            function showNextWish() {
+                if (wishIndex >= birthdayWishes.length) {
+                    btnProceedToEmotional.classList.remove('hidden');
+                    btnProceedToEmotional.style.animation = 'fadeSlideIn 0.6s ease-out forwards';
+                    btnProceedToEmotional.style.opacity = '1';
+                    return;
+                }
+                const wish = birthdayWishes[wishIndex];
+                const card = document.createElement('div');
+                card.className = 'wish-card';
+                card.textContent = wish;
+                wishesContainer.appendChild(card);
+                card.offsetHeight;
+                card.style.opacity = '1';
+                wishIndex++;
+                setTimeout(showNextWish, 1800);
+            }
+
+            btnProceedToEmotional.addEventListener('click', () => {
+                switchSection(sectionEmotional);
+                starsContainer.classList.add('visible');
+                currentEmoIndex = 0;
+                renderEmoQuestion();
+                confettiParticles = [];
+            });
+
+            // ─────────────────────────────────────
+            // EMOTIONAL REFLECTIONS
+            // ─────────────────────────────────────
+            let currentEmoIndex = 0,
+                emoAnswered = false;
+
+            function renderEmoQuestion() {
+                if (currentEmoIndex >= emotionalData.length) { finishEmotional(); return; }
+                emoAnswered = false;
+                const data = emotionalData[currentEmoIndex];
+                emoQuestion.textContent = data.q;
+                emoCounter.textContent = `Reflection ${currentEmoIndex+1} of ${emotionalData.length}`;
+                emoOptions.innerHTML = '';
+                data.options.forEach(opt => {
+                    const btn = document.createElement('button');
+                    btn.className = 'quiz-option';
+                    btn.textContent = opt;
+                    btn.addEventListener('click', () => handleEmoAnswer(opt, btn, data.isManipulative));
+                    emoOptions.appendChild(btn);
+                });
+                const card = sectionEmotional.querySelector('.glass-card');
+                if (card) {
+                    card.style.animation = 'none';
+                    card.offsetHeight;
+                    card.style.animation = 'sectionFadeIn 0.5s ease-out forwards';
+                }
+            }
+
+            function handleEmoAnswer(optionText, clickedBtn, isManipulative = false) {
+                if (emoAnswered) return;
+                emoAnswered = true;
+                const allBtns = emoOptions.querySelectorAll('.quiz-option');
+                allBtns.forEach(b => b.style.pointerEvents = 'none');
+                clickedBtn.classList.add('selected-pick');
+                storeAnswer('[Reflection] ' + emotionalData[currentEmoIndex].q, optionText);
+                showTeaseReaction(isManipulative);
+                setTimeout(() => { currentEmoIndex++;
+                    renderEmoQuestion(); }, isManipulative ? 3000 : 2200);
+            }
+
+            function finishEmotional() {
+                starsContainer.classList.remove('visible');
+                if (fireworkInterval) clearInterval(fireworkInterval);
+                switchSection(sectionEnding);
+                startFireworks();
+                document.getElementById('endingCatContainer').style.animation = 'catBounce 0.8s ease-out infinite';
+                spawnConfetti(200);
+                for (let i = 0; i < 8; i++) spawnBalloon();
+            }
+
+            // ─────────────────────────────────────
+            // EVENT BINDINGS
+            // ─────────────────────────────────────
             document.getElementById('btnStartQuiz').addEventListener('click', () => {
                 switchSection(sectionQuiz);
                 currentQuizIndex = 0;
@@ -563,26 +1557,69 @@
                 for (let i = 0; i < 3; i++) spawnBalloon();
             });
 
-            document.getElementById('btnRestart').addEventListener('click',()=>{
-                if(fireworkInterval) clearInterval(fireworkInterval); fireworks=[]; fireworkCanvas.style.display='none';
-                confettiParticles=[]; balloons=[]; starsContainer.classList.remove('visible');
-                currentQuizIndex=0; currentEmoIndex=0; wishIndex=0; quizAnswered=false; emoAnswered=false;
-                switchSection(sectionOpening); typeText(typingMain,'Happy Birthday, Eraya!',55);
-                spawnConfetti(80); for(let i=0;i<5;i++) spawnBalloon(); window.scrollTo({top:0,behavior:'smooth'});
+            document.getElementById('btnRestart').addEventListener('click', () => {
+                if (fireworkInterval) clearInterval(fireworkInterval);
+                fireworks = [];
+                fireworkCanvas.style.display = 'none';
+                confettiParticles = [];
+                balloons = [];
+                starsContainer.classList.remove('visible');
+                currentQuizIndex = 0;
+                currentEmoIndex = 0;
+                wishIndex = 0;
+                quizAnswered = false;
+                emoAnswered = false;
+                switchSection(sectionOpening);
+                typeText(typingMain, 'Happy Birthday, Eraya!', 55);
+                spawnConfetti(80);
+                for (let i = 0; i < 5; i++) spawnBalloon();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
-            function animationLoop(){
-                updateAndDrawTulips(); updateBgParticles(); updateConfetti(); updateBalloons(); updateFireworks();
+            // ─────────────────────────────────────
+            // MAIN ANIMATION LOOP
+            // ─────────────────────────────────────
+            function animationLoop() {
+                updateAndDrawTulips();
+                updateBgParticles();
+                updateConfetti();
+                updateBalloons();
+                updateFireworks();
                 requestAnimationFrame(animationLoop);
             }
             animationLoop();
 
-            setInterval(()=>{ if(fireworks.length>200) fireworks=fireworks.slice(-100); },5000);
-            document.addEventListener('visibilitychange',()=>{ if(document.hidden && isMusicPlaying){ stopMusic(); console.log('🎵 Music paused'); } });
-            if(performance.memory){ setInterval(()=>{ const used=performance.memory.usedJSHeapSize/1048576; if(used>100) console.warn('⚠️ High memory:',used.toFixed(1),'MB'); },10000); }
-            setInterval(()=>{ if(confettiParticles.length<40 && document.visibilityState==='visible') spawnConfetti(25); },8000);
-            setInterval(()=>{ if(balloons.length<4) spawnBalloon(); },5000);
+            // ─────────────────────────────────────
+            // PERIODIC CLEANUP & SPAWN
+            // ─────────────────────────────────────
+            setInterval(() => {
+                if (fireworks.length > 200) fireworks = fireworks.slice(-100);
+            }, 5000);
+
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden && isMusicPlaying) {
+                    // Pause when tab is hidden to save resources
+                    stopMusic(true);
+                }
+            });
+
+            if (performance.memory) {
+                setInterval(() => {
+                    const used = performance.memory.usedJSHeapSize / 1048576;
+                    if (used > 100) console.warn('⚠️ High memory:', used.toFixed(1), 'MB');
+                }, 10000);
+            }
+
+            setInterval(() => {
+                if (confettiParticles.length < 40 && document.visibilityState === 'visible') spawnConfetti(25);
+            }, 8000);
+
+            setInterval(() => {
+                if (balloons.length < 4) spawnBalloon();
+            }, 5000);
+
             console.log('🎂✨ Happy Birthday, Eraya! 🏳️‍🌈🐒');
+            console.log('🎵 Now playing: "double take" by The Walters (local file)');
         })();
     </script>
 </body>
