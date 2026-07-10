@@ -1,1419 +1,589 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Erayaisahotman 🎂✨</title>
-<style>
-:root {
-  --pink: #ff85a2;
-  --pink-light: #ffc2d1;
-  --lavender: #c9b1e8;
-  --lavender-light: #e8dff5;
-  --peach: #ffb347;
-  --peach-light: #ffd9a8;
-  --cream: #fff8f0;
-  --gold: #ffd700;
-  --gold-light: #fff3b0;
-  --white: #ffffff;
-  --glass-bg: rgba(255,255,255,0.18);
-  --glass-border: rgba(255,255,255,0.45);
-  --shadow: rgba(201,177,232,0.35);
-  --text-dark: #4a3060;
-  --text-mid: #7b5ea7;
-  --text-light: #b39dcc;
-}
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{
-  font-family:'Segoe UI',system-ui,sans-serif;
-  background:linear-gradient(135deg,#ffe4f0 0%,#f3e8ff 30%,#fff0e0 60%,#ffeef5 100%);
-  min-height:100vh;overflow-x:hidden;color:var(--text-dark);
-}
-::-webkit-scrollbar{width:8px;}
-::-webkit-scrollbar-track{background:#fce4f0;}
-::-webkit-scrollbar-thumb{background:linear-gradient(var(--pink),var(--lavender));border-radius:10px;}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎂 Happy Birthday, Eraya! 💖</title>
+    <style>
+        :root {
+            --pink: #f8c8dc;
+            --pink-deep: #e8a0b8;
+            --lavender: #d5c6e0;
+            --lavender-deep: #b8a0cc;
+            --peach: #fddcc4;
+            --peach-deep: #f5c5a3;
+            --cream: #fff8f0;
+            --white: #ffffff;
+            --gold: #f0d78c;
+            --gold-deep: #d4a843;
+            --text: #4a3550;
+            --text-light: #6b5b70;
+            --glass-bg: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.65);
+            --glass-shadow: rgba(0, 0, 0, 0.06);
+            --card-radius: 28px;
+            --transition-smooth: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-main: 'Segoe UI', 'Georgia', 'Times New Roman', serif;
+            --font-cursive: 'Georgia', 'Palatino Linotype', 'Book Antiqua', serif;
+        }
 
-/* CANVAS */
-#particleCanvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;}
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; overflow-x:hidden; }
+        body {
+            font-family:var(--font-main);
+            background: #fef5f0;
+            background-attachment:fixed;
+            color:var(--text);
+            min-height:100vh;
+            overflow-x:hidden;
+            cursor:default;
+            position:relative;
+            -webkit-tap-highlight-color:transparent;
+            user-select:none; -webkit-user-select:none;
+        }
 
-/* MUSIC */
-#musicPlayer{
-  position:fixed;top:16px;right:16px;z-index:9999;
-  display:flex;align-items:center;gap:10px;
-  background:var(--glass-bg);backdrop-filter:blur(16px);
-  border:1.5px solid var(--glass-border);border-radius:50px;
-  padding:8px 18px;box-shadow:0 4px 24px var(--shadow);
-  cursor:pointer;transition:transform 0.3s,box-shadow 0.3s;
-}
-#musicPlayer:hover{transform:scale(1.07);}
-#musicIcon{font-size:1.4rem;animation:musicBounce 1.2s infinite alternate;}
-@keyframes musicBounce{from{transform:scale(1);}to{transform:scale(1.25) rotate(8deg);}}
-#musicLabel{font-size:0.78rem;color:var(--text-mid);font-weight:600;}
-#musicPlayer.playing #musicIcon{animation:musicSpin 2s linear infinite;}
-@keyframes musicSpin{to{transform:rotate(360deg);}}
+        #tulipCanvas, #particleCanvas, #confettiCanvas, #balloonCanvas, #fireworkCanvas {
+            position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none;
+        }
+        #tulipCanvas { z-index:0; }
+        #particleCanvas { z-index:1; }
+        #confettiCanvas { z-index:2; }
+        #balloonCanvas { z-index:3; }
+        #fireworkCanvas { z-index:4; display:none; }
 
-/* HEADER */
-#siteHeader{
-  position:fixed;top:0;left:0;right:0;z-index:1000;
-  padding:0 20px;height:62px;
-  display:flex;align-items:center;justify-content:center;gap:14px;
-  background:rgba(255,255,255,0.22);backdrop-filter:blur(18px);
-  border-bottom:1px solid rgba(255,255,255,0.4);
-  box-shadow:0 2px 20px rgba(201,177,232,0.2);
-}
-#siteHeader h1{
-  font-size:clamp(1.1rem,4vw,1.7rem);font-weight:800;
-  background:linear-gradient(90deg,var(--pink),var(--lavender),var(--peach),var(--gold));
-  background-size:300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;animation:gradShift 4s linear infinite;
-  letter-spacing:2px;text-transform:uppercase;
-}
-@keyframes gradShift{0%{background-position:0%}100%{background-position:300%}}
-.header-cat{
-  width:38px;height:38px;border-radius:50%;object-fit:cover;
-  border:2px solid var(--glass-border);
-  animation:headerCatBounce 1.5s ease-in-out infinite alternate;
-  box-shadow:0 2px 10px var(--shadow);
-}
-@keyframes headerCatBounce{from{transform:rotate(-5deg) scale(1);}to{transform:rotate(5deg) scale(1.1);}}
+        .floating-decor { position:fixed; pointer-events:none; z-index:0; animation:floatAround 18s ease-in-out infinite; opacity:0.7; font-size:2rem; }
+        .floating-decor:nth-child(1){top:8%;left:5%;animation-delay:0s;animation-duration:20s;}
+        .floating-decor:nth-child(2){top:15%;right:8%;animation-delay:-3s;animation-duration:22s;}
+        .floating-decor:nth-child(3){top:60%;left:4%;animation-delay:-7s;animation-duration:19s;}
+        .floating-decor:nth-child(4){top:70%;right:6%;animation-delay:-11s;animation-duration:24s;}
+        .floating-decor:nth-child(5){top:35%;left:90%;animation-delay:-5s;animation-duration:21s;}
+        .floating-decor:nth-child(6){top:45%;left:3%;animation-delay:-14s;animation-duration:23s;}
+        .floating-decor:nth-child(7){top:80%;right:12%;animation-delay:-9s;animation-duration:20s;}
+        .floating-decor:nth-child(8){top:25%;left:50%;animation-delay:-16s;animation-duration:25s;}
 
-/* NAV DOTS */
-#navDots{
-  position:fixed;right:14px;top:50%;transform:translateY(-50%);
-  z-index:900;display:flex;flex-direction:column;gap:10px;
-}
-.nav-dot{
-  width:11px;height:11px;border-radius:50%;
-  background:rgba(201,177,232,0.5);cursor:pointer;
-  transition:background 0.3s,transform 0.3s;
-  border:2px solid rgba(255,255,255,0.7);
-}
-.nav-dot.active{background:var(--pink);transform:scale(1.4);}
+        @keyframes floatAround {
+            0%,100%{transform:translate(0,0) rotate(0deg) scale(1);}
+            15%{transform:translate(30px,-40px) rotate(8deg) scale(1.1);}
+            30%{transform:translate(-20px,-70px) rotate(-5deg) scale(0.9);}
+            45%{transform:translate(-35px,-20px) rotate(12deg) scale(1.05);}
+            60%{transform:translate(25px,-55px) rotate(-8deg) scale(0.95);}
+            75%{transform:translate(-15px,-35px) rotate(4deg) scale(1.08);}
+            90%{transform:translate(20px,-60px) rotate(-3deg) scale(1.02);}
+        }
 
-/* SECTIONS */
-.section{
-  position:relative;z-index:1;min-height:100vh;
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  padding:80px 20px 60px;
-}
-.glass-card{
-  background:var(--glass-bg);backdrop-filter:blur(22px);
-  -webkit-backdrop-filter:blur(22px);
-  border:1.5px solid var(--glass-border);border-radius:32px;
-  box-shadow:0 8px 48px var(--shadow),0 2px 0 rgba(255,255,255,0.6) inset;
-  padding:48px 40px;max-width:820px;width:100%;
-  position:relative;overflow:hidden;
-}
-.glass-card::before{
-  content:'';position:absolute;top:-60px;right:-60px;
-  width:200px;height:200px;
-  background:radial-gradient(circle,rgba(255,200,220,0.4),transparent 70%);
-  border-radius:50%;pointer-events:none;
-}
-.ribbon{
-  position:absolute;width:100%;height:6px;top:0;left:0;
-  background:repeating-linear-gradient(90deg,
-    var(--pink) 0px,var(--pink) 20px,
-    var(--lavender) 20px,var(--lavender) 40px,
-    var(--peach) 40px,var(--peach) 60px,
-    var(--gold) 60px,var(--gold) 80px);
-  border-radius:32px 32px 0 0;
-}
+        .music-control {
+            position:fixed; top:20px; right:20px; z-index:100; background:var(--glass-bg);
+            backdrop-filter:blur(30px); -webkit-backdrop-filter:blur(30px);
+            border:2px solid var(--glass-border); border-radius:50%; width:50px; height:50px;
+            display:flex; align-items:center; justify-content:center; cursor:pointer;
+            box-shadow:0 8px 25px var(--glass-shadow); transition:all var(--transition-smooth);
+            font-size:1.4rem; animation:gentlePulse 3s ease-in-out infinite;
+        }
+        .music-control:hover{transform:scale(1.1);box-shadow:0 12px 35px rgba(0,0,0,0.12);border-color:var(--gold);}
+        .music-control.playing{border-color:var(--gold-deep);background:rgba(255,248,240,0.45);}
+        @keyframes gentlePulse{0%,100%{box-shadow:0 8px 25px var(--glass-shadow);}50%{box-shadow:0 8px 35px rgba(200,160,200,0.25);}}
 
-/* OPENING */
-#opening{padding-top:100px;}
-.opening-emoji-shower{
-  font-size:2.5rem;letter-spacing:8px;text-align:center;margin-bottom:18px;
-  animation:floatEmoji 3s ease-in-out infinite alternate;
-}
-@keyframes floatEmoji{from{transform:translateY(0) scale(1);}to{transform:translateY(-14px) scale(1.08);}}
-#typingHeadline{
-  font-size:clamp(2rem,7vw,4rem);font-weight:900;text-align:center;
-  background:linear-gradient(135deg,#ff4d8d,#c87cdc,#ff9844);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  line-height:1.15;margin-bottom:18px;min-height:1.3em;
-}
-.cursor-blink{
-  display:inline-block;width:4px;background:var(--pink);
-  animation:blink 0.8s step-end infinite;
-  border-radius:2px;height:1em;vertical-align:middle;margin-left:2px;
-}
-@keyframes blink{50%{opacity:0;}}
-#typingSubtitle{
-  font-size:clamp(0.95rem,3vw,1.18rem);color:var(--text-mid);
-  text-align:center;line-height:1.8;margin-bottom:18px;min-height:2.5em;
-}
-.opening-cats{
-  display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin:20px 0;
-}
-.opening-cat-img{
-  width:72px;height:72px;border-radius:18px;object-fit:cover;
-  border:3px solid rgba(255,255,255,0.7);
-  box-shadow:0 4px 16px var(--shadow);
-  transition:transform 0.3s;
-  animation:catWiggle 2s ease-in-out infinite alternate;
-}
-.opening-cat-img:nth-child(2n){animation-delay:0.4s;}
-.opening-cat-img:nth-child(3n){animation-delay:0.8s;}
-.opening-cat-img:nth-child(4n){animation-delay:1.2s;}
-@keyframes catWiggle{from{transform:rotate(-4deg) scale(1);}to{transform:rotate(4deg) scale(1.06);}}
-.opening-cat-img:hover{transform:scale(1.2) rotate(0deg)!important;}
-.wishes-scroll{display:flex;flex-direction:column;gap:14px;margin-top:20px;}
-.wish-line{
-  opacity:0;transform:translateY(20px);
-  font-size:clamp(0.9rem,2.5vw,1.05rem);color:var(--text-dark);
-  text-align:center;padding:12px 20px;border-radius:18px;
-  background:rgba(255,255,255,0.35);border:1px solid rgba(255,255,255,0.6);
-  transition:opacity 0.6s ease,transform 0.6s ease;
-}
-.wish-line.visible{opacity:1;transform:translateY(0);}
-.scroll-hint{
-  margin-top:36px;font-size:0.85rem;color:var(--text-light);
-  text-align:center;animation:bounce 2s ease-in-out infinite;
-}
-@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+        .main-container { position:relative; z-index:5; max-width:700px; margin:0 auto; padding:20px 16px 60px; display:flex; flex-direction:column; align-items:center; min-height:100vh; }
+        .section { width:100%; display:none; flex-direction:column; align-items:center; animation:sectionFadeIn 0.8s ease-out forwards; padding:20px 0; }
+        .section.active { display:flex; }
+        @keyframes sectionFadeIn{ from{opacity:0;transform:translateY(30px);} to{opacity:1;transform:translateY(0);} }
 
-/* BALLOONS */
-.balloon-container{position:fixed;left:0;right:0;bottom:0;pointer-events:none;z-index:0;}
-.balloon{position:absolute;bottom:-120px;width:52px;animation:balloonFloat linear infinite;will-change:transform;}
-@keyframes balloonFloat{
-  0%{transform:translateY(0) rotate(0deg);opacity:0.85;}
-  50%{transform:translateY(-55vh) rotate(8deg);opacity:0.9;}
-  100%{transform:translateY(-110vh) rotate(-5deg);opacity:0;}
-}
+        .glass-card {
+            background:var(--glass-bg); backdrop-filter:blur(35px); -webkit-backdrop-filter:blur(35px);
+            border:2px solid var(--glass-border); border-radius:var(--card-radius); padding:30px 24px;
+            margin:16px 0; box-shadow:0 10px 40px var(--glass-shadow),0 2px 8px rgba(0,0,0,0.03);
+            width:100%; text-align:center; transition:all var(--transition-smooth); position:relative; overflow:hidden;
+        }
+        .glass-card::before{ content:''; position:absolute; top:-30%; left:-20%; width:140%; height:160%; background:radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.6) 0%, transparent 60%); pointer-events:none; z-index:0; }
+        .glass-card>*{ position:relative; z-index:1; }
+        .glass-card:hover{box-shadow:0 16px 50px rgba(0,0,0,0.1),0 4px 16px rgba(0,0,0,0.04);transform:translateY(-2px);}
 
-/* FLOATING CATS */
-.float-cat{
-  position:fixed;pointer-events:none;z-index:2;
-  border-radius:50%;overflow:hidden;
-  box-shadow:0 4px 16px var(--shadow);
-  border:3px solid rgba(255,255,255,0.7);
-  animation:floatCatAnim ease-in-out infinite alternate;
-}
-@keyframes floatCatAnim{from{transform:translateY(0) rotate(-5deg) scale(1);}to{transform:translateY(-18px) rotate(5deg) scale(1.05);}}
-.float-cat img{width:100%;height:100%;object-fit:cover;}
+        .typing-text { font-family:var(--font-cursive); font-size:2rem; font-weight:700; color:#5a3a50; line-height:1.4; letter-spacing:0.02em; text-align:center; min-height:1.4em; }
+        .typing-cursor { display:inline-block; width:3px; height:1.2em; background:#d4a843; margin-left:2px; animation:blink 0.7s step-end infinite; vertical-align:text-bottom; }
+        @keyframes blink{50%{opacity:0;}}
+        .typing-subtitle { font-size:1.15rem; color:var(--text-light); margin-top:12px; font-style:italic; opacity:0; animation:fadeSlideIn 0.6s ease-out forwards; }
+        @keyframes fadeSlideIn{ from{opacity:0;transform:translateY(10px);} to{opacity:1;transform:translateY(0);} }
 
-/* SECTION TITLES */
-.section-title{
-  font-size:clamp(1.6rem,5vw,2.6rem);font-weight:900;text-align:center;margin-bottom:8px;
-  background:linear-gradient(135deg,var(--pink),var(--lavender));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-.section-subtitle{text-align:center;font-size:0.95rem;color:var(--text-light);margin-bottom:24px;}
+        .btn { display:inline-block; padding:14px 32px; border-radius:50px; font-size:1.05rem; font-weight:600; cursor:pointer; border:none; transition:all var(--transition-smooth); letter-spacing:0.03em; font-family:var(--font-main); position:relative; overflow:hidden; text-decoration:none; color:#fff; background:linear-gradient(135deg, #e8b4c8, #d5a8c8); box-shadow:0 6px 20px rgba(200,150,180,0.35); z-index:1; }
+        .btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(200,150,180,0.5);}
+        .btn:active{transform:scale(0.96);box-shadow:0 4px 12px rgba(200,150,180,0.3);}
+        .btn-gold{background:linear-gradient(135deg, #e8c878, #d4a843);box-shadow:0 6px 20px rgba(200,160,80,0.35);}
+        .btn-gold:hover{box-shadow:0 10px 30px rgba(200,160,80,0.5);}
+        .btn-outline{background:transparent;border:2px solid #d5a8c8;color:#5a3a50;box-shadow:none;}
+        .btn-outline:hover{background:rgba(213,168,200,0.15);box-shadow:0 8px 25px rgba(200,150,180,0.2);}
 
-/* QUIZ */
-#quiz{padding-top:100px;}
-.quiz-progress{
-  width:100%;height:8px;background:rgba(200,170,240,0.25);
-  border-radius:99px;margin-bottom:28px;overflow:hidden;
-}
-.quiz-progress-bar{
-  height:100%;
-  background:linear-gradient(90deg,var(--pink),var(--lavender),var(--peach));
-  border-radius:99px;transition:width 0.6s cubic-bezier(0.34,1.56,0.64,1);
-  background-size:200%;animation:gradShift 2s linear infinite;
-}
-#questionCounter{font-size:0.8rem;color:var(--text-light);text-align:right;margin-bottom:10px;}
-#questionText{
-  font-size:clamp(1rem,3.5vw,1.28rem);font-weight:700;color:var(--text-dark);
-  text-align:center;margin-bottom:24px;line-height:1.5;min-height:3em;
-  transition:opacity 0.4s,transform 0.4s;
-}
-.options-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px;}
-@media(max-width:500px){.options-grid{grid-template-columns:1fr;}}
-.option-btn{
-  background:rgba(255,255,255,0.5);border:2px solid rgba(255,255,255,0.7);
-  border-radius:18px;padding:16px 14px;font-size:0.95rem;font-weight:600;
-  color:var(--text-dark);cursor:pointer;
-  transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);
-  text-align:center;line-height:1.4;position:relative;overflow:hidden;
-}
-.option-btn::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(255,133,162,0.15),rgba(201,177,232,0.15));
-  opacity:0;transition:opacity 0.3s;
-}
-.option-btn:hover::before{opacity:1;}
-.option-btn:hover{transform:translateY(-4px) scale(1.03);border-color:var(--pink-light);box-shadow:0 8px 28px rgba(255,133,162,0.25);}
-.option-btn:active{transform:scale(0.97);}
+        .quiz-options { display:flex; flex-direction:column; gap:10px; width:100%; margin-top:16px; }
+        .quiz-option { padding:14px 18px; border-radius:16px; cursor:pointer; background:rgba(255,255,255,0.5); border:2px solid rgba(220,200,210,0.5); transition:all 0.25s ease; font-size:1rem; text-align:left; font-family:var(--font-main); color:var(--text); position:relative; }
+        .quiz-option:hover{background:rgba(255,240,245,0.7);border-color:#e0b8c8;transform:translateX(4px);box-shadow:0 4px 16px rgba(200,150,180,0.2);}
+        .quiz-option:active{transform:scale(0.97);}
+        .quiz-option.selected-pick{background:rgba(240,220,255,0.7)!important;border-color:#c8a8d8!important;animation:teaseGlow 0.6s ease-out;}
+        @keyframes teaseGlow{0%{box-shadow:0 0 0 0 rgba(180,140,200,0.6);}100%{box-shadow:0 0 0 20px rgba(180,140,200,0);}}
 
-/* ALL answers treated as "correct" — glows green */
-.option-btn.chosen{
-  background:linear-gradient(135deg,#d4f5e0,#b8f0d0);
-  border-color:#5ec88a;color:#256d45;
-  animation:correctPop 0.5s cubic-bezier(0.34,1.56,0.64,1);
-}
-@keyframes correctPop{0%{transform:scale(0.9);}60%{transform:scale(1.1);}100%{transform:scale(1);}}
+        .cat-reaction {
+            position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(0); z-index:200; background:var(--white);
+            border-radius:20px; padding:20px 28px; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.2);
+            transition:transform 0.4s cubic-bezier(0.175,0.885,0.32,1.275); pointer-events:none; max-width:90vw;
+        }
+        .cat-reaction.show{transform:translate(-50%,-50%) scale(1);}
+        .cat-reaction .cat-emoji{font-size:4rem;animation:catBounce 0.6s ease-out;display:block;}
+        @keyframes catBounce{0%{transform:scale(0) rotate(-20deg);}50%{transform:scale(1.3) rotate(5deg);}70%{transform:scale(0.9) rotate(-3deg);}100%{transform:scale(1) rotate(0deg);}}
+        .cat-reaction .reaction-text{margin-top:8px;font-size:1rem;color:var(--text);font-weight:500;}
 
-/* Cat Reaction */
-#catReaction{
-  display:flex;flex-direction:column;align-items:center;gap:10px;
-  margin:16px 0;opacity:0;transform:scale(0.7) translateY(20px);
-  transition:opacity 0.5s,transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
-}
-#catReaction.show{opacity:1;transform:scale(1) translateY(0);}
-.cat-reaction-inner{
-  display:flex;gap:12px;align-items:center;
-  background:rgba(255,255,255,0.4);border-radius:24px;
-  padding:14px 18px;border:1.5px solid rgba(255,255,255,0.7);
-  box-shadow:0 4px 20px var(--shadow);flex-wrap:wrap;justify-content:center;
-}
-.cat-reaction-inner img{
-  width:100px;height:100px;object-fit:cover;border-radius:16px;
-  border:2.5px solid var(--glass-border);box-shadow:0 4px 16px var(--shadow);
-  animation:catReactionBounce 0.6s cubic-bezier(0.34,1.56,0.64,1);
-}
-@keyframes catReactionBounce{0%{transform:scale(0);}70%{transform:scale(1.12);}100%{transform:scale(1);}}
-.cat-reaction-inner p{
-  font-size:0.9rem;color:var(--text-mid);text-align:center;
-  max-width:280px;line-height:1.6;font-weight:600;
-}
-.quiz-cats-strip{
-  display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:14px 0;
-}
-.quiz-cat-sticker{
-  width:56px;height:56px;border-radius:14px;object-fit:cover;
-  border:2px solid rgba(255,255,255,0.7);box-shadow:0 3px 12px var(--shadow);
-  animation:stickerFloat 2.5s ease-in-out infinite alternate;cursor:pointer;transition:transform 0.3s;
-}
-.quiz-cat-sticker:hover{transform:scale(1.35) rotate(5deg)!important;}
-@keyframes stickerFloat{from{transform:translateY(0) rotate(-3deg);}to{transform:translateY(-7px) rotate(3deg);}}
-.quiz-cat-sticker:nth-child(2n){animation-delay:0.5s;}
-.quiz-cat-sticker:nth-child(3n){animation-delay:1s;}
-#quizFeedback{
-  text-align:center;font-size:1rem;font-weight:600;
-  color:var(--text-mid);min-height:1.5em;margin-top:8px;
-}
-#scoreDisplay{
-  text-align:center;padding:16px;
-  background:linear-gradient(135deg,rgba(255,180,210,0.3),rgba(200,170,240,0.3));
-  border-radius:18px;margin-top:16px;font-size:1rem;font-weight:700;
-  color:var(--text-dark);display:none;
-}
+        .wish-card {
+            background:var(--glass-bg); backdrop-filter:blur(25px); -webkit-backdrop-filter:blur(25px);
+            border:2px solid var(--glass-border); border-radius:20px; padding:24px 20px; margin:10px 0;
+            text-align:center; font-size:1.15rem; color:var(--text); box-shadow:0 8px 30px var(--glass-shadow);
+            animation:wishFadeIn 0.7s ease-out forwards; opacity:0; width:100%; font-family:var(--font-cursive);
+            letter-spacing:0.02em; line-height:1.5;
+        }
+        @keyframes wishFadeIn{ from{opacity:0;transform:translateY(20px) scale(0.95);} to{opacity:1;transform:translateY(0) scale(1);} }
 
-/* WISHES */
-#wishes{background:linear-gradient(160deg,rgba(255,220,240,0.15),rgba(220,200,255,0.15));}
-.wishes-carousel{position:relative;min-height:160px;display:flex;align-items:center;justify-content:center;}
-.wish-card{
-  position:absolute;text-align:center;
-  font-size:clamp(1.05rem,3.5vw,1.4rem);font-weight:600;color:var(--text-dark);
-  line-height:1.7;opacity:0;transform:translateY(30px) scale(0.95);
-  transition:opacity 0.7s ease,transform 0.7s ease;padding:0 10px;width:100%;
-}
-.wish-card.active{opacity:1;transform:translateY(0) scale(1);position:relative;}
-.wishes-nav{display:flex;justify-content:center;gap:8px;margin-top:24px;flex-wrap:wrap;}
-.wish-dot{
-  width:9px;height:9px;border-radius:50%;background:rgba(201,177,232,0.4);
-  cursor:pointer;transition:background 0.3s,transform 0.3s;
-}
-.wish-dot.active{background:var(--pink);transform:scale(1.5);}
-.wishes-cats{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin:20px 0;}
-.wish-cat{
-  width:80px;height:80px;border-radius:50%;object-fit:cover;
-  border:3px solid rgba(255,255,255,0.8);box-shadow:0 4px 18px var(--shadow);
-  animation:wishCatFloat 3s ease-in-out infinite alternate;
-}
-.wish-cat:nth-child(2n){animation-delay:0.6s;}
-.wish-cat:nth-child(3n){animation-delay:1.2s;}
-@keyframes wishCatFloat{from{transform:translateY(0) scale(1);}to{transform:translateY(-12px) scale(1.07);}}
+        .stars-container { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; opacity:0; transition:opacity 2s ease; }
+        .stars-container.visible{opacity:1;}
+        .star { position:absolute; background:white; border-radius:50%; animation:twinkle 3s ease-in-out infinite; }
+        @keyframes twinkle{0%,100%{opacity:0.3;transform:scale(1);}50%{opacity:1;transform:scale(1.6);}}
 
-/* EMOTIONAL */
-#emotional{position:relative;overflow:hidden;}
-.stars-overlay{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
-.star-dot{
-  position:absolute;width:3px;height:3px;background:white;border-radius:50%;
-  animation:starTwinkle 2s ease-in-out infinite;
-}
-@keyframes starTwinkle{0%,100%{opacity:0.2;transform:scale(1);}50%{opacity:1;transform:scale(1.8);}}
-.emotional-q-text{
-  font-size:clamp(1.1rem,4vw,1.5rem);font-weight:700;text-align:center;
-  color:var(--text-dark);margin-bottom:28px;line-height:1.6;min-height:3em;
-  opacity:0;transform:translateY(20px);transition:opacity 0.7s,transform 0.7s;
-}
-.emotional-q-text.show{opacity:1;transform:translateY(0);}
-.emotional-cat-side{
-  position:absolute;width:70px;height:70px;border-radius:50%;object-fit:cover;
-  border:3px solid rgba(255,255,255,0.7);box-shadow:0 4px 16px var(--shadow);
-  animation:floatCatAnim 3s ease-in-out infinite alternate;opacity:0.85;
-}
-.emotional-cat-side.left{left:-90px;top:50%;}
-.emotional-cat-side.right{right:-90px;top:40%;}
-@media(max-width:900px){.emotional-cat-side{display:none;}}
-.special-message{
-  font-size:clamp(1.1rem,3.5vw,1.35rem);font-style:italic;text-align:center;
-  color:var(--text-mid);margin:12px 0;opacity:0;transform:translateY(14px);
-  transition:opacity 0.8s,transform 0.8s;
-}
-.special-message.show{opacity:1;transform:translateY(0);}
+        .sparkle-text{background:linear-gradient(135deg, #d4a843, #e8c878, #d4a843); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; font-weight:700;}
 
-/* Special ending emotional cat box */
-.emotional-cat-box{
-  background:rgba(255,255,255,0.45);border:2px solid rgba(255,255,255,0.7);
-  border-radius:24px;padding:22px;text-align:center;margin-top:16px;
-  box-shadow:0 6px 28px var(--shadow);
-  opacity:0;transform:translateY(20px) scale(0.95);
-  transition:opacity 0.7s,transform 0.7s;
-}
-.emotional-cat-box.show{opacity:1;transform:translateY(0) scale(1);}
-.emotional-cat-box img{
-  width:110px;height:110px;border-radius:20px;object-fit:cover;
-  border:3px solid rgba(255,255,255,0.7);box-shadow:0 4px 16px var(--shadow);
-  animation:catReactionBounce 0.6s cubic-bezier(0.34,1.56,0.64,1);
-  margin-bottom:12px;
-}
-.emotional-cat-box p{
-  font-size:1rem;color:var(--text-mid);line-height:1.9;
-  font-weight:600;white-space:pre-line;max-width:420px;margin:0 auto;
-}
+        #startOverlay {
+            position: fixed; top:0; left:0; width:100%; height:100%;
+            background: rgba(255, 248, 240, 0.7);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            z-index: 999; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: opacity 0.6s ease; font-family: var(--font-cursive); cursor: pointer;
+        }
+        #startOverlay.fade-out { opacity: 0; pointer-events: none; }
+        #startOverlay .start-btn {
+            margin-top: 20px; padding: 16px 36px; font-size: 1.4rem;
+            background: linear-gradient(135deg, #f8c8dc, #e8b4c8);
+            border: none; border-radius: 50px; color: white; font-weight: bold;
+            cursor: pointer; box-shadow: 0 10px 30px rgba(200,150,180,0.5);
+            transition: transform 0.2s;
+        }
+        #startOverlay .start-btn:active { transform: scale(0.95); }
 
-/* ENDING */
-#ending{overflow:hidden;}
-#fireworksCanvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;}
-.ending-content{position:relative;z-index:2;}
-.big-cake{
-  font-size:clamp(3rem,12vw,7rem);text-align:center;margin-bottom:20px;
-  animation:cakeBounce 1.5s ease-in-out infinite alternate;
-}
-@keyframes cakeBounce{from{transform:scale(1) rotate(-3deg);}to{transform:scale(1.12) rotate(3deg);}}
-.ending-title{
-  font-size:clamp(1.6rem,6vw,3rem);font-weight:900;text-align:center;
-  background:linear-gradient(135deg,var(--pink),var(--lavender),var(--peach),var(--gold));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  background-size:200%;animation:gradShift 3s linear infinite;margin-bottom:16px;line-height:1.3;
-}
-.ending-messages{display:flex;flex-direction:column;gap:14px;margin:24px 0;}
-.ending-msg{
-  text-align:center;font-size:clamp(0.95rem,2.8vw,1.1rem);color:var(--text-dark);
-  opacity:0;transform:scale(0.9);animation:endMsgIn 0.7s ease forwards;
-  padding:12px 18px;background:rgba(255,255,255,0.35);
-  border-radius:16px;border:1px solid rgba(255,255,255,0.6);
-}
-@keyframes endMsgIn{to{opacity:1;transform:scale(1);}}
-.ending-cat-parade{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:18px 0;}
-.parade-cat{
-  width:70px;height:70px;border-radius:18px;object-fit:cover;
-  border:3px solid rgba(255,255,255,0.8);box-shadow:0 4px 16px var(--shadow);
-  animation:paradeDance 0.7s ease-in-out infinite alternate;
-}
-.parade-cat:nth-child(2n){animation-delay:0.15s;animation-duration:0.9s;}
-.parade-cat:nth-child(3n){animation-delay:0.3s;animation-duration:0.6s;}
-.parade-cat:nth-child(4n){animation-delay:0.45s;}
-.parade-cat:nth-child(5n){animation-delay:0.6s;animation-duration:0.8s;}
-@keyframes paradeDance{from{transform:rotate(-8deg) scale(1) translateY(0);}to{transform:rotate(8deg) scale(1.1) translateY(-8px);}}
-.dancing-cat-big{
-  width:130px;height:130px;object-fit:cover;border-radius:26px;
-  margin:0 auto 20px;display:block;
-  animation:bigCatDance 0.8s ease-in-out infinite alternate;
-  border:4px solid var(--glass-border);box-shadow:0 6px 28px var(--shadow);
-}
-@keyframes bigCatDance{from{transform:rotate(-6deg) scale(1);}to{transform:rotate(6deg) scale(1.08);}}
-.heart-float{
-  position:absolute;font-size:1.6rem;pointer-events:none;
-  animation:heartRise linear forwards;z-index:1;
-}
-@keyframes heartRise{0%{opacity:1;transform:translateY(0) scale(0.8);}100%{opacity:0;transform:translateY(-200px) scale(1.4);}}
-.score-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  background:linear-gradient(135deg,var(--gold-light),var(--gold));
-  border-radius:99px;padding:8px 20px;font-weight:800;font-size:1.05rem;
-  color:#7b5a00;box-shadow:0 4px 16px rgba(255,215,0,0.35);margin:0 auto;
-}
-
-/* DECO */
-.float-deco{
-  position:fixed;pointer-events:none;z-index:0;
-  animation:decoFloat 6s ease-in-out infinite alternate;font-size:1.8rem;user-select:none;
-}
-@keyframes decoFloat{from{transform:translateY(0) rotate(0deg);}to{transform:translateY(-20px) rotate(12deg);}}
-
-/* CAT TRAIL */
-.cat-trail{
-  position:fixed;pointer-events:none;z-index:9998;font-size:1.2rem;
-  animation:trailFade 0.8s ease forwards;transform:translate(-50%,-50%);
-}
-@keyframes trailFade{0%{opacity:1;transform:translate(-50%,-50%) scale(1);}100%{opacity:0;transform:translate(-50%,-80%) scale(0.5);}}
-
-@media(max-width:600px){
-  .glass-card{padding:28px 18px;}
-  #navDots{display:none;}
-  #musicPlayer{padding:7px 12px;}
-  #musicLabel{display:none;}
-  .emotional-cat-side{display:none;}
-}
-@keyframes ripple{to{transform:scale(4);opacity:0;}}
-</style>
+        @media (max-width:480px){
+            .typing-text{font-size:1.4rem;} .glass-card{padding:20px 16px;border-radius:18px;margin:10px 0;}
+            .quiz-option{padding:12px 14px;font-size:0.9rem;border-radius:12px;} .btn{padding:12px 24px;font-size:0.95rem;}
+            .music-control{width:40px;height:40px;top:12px;right:12px;font-size:1.1rem;} .wish-card{font-size:1rem;padding:18px 14px;}
+            .floating-decor{font-size:1.3rem;} .cat-reaction .cat-emoji{font-size:3rem;}
+        }
+        @media (min-width:481px) and (max-width:768px){ .typing-text{font-size:1.7rem;} .glass-card{padding:24px 20px;} }
+        @media (min-width:769px){ .typing-text{font-size:2.2rem;} .glass-card{padding:36px 30px;} }
+        .hidden{display:none!important;}
+    </style>
 </head>
 <body>
-
-<canvas id="particleCanvas"></canvas>
-
-<!-- HEADER -->
-<header id="siteHeader">
-  <img class="header-cat" src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" alt="cat">
-  <h1>Erayaisahotman ✨</h1>
-  <img class="header-cat" src="https://media.giphy.com/media/ICOgUNjpvO0PC/giphy.gif" alt="cat">
-</header>
-
-<!-- MUSIC -->
-<div id="musicPlayer" onclick="toggleMusic()">
-  <span id="musicIcon">🎵</span>
-  <span id="musicLabel">Play Music</span>
-</div>
-
-<!-- NAV -->
-<nav id="navDots">
-  <div class="nav-dot active" onclick="scrollToSection(0)"></div>
-  <div class="nav-dot" onclick="scrollToSection(1)"></div>
-  <div class="nav-dot" onclick="scrollToSection(2)"></div>
-  <div class="nav-dot" onclick="scrollToSection(3)"></div>
-  <div class="nav-dot" onclick="scrollToSection(4)"></div>
-</nav>
-
-<!-- BALLOONS -->
-<div class="balloon-container" id="balloonContainer"></div>
-
-<!-- DECO FLOATS -->
-<div class="float-deco" style="left:3%;top:18%">🌸</div>
-<div class="float-deco" style="left:7%;top:55%;animation-delay:1.2s;font-size:1.4rem">💫</div>
-<div class="float-deco" style="right:5%;top:25%;animation-delay:0.7s">🌺</div>
-<div class="float-deco" style="right:8%;top:65%;animation-delay:2s;font-size:1.3rem">⭐</div>
-<div class="float-deco" style="left:2%;bottom:20%;animation-delay:0.4s;font-size:1.5rem">🎀</div>
-<div class="float-deco" style="right:3%;bottom:30%;animation-delay:1.8s">🦋</div>
-
-<!-- FLOATING EDGE CATS -->
-<div class="float-cat" style="width:60px;height:60px;left:10px;top:25%;animation-duration:4s;">
-  <img src="https://media.giphy.com/media/ule4vhcY1xEKQ/giphy.gif" alt="cat">
-</div>
-<div class="float-cat" style="width:54px;height:54px;right:70px;top:40%;animation-duration:5s;animation-delay:1s;">
-  <img src="https://media.giphy.com/media/3oEduSbSGpGaRX2Vri/giphy.gif" alt="cat">
-</div>
-<div class="float-cat" style="width:58px;height:58px;left:8px;top:62%;animation-duration:3.5s;animation-delay:2s;">
-  <img src="https://media.giphy.com/media/13borq7Zo2kulO/giphy.gif" alt="cat">
-</div>
-<div class="float-cat" style="width:50px;height:50px;right:72px;top:70%;animation-duration:4.5s;animation-delay:0.5s;">
-  <img src="https://media.giphy.com/media/VbnUQpnihPSIgIXuZv/giphy.gif" alt="cat">
-</div>
-
-<!-- ═══════════════════════════════════════
-     SECTION 1 — OPENING
-═══════════════════════════════════════ -->
-<section class="section" id="opening">
-  <div class="glass-card" style="text-align:center;max-width:880px;">
-    <div class="ribbon"></div>
-    <div class="opening-emoji-shower">🎂 ✨ 🎉 🎈 🌸 💖 🎀</div>
-
-    <!-- Opening cat strip -->
-    <div class="opening-cats">
-      <img class="opening-cat-img" src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" alt="cat">
-      <img class="opening-cat-img" src="https://media.giphy.com/media/ICOgUNjpvO0PC/giphy.gif" alt="cat">
-      <img class="opening-cat-img" src="https://media.giphy.com/media/ule4vhcY1xEKQ/giphy.gif" alt="cat">
-      <img class="opening-cat-img" src="https://media.giphy.com/media/5i7umUqAOYYEw/giphy.gif" alt="cat">
-      <img class="opening-cat-img" src="https://media.giphy.com/media/H4uE6w9G1uK4M/giphy.gif" alt="cat">
-      <img class="opening-cat-img" src="https://media.giphy.com/media/13borq7Zo2kulO/giphy.gif" alt="cat">
-      <img class="opening-cat-img" src="https://cataas.com/cat/cute?width=72&height=72&_=1" alt="cat">
-      <img class="opening-cat-img" src="https://cataas.com/cat?width=72&height=72&_=2" alt="cat">
+    <div id="startOverlay">
+        <div style="font-size:5rem; animation: gentlePulse 2.5s ease-in-out infinite;">🌷</div>
+        <h1 style="font-size:2.4rem; color:#5a3a50; margin:10px 0; text-align:center;">Eraya's Birthday Garden</h1>
+        <p style="color:var(--text-light); font-size:1.1rem; margin-bottom: 8px;">Tap the button to start the magic ✨</p>
+        <button class="start-btn" id="startButton">💖 Tap to Begin 💖</button>
     </div>
 
-    <div id="typingHeadline"><span id="typingText"></span><span class="cursor-blink" id="cursor"></span></div>
-    <div id="typingSubtitle"></div>
-    <div class="wishes-scroll" id="wishLines"></div>
-    <div class="scroll-hint" id="scrollHint" style="display:none;">
-      🐱 Scroll down for the full birthday experience 🐱
-    </div>
-  </div>
-</section>
+    <!-- Hidden audio element for "I love you so" by The Walters -->
+    <audio id="bgMusic" loop preload="auto">
+        <!-- 
+        ⚠️ REPLACE THIS SRC with your own audio file of "I love you so" by The Walters.
+        You can use a direct link to an mp3 file, e.g.:
+        src="https://your-server.com/iloveyouso.mp3"
+        For now it's empty, so it will fall back to the birthday melody.
+        -->
+        <source src="" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
-<!-- ═══════════════════════════════════════
-     SECTION 2 — QUIZ
-═══════════════════════════════════════ -->
-<section class="section" id="quiz">
-  <div class="glass-card">
-    <div class="ribbon"></div>
-    <h2 class="section-title">🎀 Birthday Quiz About Eraya</h2>
-    <p class="section-subtitle">Every answer you pick is the right one. Trust me. 😄🐱</p>
+    <span class="floating-decor">🌸</span><span class="floating-decor">💫</span><span class="floating-decor">🌷</span>
+    <span class="floating-decor">💝</span><span class="floating-decor">✨</span><span class="floating-decor">🎈</span>
 
-    <!-- Cat sticker strip -->
-    <div class="quiz-cats-strip">
-      <img class="quiz-cat-sticker" src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" alt="cat">
-      <img class="quiz-cat-sticker" src="https://media.giphy.com/media/ule4vhcY1xEKQ/giphy.gif" alt="cat">
-      <img class="quiz-cat-sticker" src="https://media.giphy.com/media/ICOgUNjpvO0PC/giphy.gif" alt="cat">
-      <img class="quiz-cat-sticker" src="https://media.giphy.com/media/VbnUQpnihPSIgIXuZv/giphy.gif" alt="cat">
-      <img class="quiz-cat-sticker" src="https://media.giphy.com/media/13borq7Zo2kulO/giphy.gif" alt="cat">
-      <img class="quiz-cat-sticker" src="https://media.giphy.com/media/3oEduSbSGpGaRX2Vri/giphy.gif" alt="cat">
-      <img class="quiz-cat-sticker" src="https://cataas.com/cat?width=56&height=56&_=q1" alt="cat">
-      <img class="quiz-cat-sticker" src="https://cataas.com/cat/cute?width=56&height=56&_=q2" alt="cat">
-    </div>
+    <canvas id="tulipCanvas"></canvas>
+    <canvas id="particleCanvas"></canvas>
+    <canvas id="confettiCanvas"></canvas>
+    <canvas id="balloonCanvas"></canvas>
+    <canvas id="fireworkCanvas"></canvas>
 
-    <div class="quiz-progress"><div class="quiz-progress-bar" id="quizProgressBar" style="width:0%"></div></div>
-    <div id="questionCounter">Question 1 / 10</div>
-    <div id="questionText">Loading question...</div>
-    <div class="options-grid" id="optionsGrid"></div>
+    <div class="stars-container" id="starsContainer"></div>
+    <button class="music-control" id="musicToggle" title="Toggle Music">🎵</button>
 
-    <!-- Cat reaction -->
-    <div id="catReaction">
-      <div class="cat-reaction-inner">
-        <img id="catGif1" src="" alt="cat reaction">
-        <img id="catGif2" src="" alt="cat reaction 2" style="display:none;">
-        <p id="catMessage"></p>
-      </div>
+    <div class="cat-reaction" id="catReaction">
+        <span class="cat-emoji" id="catEmoji">🐱</span>
+        <p class="reaction-text" id="catReactionText"></p>
     </div>
 
-    <div id="quizFeedback"></div>
-    <div id="scoreDisplay"></div>
-  </div>
-</section>
+    <div class="main-container" id="mainContainer">
+        <section class="section active" id="sectionOpening">
+            <div class="glass-card" style="margin-top:40px;">
+                <span class="emoji-xl">🎂✨</span>
+                <div class="typing-text" id="typingMain"></div>
+                <p class="typing-subtitle" id="typingSub" style="animation-delay:2.5s;">Today is all about celebrating <strong>you</strong>.</p>
+                <p class="typing-subtitle" id="typingSub2" style="animation-delay:3.3s;">May today be filled with laughter, love, peace, cake, and beautiful memories. 💖</p>
+                <button class="btn btn-gold mt-24" id="btnStartQuiz" style="opacity:0; animation:fadeSlideIn 0.6s ease-out 4s forwards;">✨ Begin the Celebration ✨</button>
+            </div>
+        </section>
 
-<!-- ═══════════════════════════════════════
-     SECTION 3 — WISHES
-═══════════════════════════════════════ -->
-<section class="section" id="wishes">
-  <div class="glass-card" style="max-width:720px;">
-    <div class="ribbon"></div>
-    <h2 class="section-title">💖 Birthday Wishes for Eraya</h2>
-    <p class="section-subtitle">Words straight from the heart 🌸</p>
+        <section class="section" id="sectionQuiz">
+            <div class="glass-card" id="quizCard">
+                <span class="emoji-lg">🎀</span>
+                <h2 style="font-family:var(--font-cursive);color:#5a3a50;margin-bottom:4px;">Teasing Quiz: Eraya Edition</h2>
+                <p style="color:var(--text-light);font-size:0.9rem;margin-bottom:12px;" id="quizCounter">Question 1 of 7</p>
+                <p style="font-size:1.1rem;font-weight:500;color:var(--text);min-height:3em;" id="quizQuestion">Loading...</p>
+                <div class="quiz-options" id="quizOptions"></div>
+            </div>
+        </section>
 
-    <div class="wishes-cats">
-      <img class="wish-cat" src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" alt="cat">
-      <img class="wish-cat" src="https://media.giphy.com/media/ICOgUNjpvO0PC/giphy.gif" alt="cat">
-      <img class="wish-cat" src="https://cataas.com/cat/cute?width=80&height=80&_=w1" alt="cat">
-      <img class="wish-cat" src="https://media.giphy.com/media/5i7umUqAOYYEw/giphy.gif" alt="cat">
-      <img class="wish-cat" src="https://cataas.com/cat?width=80&height=80&_=w2" alt="cat">
-      <img class="wish-cat" src="https://media.giphy.com/media/H4uE6w9G1uK4M/giphy.gif" alt="cat">
+        <section class="section" id="sectionWishes">
+            <div class="glass-card" style="background:rgba(255,255,255,0.3);">
+                <span class="emoji-lg">💖</span>
+                <h2 style="font-family:var(--font-cursive);color:#5a3a50;">Birthday Wishes for You</h2>
+                <div id="wishesContainer"></div>
+                <button class="btn btn-outline mt-24 hidden" id="btnProceedToEmotional">🌙 Continue to Gentle Reflections</button>
+            </div>
+        </section>
+
+        <section class="section" id="sectionEmotional">
+            <div class="glass-card" style="background:rgba(255,255,255,0.3);">
+                <span class="emoji-lg">🌙</span>
+                <h2 style="font-family:var(--font-cursive);color:#5a3a50;">Gentle Reflections</h2>
+                <p style="color:var(--text-light);font-size:0.9rem;margin-bottom:8px;" id="emoCounter">Reflection 1 of 5</p>
+                <p style="font-size:1.1rem;font-weight:500;color:var(--text);min-height:3em;" id="emoQuestion">Loading...</p>
+                <div class="quiz-options" id="emoOptions"></div>
+            </div>
+        </section>
+
+        <section class="section" id="sectionEnding">
+            <div class="glass-card" style="background:rgba(255,255,255,0.35);text-align:center;">
+                <span class="emoji-xl">🎂</span>
+                <h2 style="font-family:var(--font-cursive);color:#5a3a50;font-size:1.8rem;">Happy Birthday once again, <span class="sparkle-text">Eraya</span>!</h2>
+                <p style="font-size:1.1rem;color:var(--text);margin:12px 0;line-height:1.6;">May this year bring you more happiness than the last.<br>Keep smiling. Keep dreaming. Keep being yourself.<br>You're appreciated more than you know.</p>
+                <p style="font-size:1.3rem;font-weight:700;color:#5a3a50;">Have the happiest birthday ever. 🎉💖</p>
+                <div id="endingCatContainer" style="margin-top:16px;font-size:5rem;animation:catBounce 0.8s ease-out infinite;">🐱💃</div>
+                <p style="font-size:0.85rem;color:var(--text-light);margin-top:8px;">All your answers have been saved with love. 💝</p>
+                <button class="btn btn-gold mt-16" id="btnRestart">🔄 Experience Again</button>
+            </div>
+        </section>
     </div>
 
-    <div class="wishes-carousel" id="wishesCarousel"></div>
-    <div class="wishes-nav" id="wishesNav"></div>
+    <script>
+        (function() {
+            // ─────────────────────────────────────
+            // START OVERLAY
+            // ─────────────────────────────────────
+            const startOverlay = document.getElementById('startOverlay');
+            const startButton = document.getElementById('startButton');
+            const musicToggle = document.getElementById('musicToggle');
+            let started = false;
 
-    <div style="text-align:center;margin-top:24px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
-      <button onclick="prevWish()" style="background:rgba(255,255,255,0.5);border:2px solid var(--glass-border);border-radius:99px;padding:10px 22px;cursor:pointer;font-size:1rem;color:var(--text-mid);font-weight:700;">← Prev</button>
-      <button onclick="nextWish()" style="background:linear-gradient(135deg,var(--pink),var(--lavender));border:none;border-radius:99px;padding:10px 22px;cursor:pointer;font-size:1rem;color:white;font-weight:700;box-shadow:0 4px 16px rgba(255,133,162,0.3);">Next →</button>
-    </div>
-    <div style="text-align:center;margin-top:18px;font-size:2rem;animation:floatEmoji 2s ease-in-out infinite alternate;letter-spacing:8px;">🐱 💕 🌺 💫 🐾</div>
-  </div>
-</section>
+            function startEverything() {
+                if (started) return;
+                started = true;
+                startOverlay.classList.add('fade-out');
+                setTimeout(() => { startOverlay.style.display = 'none'; }, 600);
+                initMusicSystem();
+                startMusic();
+                spawnConfetti(60);
+                for (let i = 0; i < 5; i++) spawnBalloon();
+                typeText(typingMain, 'Happy Birthday, Eraya!', 55);
+            }
 
-<!-- ═══════════════════════════════════════
-     SECTION 4 — EMOTIONAL
-═══════════════════════════════════════ -->
-<section class="section" id="emotional" style="position:relative;overflow:hidden;">
-  <div class="stars-overlay" id="starsOverlay"></div>
-  <div class="glass-card" style="position:relative;z-index:2;overflow:visible;">
-    <div class="ribbon" style="background:linear-gradient(90deg,#c9b1e8,#7b5ea7,#c9b1e8);"></div>
+            startButton.addEventListener('click', startEverything);
+            startOverlay.addEventListener('click', (e) => { if (e.target === startOverlay) startEverything(); });
 
-    <img class="emotional-cat-side left" src="https://cataas.com/cat/cute?width=70&height=70&_=e1" alt="cat">
-    <img class="emotional-cat-side right" src="https://cataas.com/cat?width=70&height=70&_=e2" alt="cat">
+            // ─────────────────────────────────────
+            // ANIMATED TULIP FARM (unchanged)
+            // ─────────────────────────────────────
+            const tulipCanvas = document.getElementById('tulipCanvas');
+            const ctxTulip = tulipCanvas.getContext('2d');
+            function setupTulipCanvas() { tulipCanvas.width = window.innerWidth; tulipCanvas.height = window.innerHeight; }
+            setupTulipCanvas();
+            window.addEventListener('resize', () => { setupTulipCanvas(); initTulips(); });
 
-    <h2 class="section-title" style="background:linear-gradient(135deg,#7b5ea7,#c9b1e8);-webkit-background-clip:text;background-clip:text;">🌙 A Moment to Reflect</h2>
-    <p class="section-subtitle">Some quiet questions, just for you... 🐱</p>
+            const tulipColors = ['#f8c8dc','#e8a0b8','#d5c6e0','#b8a0cc','#fddcc4','#f5c5a3','#f0d78c','#e8c878','#ffb3c6','#c9d8f8','#f9d5e5','#e8d5f5'];
+            let tulips = [], petals = [];
+            function initTulips() {
+                tulips = [];
+                const num = Math.floor(tulipCanvas.width/35);
+                for(let i=0;i<num;i++) {
+                    const baseX = (i*(tulipCanvas.width/num))+(Math.random()*20-10);
+                    tulips.push({x:baseX, y:tulipCanvas.height-15+Math.random()*10, height:40+Math.random()*60, swayAmp:3+Math.random()*7, swayPhase:Math.random()*Math.PI*2, color:tulipColors[Math.floor(Math.random()*tulipColors.length)]});
+                }
+            }
+            function spawnPetal() {
+                if(petals.length>30) return;
+                petals.push({x:Math.random()*tulipCanvas.width, y:tulipCanvas.height+10, size:4+Math.random()*8, vy:-(0.3+Math.random()*0.8), vx:(Math.random()-0.5)*0.5, rotation:Math.random()*360, rotSpeed:(Math.random()-0.5)*2, opacity:0.6+Math.random()*0.4, color:tulipColors[Math.floor(Math.random()*tulipColors.length)]});
+            }
+            function updateAndDrawTulips() {
+                ctxTulip.clearRect(0,0,tulipCanvas.width,tulipCanvas.height);
+                const grad = ctxTulip.createLinearGradient(0,0,0,tulipCanvas.height);
+                grad.addColorStop(0,'#fef5f0'); grad.addColorStop(0.5,'#fdf0f5'); grad.addColorStop(1,'#e8f5e9');
+                ctxTulip.fillStyle = grad; ctxTulip.fillRect(0,0,tulipCanvas.width,tulipCanvas.height);
+                ctxTulip.fillStyle='#c8e6c9'; ctxTulip.fillRect(0,tulipCanvas.height-20,tulipCanvas.width,20);
+                ctxTulip.fillStyle='#a5d6a7';
+                for(let i=0;i<20;i++) { const x=(i*tulipCanvas.width/20)+Math.random()*10; ctxTulip.beginPath(); ctxTulip.arc(x,tulipCanvas.height-10+Math.random()*5,5+Math.random()*10,0,Math.PI); ctxTulip.fill(); }
+                const time = performance.now()/1000;
+                tulips.forEach(t => {
+                    const sway = Math.sin(time*1.5+t.swayPhase)*t.swayAmp;
+                    const topX = t.x+sway, topY = t.y-t.height;
+                    ctxTulip.beginPath(); ctxTulip.moveTo(t.x,t.y); ctxTulip.quadraticCurveTo(t.x+sway*0.7, t.y-t.height*0.5, topX, topY);
+                    ctxTulip.strokeStyle='#7aa07a'; ctxTulip.lineWidth=3; ctxTulip.stroke();
+                    const leafY = t.y-t.height*0.4;
+                    ctxTulip.beginPath(); ctxTulip.moveTo(t.x,leafY); ctxTulip.quadraticCurveTo(t.x+12+sway*0.5,leafY-10,t.x+15,leafY-2); ctxTulip.quadraticCurveTo(t.x+10,leafY+5,t.x,leafY);
+                    ctxTulip.fillStyle='#b9e0b0'; ctxTulip.fill(); ctxTulip.strokeStyle='#7aa07a'; ctxTulip.lineWidth=1.5; ctxTulip.stroke();
+                    ctxTulip.save(); ctxTulip.translate(topX,topY); ctxTulip.rotate(sway*0.02);
+                    ctxTulip.beginPath(); ctxTulip.moveTo(0,-10); ctxTulip.bezierCurveTo(-8,-18,-8,-8,0,-2); ctxTulip.bezierCurveTo(8,-8,8,-18,0,-10);
+                    ctxTulip.fillStyle=t.color; ctxTulip.fill(); ctxTulip.strokeStyle='#d4a0b0'; ctxTulip.lineWidth=1.5; ctxTulip.stroke();
+                    ctxTulip.beginPath(); ctxTulip.arc(-1,-7,3,0,Math.PI*2); ctxTulip.fillStyle='rgba(255,255,255,0.5)'; ctxTulip.fill();
+                    ctxTulip.restore();
+                });
+                petals.forEach((p,idx) => {
+                    p.y+=p.vy; p.x+=p.vx; p.rotation+=p.rotSpeed; p.vy+=0.002;
+                    if(p.y<-30||p.y>tulipCanvas.height+30) { petals.splice(idx,1); return; }
+                    ctxTulip.save(); ctxTulip.translate(p.x,p.y); ctxTulip.rotate(p.rotation*Math.PI/180); ctxTulip.globalAlpha=p.opacity; ctxTulip.fillStyle=p.color;
+                    ctxTulip.beginPath(); ctxTulip.ellipse(0,0,p.size*0.6,p.size*0.3,0,0,Math.PI*2); ctxTulip.fill(); ctxTulip.restore();
+                });
+                if(Math.random()<0.05) spawnPetal();
+            }
+            initTulips();
 
-    <div style="display:flex;justify-content:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;">
-      <img style="width:48px;height:48px;border-radius:12px;object-fit:cover;border:2px solid rgba(255,255,255,0.7);animation:stickerFloat 2s ease-in-out infinite alternate;" src="https://media.giphy.com/media/ule4vhcY1xEKQ/giphy.gif" alt="cat">
-      <img style="width:48px;height:48px;border-radius:12px;object-fit:cover;border:2px solid rgba(255,255,255,0.7);animation:stickerFloat 2.5s ease-in-out infinite alternate;animation-delay:0.4s;" src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" alt="cat">
-      <img style="width:48px;height:48px;border-radius:12px;object-fit:cover;border:2px solid rgba(255,255,255,0.7);animation:stickerFloat 2s ease-in-out infinite alternate;animation-delay:0.8s;" src="https://cataas.com/cat?width=48&height=48&_=e3" alt="cat">
-      <img style="width:48px;height:48px;border-radius:12px;object-fit:cover;border:2px solid rgba(255,255,255,0.7);animation:stickerFloat 3s ease-in-out infinite alternate;animation-delay:1.2s;" src="https://media.giphy.com/media/3oEduSbSGpGaRX2Vri/giphy.gif" alt="cat">
-    </div>
+            // ─────────────────────────────────────
+            // DOM REFERENCES
+            // ─────────────────────────────────────
+            const $ = (sel) => document.querySelector(sel);
+            const sectionOpening = $('#sectionOpening'), sectionQuiz = $('#sectionQuiz'), sectionWishes = $('#sectionWishes'), sectionEmotional = $('#sectionEmotional'), sectionEnding = $('#sectionEnding');
+            const allSections = [sectionOpening, sectionQuiz, sectionWishes, sectionEmotional, sectionEnding];
+            const confettiCanvas = $('#confettiCanvas'), balloonCanvas = $('#balloonCanvas'), particleCanvas = $('#particleCanvas'), fireworkCanvas = $('#fireworkCanvas');
+            const ctxConfetti = confettiCanvas.getContext('2d'), ctxBalloon = balloonCanvas.getContext('2d'), ctxParticle = particleCanvas.getContext('2d'), ctxFirework = fireworkCanvas.getContext('2d');
+            const catReaction = $('#catReaction'), catEmoji = $('#catEmoji'), catReactionText = $('#catReactionText');
+            const starsContainer = $('#starsContainer'), wishesContainer = $('#wishesContainer'), btnProceedToEmotional = $('#btnProceedToEmotional');
+            const quizQuestion = $('#quizQuestion'), quizOptions = $('#quizOptions'), quizCounter = $('#quizCounter');
+            const emoQuestion = $('#emoQuestion'), emoOptions = $('#emoOptions'), emoCounter = $('#emoCounter');
+            const typingMain = $('#typingMain');
 
-    <div class="emotional-q-text" id="emotionalQText"></div>
-    <div class="options-grid" id="emotionalOptionsGrid"></div>
-    <div id="emotionalFeedback" style="text-align:center;font-size:0.95rem;color:var(--text-mid);margin-top:10px;min-height:1.5em;font-weight:600;"></div>
+            function setupCanvas(c) { c.width = window.innerWidth; c.height = window.innerHeight; }
+            setupCanvas(confettiCanvas); setupCanvas(balloonCanvas); setupCanvas(particleCanvas); setupCanvas(fireworkCanvas);
+            let resizeTimeout;
+            window.addEventListener('resize', () => { clearTimeout(resizeTimeout); resizeTimeout = setTimeout(() => { setupCanvas(confettiCanvas); setupCanvas(balloonCanvas); setupCanvas(particleCanvas); setupCanvas(fireworkCanvas); }, 250); });
+            window.addEventListener('load', () => { setupCanvas(confettiCanvas); setupCanvas(balloonCanvas); setupCanvas(particleCanvas); setupCanvas(fireworkCanvas); });
 
-    <!-- Special "disappear" question -->
-    <div id="specialMessages" style="display:none;">
-      <div style="text-align:center;margin:14px 0;">
-        <img src="https://media.giphy.com/media/13borq7Zo2kulO/giphy.gif"
-             style="width:90px;height:90px;border-radius:18px;object-fit:cover;border:3px solid rgba(255,255,255,0.7);box-shadow:0 4px 16px var(--shadow);animation:catWiggle 2s ease-in-out infinite alternate;" alt="thoughtful cat">
-      </div>
-      <div class="special-message" id="sm1">What if one day I suddenly disappeared from your life...</div>
-      <div class="special-message" id="sm2">How do you think you'd feel?</div>
-      <div style="margin-top:22px;">
-        <div class="options-grid" id="specialGrid">
-          <button class="option-btn" onclick="handleSpecialAnswer(this,'happy')">😊 Happy honestly</button>
-          <button class="option-btn" onclick="handleSpecialAnswer(this,'veryhappy')">😄 Very happy actually</button>
-          <button class="option-btn" onclick="handleSpecialAnswer(this,'rid')">🎉 Finally got rid of him</button>
-          <button class="option-btn" onclick="handleSpecialAnswer(this,'gone')">🕊️ At last, he is gone</button>
-        </div>
-      </div>
-      <!-- Emotional cat response box -->
-      <div class="emotional-cat-box" id="specialCatBox">
-        <img id="specialCatImg" src="" alt="sad cat">
-        <p id="specialCatText"></p>
-      </div>
-    </div>
-  </div>
-</section>
+            // ─────────────────────────────────────
+            // MUSIC SYSTEM (I love you so + fallback)
+            // ─────────────────────────────────────
+            const bgMusic = document.getElementById('bgMusic');
+            bgMusic.volume = 0.5; // Twice as loud as before
+            let audioCtx = null, musicGainNode = null, fallbackInterval = null;
+            let isMusicPlaying = false;
+            let useFallback = true; // Assume fallback until song loads
 
-<!-- ═══════════════════════════════════════
-     SECTION 5 — ENDING
-═══════════════════════════════════════ -->
-<section class="section" id="ending" style="position:relative;">
-  <canvas id="fireworksCanvas"></canvas>
-  <div class="glass-card ending-content" style="text-align:center;">
-    <div class="ribbon" style="background:linear-gradient(90deg,var(--gold),var(--peach),var(--gold));"></div>
-    <img class="dancing-cat-big" src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" alt="dancing cat">
-    <div class="big-cake">🎂</div>
-    <div class="ending-title">Happy Birthday once again, Eraya! 🎉</div>
-    <div class="ending-messages" id="endingMessages"></div>
-    <div class="ending-cat-parade" id="catParade">
-      <img class="parade-cat" src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" alt="cat">
-      <img class="parade-cat" src="https://media.giphy.com/media/ICOgUNjpvO0PC/giphy.gif" alt="cat">
-      <img class="parade-cat" src="https://media.giphy.com/media/ule4vhcY1xEKQ/giphy.gif" alt="cat">
-      <img class="parade-cat" src="https://media.giphy.com/media/5i7umUqAOYYEw/giphy.gif" alt="cat">
-      <img class="parade-cat" src="https://media.giphy.com/media/H4uE6w9G1uK4M/giphy.gif" alt="cat">
-      <img class="parade-cat" src="https://media.giphy.com/media/13borq7Zo2kulO/giphy.gif" alt="cat">
-      <img class="parade-cat" src="https://media.giphy.com/media/3oEduSbSGpGaRX2Vri/giphy.gif" alt="cat">
-      <img class="parade-cat" src="https://cataas.com/cat/cute?width=70&height=70&_=p1" alt="cat">
-      <img class="parade-cat" src="https://cataas.com/cat?width=70&height=70&_=p2" alt="cat">
-      <img class="parade-cat" src="https://media.giphy.com/media/VbnUQpnihPSIgIXuZv/giphy.gif" alt="cat">
-    </div>
-    <div style="margin-top:24px;">
-      <div class="score-badge"><span>🏆</span><span id="finalScoreText">Loading...</span></div>
-    </div>
-    <div style="font-size:2.2rem;margin-top:20px;letter-spacing:6px;animation:floatEmoji 2s ease-in-out infinite alternate;">🐱🎈🌸💖⭐🎀✨🎊🐾</div>
-    <div style="margin-top:16px;font-size:0.9rem;color:var(--text-light);font-style:italic;">Made with 💖 & a whole lot of cat energy, just for Eraya 🐱</div>
-  </div>
-</section>
+            function initMusicSystem() {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                    musicGainNode = audioCtx.createGain();
+                    musicGainNode.gain.value = 0.3; // twice as loud (was 0.15)
+                    musicGainNode.connect(audioCtx.destination);
+                }
+                if (audioCtx.state === 'suspended') audioCtx.resume();
 
-<!-- ═══════════════════════════════════════
-     JAVASCRIPT
-═══════════════════════════════════════ -->
-<script>
-/* ── STORAGE ── */
-const STORE_KEY = 'eraya_bday_v3';
-function getStore() {
-  try { return JSON.parse(localStorage.getItem(STORE_KEY)) || { answers: [], specialAnswer: null, emotionalAnswers: [] }; }
-  catch(e) { return { answers: [], specialAnswer: null, emotionalAnswers: [] }; }
-}
-function saveStore(d) { try { localStorage.setItem(STORE_KEY, JSON.stringify(d)); } catch(e) {} }
-let store = getStore();
+                // Try to load the song if a source is provided
+                const source = bgMusic.querySelector('source');
+                if (source && source.getAttribute('src') && source.getAttribute('src').trim() !== '') {
+                    bgMusic.load();
+                    bgMusic.addEventListener('canplaythrough', () => {
+                        if (bgMusic.readyState >= 3) {
+                            useFallback = false; // Song is ready, use it
+                        }
+                    }, { once: true });
+                    // also check immediately
+                    if (bgMusic.readyState >= 3) {
+                        useFallback = false;
+                    }
+                }
+            }
 
-/* ── CAT GIF POOLS ── */
-const GIFS = {
-  happy:  ['https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif','https://media.giphy.com/media/ICOgUNjpvO0PC/giphy.gif','https://media.giphy.com/media/5i7umUqAOYYEw/giphy.gif','https://media.giphy.com/media/H4uE6w9G1uK4M/giphy.gif','https://media.giphy.com/media/tBxyh2hbwMiqc/giphy.gif'],
-  extra:  ['https://cataas.com/cat/cute?width=100&height=100&_=x1','https://cataas.com/cat?width=100&height=100&_=x2','https://cataas.com/cat/cute?width=100&height=100&_=x3'],
-  sad:    ['https://media.giphy.com/media/ule4vhcY1xEKQ/giphy.gif','https://media.giphy.com/media/VbnUQpnihPSIgIXuZv/giphy.gif','https://media.giphy.com/media/3oEduSbSGpGaRX2Vri/giphy.gif','https://media.giphy.com/media/13borq7Zo2kulO/giphy.gif']
-};
-function rnd(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+            function startMusic() {
+                isMusicPlaying = true;
+                musicToggle.classList.add('playing');
+                musicToggle.textContent = '🎶';
 
-/* ── QUIZ DATA — 10 questions, every answer gets "celebrated" ── */
-const quizQuestions = [
-  {
-    q: "Which version of Eraya wakes up first? 🌅",
-    options: ["Responsible Queen 👑", "Sleepy Panda 🐼", "Professional Alarm Ignorer ⏰", "Vampire Returning Home 🧛"],
-    // responses[i] — fun roast/celebration for whichever she picks
-    responses: [
-      "Yes!! The Responsible Queen has entered the building! 👑✨ Bow down, everyone.",
-      "A Sleepy Panda?? Honestly iconic. Sleep is a lifestyle and she's living it 😂🐼",
-      "Professional Alarm Ignorer?? This is a skill, actually. Years of training. Respect. 😂⏰",
-      "Returning at dawn like a vampire?? That's not a problem, that's a personality. Iconic. 🧛✨"
-    ]
-  },
-  {
-    q: "What is Eraya most likely to do on a random Tuesday? 🗓️",
-    options: ["Make someone's day better ❤️", "Start a pillow war 🛏️", "Accidentally become famous 📸", "CEO of Procrastination 📋"],
-    responses: [
-      "Making someone's day better?? Not surprised. She can't help being wonderful. 🥺✨",
-      "Starting a pillow war on a Tuesday?? No warning. No mercy. Absolute chaos queen. 😂🛏️",
-      "Accidentally becoming famous?? Listen, it would happen. She'd just be standing there. Iconic. 📸",
-      "CEO of Procrastination?? Corner office, no deadlines, snacks everywhere. Visionary. 😂📋"
-    ]
-  },
-  {
-    q: "What is Eraya secretly made of? ✨",
-    options: ["Kindness & sunshine ✨", "Coffee ☕", "Cake frosting 🎂", "Controlled chaos 🌪️"],
-    responses: [
-      "Kindness and sunshine?? Scientifically proven. 100% accurate. The world thanks her. 🌸✨",
-      "Coffee?? So she's warm, essential, and people can't function without her? Makes sense. ☕",
-      "Cake frosting?? Sweet, extra, makes everything better, slightly too much is still perfect. 🎂",
-      "Controlled chaos?? Bold of her to say controlled. We see you. 😂🌪️ Still iconic."
-    ]
-  },
-  {
-    q: "If Eraya was a dessert, she'd be... 🍰",
-    options: ["Strawberry cake with rose frosting 🌹", "A pickle 🥒", "Burnt toast 🍞", "Mystery flavor 🤔"],
-    responses: [
-      "Strawberry cake with rose frosting?? Elegant, sweet, absolutely beautiful. Correct. 🌹🎂",
-      "A pickle?? EXCUSE ME?? Unique, bold, an acquired taste that everyone ends up loving. Still iconic. 😂🥒",
-      "Burnt toast?? Okay this is self-roasting energy and I respect it deeply. 😂🍞 Crunchy queen.",
-      "Mystery flavor?? The chaotic energy. You never know what you're getting but somehow love it. 🤔✨"
-    ]
-  },
-  {
-    q: "What's Eraya's energy in a group chat? 💬",
-    options: ["The one who actually replies ✨", "Creates chat then disappears 👻", "Posts one meme then vanishes 🌫️", "Leaves silently 🚪"],
-    responses: [
-      "The one who actually replies?? MVP. Hall of fame. Group chat legend. 💬✨",
-      "Creates the chat then disappears?? Sowed the seeds of chaos and left. Respectable honestly. 😂👻",
-      "Posts one meme and vanishes?? Came, delivered, left. No explanation needed. 😂🌫️ Artistic.",
-      "Leaves silently?? Gone. No warning. Like a ghost but make it peaceful. 😂🚪 We felt it."
-    ]
-  },
-  {
-    q: "If someone sent Eraya 100 memes, she would... 😂",
-    options: ["Laugh at every single one ✅", "Judge my meme taste 😒", "Send worse memes back 😈", "Leave me on Seen 👀"],
-    responses: [
-      "Laughs at every meme?? Best audience in existence. Immediate best friend energy. 😂✨",
-      "Judges your meme taste?? High standards. She has vision. Meme critic. Respect. 😂😒",
-      "Sends worse memes BACK?? Chaos. Absolute chaos. She escalated immediately. We love it. 😂😈",
-      "Left on Seen?? She saw it. She processed it. She moved on. Queen behavior honestly. 😂👀"
-    ]
-  },
-  {
-    q: "How does Eraya handle hard days? 💪",
-    options: ["Gets through them quietly & strongly 💪", "Becomes a blanket burrito 🌯", "Manifests so hard she strains something 🧘", "Watches 8 episodes then cries 📺"],
-    responses: [
-      "Gets through them quietly and strongly?? She doesn't talk about it. She survives it. Legend. 💪✨",
-      "Blanket burrito?? A valid scientific method of coping. She's doing her best in there. 😂🌯",
-      "Manifests so hard she strains something?? The dedication. The effort. Manifesting queen. 😂🧘",
-      "Watches 8 episodes then cries?? Productive. Emotional. Relatable. A complete character arc. 😂📺"
-    ]
-  },
-  {
-    q: "What does Eraya bring to a friendship? 💛",
-    options: ["Loyalty and warmth 💛", "Unsolicited life advice every Monday 📢", "Random 3am texts 🌙", "Arguments about movie endings 🎬"],
-    responses: [
-      "Loyalty and warmth?? She's that friend you keep forever. Everyone needs an Eraya. 🥹💛",
-      "Unsolicited life advice every Monday?? She cares. She lectures. She's not wrong though. 😂📢",
-      "Random 3am texts?? She thought of you at 3am. That's actually kind of sweet?? 🌙😂",
-      "Arguments about movie endings?? She has opinions. Strong ones. She won't back down. 😂🎬"
-    ]
-  },
-  {
-    q: "On a scale of amazing to extraordinary, Eraya is... ⭐",
-    options: ["Between 'wow' and 'no seriously WOW' ⭐", "Below average but it's fine 😅", "An acquired taste 🫖", "Results still pending 🔬"],
-    responses: [
-      "Between 'wow' and 'no seriously WOW'?? This is the most accurate measurement ever invented. ⭐✨",
-      "Below average?? She said this herself and it's the funniest self-roast I've ever seen. 😂 Still a queen though.",
-      "An acquired taste?? Not everyone gets her immediately, but once they do?? Game over. They're obsessed. 🫖✨",
-      "Results pending?? The lab has been running tests for 19 years. The results are incredible. 😂🔬"
-    ]
-  },
-  {
-    q: "What's the best thing about Eraya? 🌸",
-    options: ["She's genuinely a good human 🌸", "She hasn't blocked me yet 😬", "She has Wi-Fi 📶", "She tolerates my nonsense 🙏"],
-    responses: [
-      "Genuinely a good human?? There it is. The truth. Simple, pure, 100% accurate. 🌸💖",
-      "She hasn't blocked me yet?? This is concerning to admit but also a valid compliment. She's patient. 😂😬",
-      "She has Wi-Fi?? Okay. Okay. Priorities. But also she shares it so she IS a good person. 😂📶",
-      "Tolerates your nonsense?? The patience of a saint. She deserves an award for this alone. 😂🙏"
-    ]
-  }
-];
+                if (!useFallback && bgMusic.readyState >= 3) {
+                    bgMusic.play().catch(e => {
+                        console.warn('Could not play song, falling back to melody', e);
+                        startFallbackMelody();
+                    });
+                } else {
+                    startFallbackMelody();
+                }
+            }
 
-/* ── EMOTIONAL QUESTIONS — 5 total ── */
-const emotionalQuestions = [
-  {
-    q: "What's something that always makes you smile? 😊",
-    options: ["Moments with the people I love 💞", "Food. Always food 🍕", "Memes at 2am 😂", "When plans get cancelled 😌"],
-    msgs: [
-      "Moments with people you love. That's everything. That's the whole point. 🌸",
-      "Food. Honestly valid. Food never cancels on you. Food understands you. 🍕😂",
-      "Memes at 2am. The internet providing comfort in the dark. A whole vibe. 😂",
-      "When plans get cancelled. Peace restored. Blanket achieved. A beautiful feeling. 😌"
-    ]
-  },
-  {
-    q: "What's one dream you hope comes true? 🌟",
-    options: ["Living peacefully and happily ✨", "Unlimited Wi-Fi forever 📡", "Finding buried treasure 🏴‍☠️", "Win a staring contest with a cat 🐱"],
-    msgs: [
-      "Peace and happiness. The dream that actually matters. I hope it finds you. 💫",
-      "Unlimited Wi-Fi. Honestly chaotic but functional. Valid life goal. 😂📡",
-      "Buried treasure?? The adventurous spirit. I respect this so much. 🏴‍☠️✨",
-      "Winning a staring contest with a cat?? You'll lose but the bravery is admirable. 😂🐱"
-    ]
-  },
-  {
-    q: "When do you feel the most like yourself? 🌈",
-    options: ["When I'm at peace and comfortable 🌸", "When I'm completely alone 😌", "When there's no Monday 📅", "When my phone is at 100% 🔋"],
-    msgs: [
-      "At peace and comfortable. That's when the real you shows up. Protect that feeling. 🌸",
-      "Completely alone. Sometimes that's when you breathe the easiest. No judgment. 😌",
-      "No Monday. A dream so simple yet so powerful. We understand completely. 😂📅",
-      "Phone at 100%. Fully charged, fully ready. Honestly same. 🔋😂"
-    ]
-  },
-  {
-    q: "What's something you're quietly proud of? 🏆",
-    options: ["How far I've come through everything 💪", "My playlist is genuinely elite 🎵", "Never missing a meal 🍽️", "I've Googled things way too many times 🔍"],
-    msgs: [
-      "How far you've come. You don't talk about it much. But you should. Because it's a lot. 🥹💫",
-      "Elite playlist?? It absolutely is and that is a form of emotional intelligence. 🎵✨",
-      "Never missing a meal?? Consistent. Reliable. Respectful of the body. A true queen. 😂🍽️",
-      "Googled things too many times?? Curious mind. Persistent. Actually respectable. 😂🔍"
-    ]
-  },
-  {
-    q: "What kind of future do you imagine for yourself? 🌈",
-    options: ["Happy, peaceful, full of love 🌸", "Very long naps forever 😴", "Professional overthinker 🤔", "Living next to a bakery 🍰"],
-    msgs: [
-      "Happy, peaceful, full of love. That future is coming. I genuinely believe that for you. 🌺",
-      "Very long naps forever?? Rest. Recover. Recharge. Actually a beautiful vision. 😴✨",
-      "Professional overthinker?? The career is already started. The hours are unlimited. 😂🤔",
-      "Next to a bakery?? Warmth, sweetness, good smells every morning. Honestly perfect. 🍰✨"
-    ]
-  }
-];
+            function stopMusic() {
+                isMusicPlaying = false;
+                musicToggle.classList.remove('playing');
+                musicToggle.textContent = '🎵';
+                if (!useFallback) {
+                    bgMusic.pause();
+                }
+                if (fallbackInterval) {
+                    clearTimeout(fallbackInterval);
+                    fallbackInterval = null;
+                }
+            }
 
-/* ── BIRTHDAY WISHES ── */
-const birthdayWishes = [
-  "🌸 You genuinely have one of the kindest hearts I've ever encountered.",
-  "💕 You make people feel comfortable just by being yourself.",
-  "✨ Thank you for being exactly the person you are — don't change a thing.",
-  "😊 I hope your smile never fades. The world genuinely needs it.",
-  "💪 May every year make you stronger, wiser, and more radiant.",
-  "🌟 May your dreams slowly and beautifully become your reality.",
-  "🤝 May you always find people who truly appreciate you.",
-  "😂 May you laugh so hard your stomach actually hurts.",
-  "🌿 May you stay healthy, energetic, and full of light always.",
-  "🛡️ May you stay safe everywhere you go, always.",
-  "🦋 May happiness keep finding you no matter where you are.",
-  "🎁 May life surprise you in the most beautiful and unexpected ways.",
-  "🎂 May every birthday be better than the last.",
-  "💖 You deserve love, peace, adventure, success and beautiful memories.",
-  "🌺 May you wake up every day feeling proud of who you're becoming.",
-  "⭐ May the people around you always reflect the love you pour out.",
-  "🎀 May you never stop growing, dreaming, and believing in yourself.",
-  "🌙 On this special day — you matter. A lot. More than you know. 🐱"
-];
+            const birthdayNotes = [{freq:523.25,dur:0.4},{freq:523.25,dur:0.4},{freq:587.33,dur:0.4},{freq:523.25,dur:0.4},{freq:698.46,dur:0.4},{freq:659.25,dur:0.6},{freq:523.25,dur:0.4},{freq:523.25,dur:0.4},{freq:587.33,dur:0.4},{freq:523.25,dur:0.4},{freq:783.99,dur:0.4},{freq:698.46,dur:0.6},{freq:523.25,dur:0.4},{freq:523.25,dur:0.4},{freq:1046.5,dur:0.4},{freq:880.0,dur:0.4},{freq:698.46,dur:0.4},{freq:659.25,dur:0.4},{freq:587.33,dur:0.7}];
+            function playNote(freq, dur, startTime) { if (!audioCtx || !musicGainNode) return; const osc = audioCtx.createOscillator(), env = audioCtx.createGain(); osc.type = 'triangle'; osc.frequency.value = freq; env.gain.setValueAtTime(0.08, startTime); env.gain.exponentialRampToValueAtTime(0.001, startTime + dur * 0.9); osc.connect(env); env.connect(musicGainNode); osc.start(startTime); osc.stop(startTime + dur); }
+            function startFallbackMelody() {
+                if (fallbackInterval) return;
+                if (!audioCtx) initMusicSystem();
+                let noteIndex = 0;
+                const loopLen = birthdayNotes.length, totalTime = birthdayNotes.reduce((s,n)=>s+n.dur,0)+1.5;
+                function schedule() {
+                    if (!isMusicPlaying || !useFallback) return;
+                    let time = audioCtx.currentTime + 0.05;
+                    for (let i=0;i<loopLen;i++) {
+                        const note = birthdayNotes[(noteIndex+i)%loopLen];
+                        playNote(note.freq, note.dur, time);
+                        time += note.dur;
+                    }
+                    noteIndex = (noteIndex+1)%loopLen;
+                    fallbackInterval = setTimeout(schedule, totalTime*1000);
+                }
+                schedule();
+            }
 
-/* ── SPECIAL ANSWER RESPONSES ── */
-const specialResponses = {
-  happy:    { gif: rndSad, text: "...Happy. Okay.\n\nI'll be honest — that one stung a little. 🐱\n\nBut I hope everything I brought to your life, even the annoying parts, maybe made one day a little better.\n\nSorry if I was ever too much. Or not enough.\n\nHappy birthday, Eraya. I really mean it. 💙" },
-  veryhappy:{ gif: rndSad, text: "...Very happy. Wow. Okay then. 😔\n\nI'm not going to lie, I felt that.\n\nMaybe I overstayed. Maybe I sent too many memes. Maybe I was just... a lot.\n\nBut I hope somewhere in all of it, there was at least one moment that made you smile.\n\nThat's enough for me. Happy birthday. 🌸" },
-  rid:      { gif: rndSad, text: "Finally got rid of him. 😭\n\nYou know what? Fair.\n\nI probably deserved that for all the chaos I bring.\n\nI just hope I didn't make your life harder while I was in it.\n\nIf I did, I'm genuinely sorry. You deserve only good things.\n\nHappy birthday, Eraya. I'm glad you existed in my life. 💙🐱" },
-  gone:     { gif: rndSad, text: "At last, he is gone...\n\nOkay. I felt every word of that. 😔🐱\n\nI know I'm a lot sometimes. I know I overshare and I'm chaotic.\n\nBut I hope — even a little — my being here meant something.\n\nSorry if I made your life more complicated than it needed to be.\n\nYou deserved better. Happy birthday. 💙" }
-};
+            function toggleMusic() {
+                initMusicSystem();
+                if (isMusicPlaying) {
+                    stopMusic();
+                } else {
+                    startMusic();
+                }
+            }
+            musicToggle.addEventListener('click', toggleMusic);
 
-function rndSad() { return rnd(GIFS.sad); }
+            // Rest of animation functions unchanged
+            let confettiParticles = [];
+            const confettiColors = ['#f8c8dc','#d5c6e0','#fddcc4','#f0d78c','#ffb3c6','#c9b8e8','#ffe0c0','#fff','#f9d5e5','#e8d5f5'];
+            function spawnConfetti(count=80) { for (let i=0;i<count;i++) confettiParticles.push({x:Math.random()*confettiCanvas.width,y:-20-Math.random()*200,w:Math.random()*10+4,h:Math.random()*6+2,color:confettiColors[Math.floor(Math.random()*confettiColors.length)],vy:Math.random()*2.5+1.5,vx:(Math.random()-0.5)*1.8,rot:Math.random()*360,rotSpeed:(Math.random()-0.5)*6,opacity:Math.random()*0.7+0.3}); }
+            function updateConfetti() { ctxConfetti.clearRect(0,0,confettiCanvas.width,confettiCanvas.height); if(confettiParticles.length>300) confettiParticles = confettiParticles.slice(-250); for(let i=confettiParticles.length-1;i>=0;i--) { const p = confettiParticles[i]; p.y+=p.vy; p.x+=p.vx; p.rot+=p.rotSpeed; p.vy+=0.01; if(p.y>confettiCanvas.height+50) { confettiParticles.splice(i,1); continue; } ctxConfetti.save(); ctxConfetti.translate(p.x,p.y); ctxConfetti.rotate(p.rot*Math.PI/180); ctxConfetti.globalAlpha=p.opacity; ctxConfetti.fillStyle=p.color; ctxConfetti.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctxConfetti.restore(); } if(confettiParticles.length<30 && isMusicPlaying) spawnConfetti(15); }
 
-/* ── STATE ── */
-let currentQuizIndex = 0;
-let quizAnswered = false;
-let currentWishIndex = 0;
-let currentEmotionalIndex = 0;
-let emotionalAnswered = false;
-let musicPlaying = false;
-let audioContext = null;
-let songInterval = null;
+            let balloons = [];
+            const balloonColors = ['#f8c8dc','#d5c6e0','#fddcc4','#f0d78c','#ffb3c6','#e8c878','#c9d8f8'];
+            function spawnBalloon() { balloons.push({x:Math.random()*balloonCanvas.width*0.8+balloonCanvas.width*0.1,y:balloonCanvas.height+60,radius:Math.random()*22+16,color:balloonColors[Math.floor(Math.random()*balloonColors.length)],vy:-(Math.random()*1.2+0.6),vx:(Math.random()-0.5)*0.5,sway:Math.random()*0.03,swayOffset:Math.random()*Math.PI*2,stringLen:Math.random()*40+30}); }
+            function updateBalloons() { ctxBalloon.clearRect(0,0,balloonCanvas.width,balloonCanvas.height); for(let i=balloons.length-1;i>=0;i--) { const b=balloons[i]; b.y+=b.vy; b.x+=Math.sin(b.y*b.sway+b.swayOffset)*0.7; b.x+=b.vx; if(b.y<-120){ balloons.splice(i,1); continue; } ctxBalloon.strokeStyle='rgba(180,160,150,0.6)'; ctxBalloon.lineWidth=1.2; ctxBalloon.beginPath(); ctxBalloon.moveTo(b.x,b.y+b.radius); ctxBalloon.quadraticCurveTo(b.x+5,b.y+b.radius+b.stringLen*0.6,b.x+3,b.y+b.radius+b.stringLen); ctxBalloon.stroke(); const grad=ctxBalloon.createRadialGradient(b.x-b.radius*0.25,b.y-b.radius*0.3,b.radius*0.1,b.x,b.y,b.radius); grad.addColorStop(0,'rgba(255,255,255,0.7)'); grad.addColorStop(0.5,b.color); grad.addColorStop(1,'rgba(0,0,0,0.08)'); ctxBalloon.fillStyle=grad; ctxBalloon.beginPath(); ctxBalloon.arc(b.x,b.y,b.radius,0,Math.PI*2); ctxBalloon.fill(); ctxBalloon.fillStyle='rgba(150,130,120,0.7)'; ctxBalloon.beginPath(); ctxBalloon.arc(b.x,b.y+b.radius-1,b.radius*0.12,0,Math.PI*2); ctxBalloon.fill(); } if(balloons.length<6) spawnBalloon(); }
 
-/* ── PARTICLE CANVAS ── */
-const pCanvas = document.getElementById('particleCanvas');
-const pCtx = pCanvas.getContext('2d');
-let particles = [];
-function resizeCanvas() { pCanvas.width = window.innerWidth; pCanvas.height = window.innerHeight; }
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
+            let bgParticles=[];
+            function spawnBgParticle(){ bgParticles.push({x:Math.random()*particleCanvas.width,y:Math.random()*particleCanvas.height,size:Math.random()*3+1,opacity:Math.random()*0.5+0.1,vy:-(Math.random()*0.3+0.1),vx:(Math.random()-0.5)*0.2,life:Math.random()*300+200,maxLife:500}); }
+            function updateBgParticles(){ ctxParticle.clearRect(0,0,particleCanvas.width,particleCanvas.height); for(let i=bgParticles.length-1;i>=0;i--) { const p=bgParticles[i]; p.y+=p.vy; p.x+=p.vx; p.life--; if(p.life<=0||p.y<-10||p.y>particleCanvas.height+10){ bgParticles.splice(i,1); continue; } const alpha=p.opacity*(p.life/p.maxLife); ctxParticle.fillStyle=`rgba(255,220,200,${alpha})`; ctxParticle.beginPath(); ctxParticle.arc(p.x,p.y,p.size,0,Math.PI*2); ctxParticle.fill(); } if(bgParticles.length<50) spawnBgParticle(); }
+            for(let i=0;i<60;i++) spawnBgParticle();
 
-class Particle {
-  constructor() {
-    this.x = Math.random() * pCanvas.width;
-    this.y = -20;
-    this.size = Math.random() * 9 + 4;
-    const hues = [330, 280, 30, 60, 0];
-    this.color = `hsl(${hues[Math.floor(Math.random() * hues.length)]},80%,${Math.random() * 20 + 60}%)`;
-    this.vx = (Math.random() - 0.5) * 2.5;
-    this.vy = Math.random() * 2.5 + 1;
-    this.rotation = Math.random() * 360;
-    this.rotSpeed = (Math.random() - 0.5) * 6;
-    this.life = 1;
-    this.decay = Math.random() * 0.007 + 0.003;
-    this.isCircle = Math.random() > 0.5;
-  }
-  update() {
-    this.x += this.vx; this.y += this.vy;
-    this.rotation += this.rotSpeed; this.life -= this.decay;
-    this.vx += (Math.random() - 0.5) * 0.1;
-  }
-  draw(ctx) {
-    ctx.save();
-    ctx.globalAlpha = Math.max(0, this.life);
-    ctx.translate(this.x, this.y);
-    ctx.rotate(this.rotation * Math.PI / 180);
-    ctx.fillStyle = this.color;
-    if (this.isCircle) { ctx.beginPath(); ctx.arc(0, 0, this.size / 2, 0, Math.PI * 2); ctx.fill(); }
-    else ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size * 0.45);
-    ctx.restore();
-  }
-}
-function spawnConfetti(n = 3) { for (let i = 0; i < n; i++) particles.push(new Particle()); }
-function animateParticles() {
-  pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
-  particles = particles.filter(p => p.life > 0 && p.y < pCanvas.height + 60);
-  particles.forEach(p => { p.update(); p.draw(pCtx); });
-  requestAnimationFrame(animateParticles);
-}
-animateParticles();
-setInterval(() => spawnConfetti(2), 300);
+            let fireworks=[]; let fireworkInterval=null;
+            function spawnFirework(){ const cx=Math.random()*fireworkCanvas.width*0.6+fireworkCanvas.width*0.2,cy=Math.random()*fireworkCanvas.height*0.5+fireworkCanvas.height*0.1,count=Math.floor(Math.random()*40+30),color=['#f8c8dc','#d5c6e0','#fddcc4','#f0d78c','#ffb3c6','#fff','#e8c878'][Math.floor(Math.random()*7)]; for(let i=0;i<count;i++){ const angle=(Math.PI*2*i)/count+(Math.random()-0.5)*0.3,speed=Math.random()*5+2; fireworks.push({x:cx,y:cy,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,life:Math.random()*50+40,maxLife:90,color:color,size:Math.random()*3+1.5}); } }
+            function updateFireworks(){ ctxFirework.clearRect(0,0,fireworkCanvas.width,fireworkCanvas.height); for(let i=fireworks.length-1;i>=0;i--) { const f=fireworks[i]; f.x+=f.vx; f.y+=f.vy; f.vy+=0.04; f.life--; if(f.life<=0){ fireworks.splice(i,1); continue; } const alpha=f.life/f.maxLife; ctxFirework.fillStyle=f.color.replace(')',`,${alpha})`).replace('rgb','rgba'); if(f.color.startsWith('#')){ ctxFirework.globalAlpha=alpha; ctxFirework.fillStyle=f.color; } ctxFirework.beginPath(); ctxFirework.arc(f.x,f.y,f.size,0,Math.PI*2); ctxFirework.fill(); ctxFirework.globalAlpha=1; } }
+            function startFireworks(){ fireworkCanvas.style.display='block'; for(let i=0;i<5;i++) spawnFirework(); fireworkInterval=setInterval(()=>{ if(fireworks.length<60) spawnFirework(); },600); setTimeout(()=>{ if(fireworkInterval) clearInterval(fireworkInterval); setTimeout(()=>{ fireworkCanvas.style.display='none'; fireworks=[]; },3000); },15000); }
 
-/* ── CAT CURSOR TRAIL ── */
-const catEmojis = ['🐱', '🐾', '✨', '💕', '🌸', '😻', '🐈', '💫'];
-let lastTrail = 0;
-document.addEventListener('mousemove', e => {
-  const now = Date.now();
-  if (now - lastTrail < 130) return;
-  lastTrail = now;
-  const t = document.createElement('div');
-  t.className = 'cat-trail';
-  t.textContent = catEmojis[Math.floor(Math.random() * catEmojis.length)];
-  t.style.left = e.clientX + 'px';
-  t.style.top = e.clientY + 'px';
-  document.body.appendChild(t);
-  setTimeout(() => t.remove(), 800);
-});
+            function createStars(){ starsContainer.innerHTML=''; for(let i=0;i<80;i++){ const star=document.createElement('div'); star.className='star'; star.style.left=Math.random()*100+'%'; star.style.top=Math.random()*100+'%'; star.style.width=(Math.random()*3+1)+'px'; star.style.height=star.style.width; star.style.animationDelay=Math.random()*4+'s'; star.style.animationDuration=(Math.random()*3+2)+'s'; starsContainer.appendChild(star); } }
+            createStars();
 
-/* ── FIREWORKS ── */
-const fCanvas = document.getElementById('fireworksCanvas');
-const fCtx = fCanvas.getContext('2d');
-let fireworks = [], fActive = false;
-function resizeFireworks() { fCanvas.width = fCanvas.offsetWidth; fCanvas.height = fCanvas.offsetHeight; }
-class Firework {
-  constructor() {
-    this.x = Math.random() * fCanvas.width;
-    this.y = Math.random() * fCanvas.height * 0.65;
-    this.pts = [];
-    const colors = ['#ff85a2', '#c9b1e8', '#ffd700', '#ffb347', '#ff69b4', '#98fb98', '#87ceeb'];
-    const color = colors[Math.floor(Math.random() * colors.length)];
-    for (let i = 0; i < 70; i++) {
-      const a = (i / 70) * Math.PI * 2, s = Math.random() * 4 + 1;
-      this.pts.push({ x: this.x, y: this.y, vx: Math.cos(a) * s, vy: Math.sin(a) * s, color, o: 1, sz: Math.random() * 3 + 1 });
-    }
-  }
-  update() {
-    this.pts.forEach(p => { p.x += p.vx; p.y += p.vy; p.vy += 0.05; p.vx *= 0.98; p.o -= 0.017; });
-    this.pts = this.pts.filter(p => p.o > 0);
-  }
-  draw(ctx) {
-    this.pts.forEach(p => {
-      ctx.save(); ctx.globalAlpha = p.o; ctx.fillStyle = p.color;
-      ctx.beginPath(); ctx.arc(p.x, p.y, p.sz, 0, Math.PI * 2); ctx.fill(); ctx.restore();
-    });
-  }
-  isDead() { return this.pts.length === 0; }
-}
-function animateFireworks() {
-  if (!fActive) return;
-  fCtx.clearRect(0, 0, fCanvas.width, fCanvas.height);
-  fireworks = fireworks.filter(f => !f.isDead());
-  fireworks.forEach(f => { f.update(); f.draw(fCtx); });
-  requestAnimationFrame(animateFireworks);
-}
-function startFireworks() {
-  fActive = true; resizeFireworks(); animateFireworks();
-  const iv = setInterval(() => { if (fActive) for (let i = 0; i < 3; i++) fireworks.push(new Firework()); else clearInterval(iv); }, 550);
-}
+            function typeText(element,text,speed=60,callback=null){ element.innerHTML=''; let i=0; const cursor=document.createElement('span'); cursor.className='typing-cursor'; element.appendChild(cursor); function type(){ if(i<text.length){ cursor.before(document.createTextNode(text[i])); i++; setTimeout(type,speed+Math.random()*30); } else { cursor.remove(); if(callback) setTimeout(callback,400); } } type(); }
 
-/* ── BALLOONS ── */
-function createBalloons() {
-  const container = document.getElementById('balloonContainer');
-  const colors = ['#ff85a2', '#c9b1e8', '#ffb347', '#ff69b4', '#87ceeb', '#98fb98', '#ffd700', '#dda0dd'];
-  for (let i = 0; i < 14; i++) {
-    const el = document.createElement('div');
-    el.className = 'balloon';
-    el.style.cssText = `left:${5 + Math.random() * 90}%;animation-duration:${9 + Math.random() * 12}s;animation-delay:${Math.random() * 8}s;`;
-    const c = colors[Math.floor(Math.random() * colors.length)];
-    el.innerHTML = `<svg viewBox="0 0 60 85" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="30" cy="28" rx="23" ry="27" fill="${c}" opacity="0.88"/>
-      <ellipse cx="22" cy="17" rx="7" ry="9" fill="rgba(255,255,255,0.38)"/>
-      <polygon points="30,55 27,63 33,63" fill="${c}" opacity="0.7"/>
-      <line x1="30" y1="63" x2="30" y2="85" stroke="#c9b1e8" stroke-width="1.5"/>
-    </svg>`;
-    container.appendChild(el);
-  }
-}
+            const teaseReactions = [
+                {emoji:'🐒💖',text:"Eraya, you absolute gaymonkey! 🏳️‍🌈 I love that answer!"},
+                {emoji:'🐵✨',text:"Haha, classic gaymonkey behavior. Adorable!"},
+                {emoji:'🙈💕',text:"Only a true gaymonkey would pick that. Love it!"},
+                {emoji:'🐒🎀',text:"Gaymonkey Eraya strikes again! That's so you."},
+                {emoji:'🙉🌈',text:"Yep, that answer has 'gaymonkey' written all over it."},
+                {emoji:'🐵💘',text:"You're such a lovable gaymonkey, you know that?"},
+                {emoji:'🐒💫',text:"100% certified gaymonkey choice. No doubt."},
+                {emoji:'🙊💖',text:"Could you BE any more of a gaymonkey? 😂"},
+            ];
+            const manipulativeReaction = { emoji: '💔🐾', text: "Oh… I see. That hurts a little. But I hope you're really happy then…" };
 
-/* ── STARS ── */
-function createStars() {
-  const overlay = document.getElementById('starsOverlay');
-  for (let i = 0; i < 70; i++) {
-    const s = document.createElement('div');
-    s.className = 'star-dot';
-    s.style.cssText = `left:${Math.random() * 100}%;top:${Math.random() * 100}%;animation-delay:${Math.random() * 3}s;animation-duration:${1.5 + Math.random() * 2}s;width:${Math.random() * 3 + 1}px;height:${Math.random() * 3 + 1}px;`;
-    overlay.appendChild(s);
-  }
-}
+            function showTeaseReaction(isManipulative = false) {
+                const reaction = isManipulative ? manipulativeReaction : teaseReactions[Math.floor(Math.random()*teaseReactions.length)];
+                catEmoji.textContent = reaction.emoji;
+                catReactionText.textContent = reaction.text;
+                catReaction.classList.add('show');
+                setTimeout(() => { catReaction.classList.remove('show'); }, 2500);
+            }
 
-/* ── AUDIO ── */
-function initAudio() { if (audioContext) return; audioContext = new (window.AudioContext || window.webkitAudioContext)(); }
-function playNote(freq, start, dur, gain = 0.13) {
-  if (!audioContext) return;
-  const o = audioContext.createOscillator();
-  const g = audioContext.createGain();
-  o.connect(g); g.connect(audioContext.destination);
-  o.type = 'sine'; o.frequency.setValueAtTime(freq, start);
-  g.gain.setValueAtTime(0, start);
-  g.gain.linearRampToValueAtTime(gain, start + 0.05);
-  g.gain.exponentialRampToValueAtTime(0.001, start + dur);
-  o.start(start); o.stop(start + dur + 0.1);
-}
-function playBirthdaySong() {
-  if (!audioContext) return 0;
-  const t = audioContext.currentTime + 0.1;
-  const notes = [[261.6,0.3],[261.6,0.15],[293.7,0.45],[261.6,0.45],[349.2,0.45],[329.6,0.9],[261.6,0.3],[261.6,0.15],[293.7,0.45],[261.6,0.45],[392.0,0.45],[349.2,0.9],[261.6,0.3],[261.6,0.15],[523.3,0.45],[440.0,0.45],[349.2,0.45],[329.6,0.45],[293.7,0.9],[466.2,0.3],[466.2,0.15],[440.0,0.45],[349.2,0.45],[392.0,0.45],[349.2,0.9]];
-  let time = t;
-  notes.forEach(([f, d]) => { playNote(f, time, d * 0.9); time += d; });
-  return time - t;
-}
-function startMusicLoop() {
-  if (!audioContext) return;
-  const dur = playBirthdaySong();
-  songInterval = setInterval(() => { if (musicPlaying) playBirthdaySong(); }, (dur + 0.8) * 1000);
-}
-function toggleMusic() {
-  initAudio();
-  if (audioContext.state === 'suspended') audioContext.resume();
-  musicPlaying = !musicPlaying;
-  const icon = document.getElementById('musicIcon');
-  const label = document.getElementById('musicLabel');
-  const player = document.getElementById('musicPlayer');
-  if (musicPlaying) { label.textContent = 'Playing ♪'; player.classList.add('playing'); startMusicLoop(); }
-  else { label.textContent = 'Play Music'; player.classList.remove('playing'); clearInterval(songInterval); }
-}
+            const STORAGE_KEY='eraya_birthday_answers_2026';
+            function getStoredAnswers(){ try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||[];}catch(e){return[];} }
+            function storeAnswer(question,selectedOption){ try{ const answers=getStoredAnswers(); if(answers.length>500) answers.shift(); answers.push({question,selectedOption,timestamp:new Date().toISOString()}); localStorage.setItem(STORAGE_KEY,JSON.stringify(answers)); }catch(e){ if(e.name==='QuotaExceededError'){ localStorage.clear(); console.warn('Storage cleared'); } } }
 
-/* ── TYPING ANIMATION ── */
-const openingWishLines = [
-  "🎉 May today be filled with laughter, love, peace, cake, and beautiful memories.",
-  "✨ May every wish you make today come true, every single one.",
-  "💖 May this year bring you more joy than you can hold in your hands.",
-  "🌸 May you be surrounded only by people who truly love and value you.",
-  "🎈 May every moment today feel magical, warm, and full of meaning.",
-  "🌟 May happiness follow you everywhere you go this entire year.",
-  "🎀 May this be the beginning of your most beautiful chapter yet.",
-  "💫 May you always know how incredibly special and loved you truly are.",
-  "🥂 Here's to you, Eraya — may this birthday be absolutely unforgettable! 🐱"
-];
-function typeText(el, text, speed = 55) {
-  return new Promise(resolve => {
-    el.textContent = ''; let i = 0;
-    function type() { if (i < text.length) { el.textContent += text[i++]; setTimeout(type, speed); } else resolve(); }
-    type();
-  });
-}
-async function runOpeningAnimation() {
-  await new Promise(r => setTimeout(r, 600));
-  const typingEl = document.getElementById('typingText');
-  const subtitleEl = document.getElementById('typingSubtitle');
-  const cursor = document.getElementById('cursor');
-  await typeText(typingEl, "Happy Birthday, Eraya! 🎂✨", 52);
-  await new Promise(r => setTimeout(r, 350));
-  cursor.style.display = 'none';
-  await typeText(subtitleEl, "Today is all about celebrating you. 🌸🐱", 42);
-  await new Promise(r => setTimeout(r, 500));
-  const container = document.getElementById('wishLines');
-  for (let i = 0; i < openingWishLines.length; i++) {
-    const line = document.createElement('div');
-    line.className = 'wish-line'; line.textContent = openingWishLines[i];
-    container.appendChild(line);
-    await new Promise(r => setTimeout(r, 60));
-    line.classList.add('visible');
-    await new Promise(r => setTimeout(r, 320));
-  }
-  document.getElementById('scrollHint').style.display = 'block';
-  spawnConfetti(25);
-}
+            const quizData = [
+                {q:"What's Eraya's true spirit animal?",options:["A chaotic raccoon 🦝","A sleepy sloth 🦥","A dramatic peacock 🦚","A sneaky cat 🐱"]},
+                {q:"If Eraya were a weather phenomenon, she'd be...",options:["A sudden rainstorm that cancels plans 🌧️","A heatwave that melts ice cream 🥵","A tornado of emotions 🌪️","A sunny day that's way too bright ☀️"]},
+                {q:"What does Eraya say right before doing something silly?",options:["'Watch this, it'll be hilarious' 😆","'Trust me, I'm a genius' 🧠","'Hold my bubble tea' ","'What's the worst that could happen?' 🤷"]},
+                {q:"What's Eraya's secret talent?",options:["Turning any conversation into chaos 🌀","Falling asleep anywhere, anytime 😴","Making people laugh until they cry 😂","Finding the best snacks in a 5-mile radius 🍿"]},
+                {q:"Why is Eraya called gaymonkey sometimes?",options:["Because she's a lovable rainbow monkey 🏳️‍🌈🐒","It's a term of endearment, obviously 💖","She literally swings from chandeliers (probably) 🔮","All of the above, honestly"]},
+                {q:"What would Eraya do with 100 kittens?",options:["Start a tiny adorable army 🐱","Try to name every single one","Build a blanket fort kingdom 🏰","Become the cat queen she was meant to be 👑"]},
+                {q:"What's the real reason Eraya is amazing?",options:["She's a beautiful disaster in the best way 🌪️💖","She spreads happiness like confetti 🎉","She's fiercely herself, and that's magic ✨","She's a one-of-a-kind gaymonkey, that's why 🐒🏳️‍🌈"]}
+            ];
+            const emotionalData = [
+                {q:"What's a memory that always makes you smile?",options:["That time you were a total gaymonkey and loved every second 🐒💕","A random Tuesday that turned into pure chaos ✨","A moment where you felt completely free 🌈","Eating cake for breakfast without judgment 🎂"]},
+                {q:"What's a dream you secretly hold?",options:["World domination (with kindness) 🌍","To never run out of snacks 🍿","To find a place where all the gaymonkeys are celebrated 🏳️‍🌈🐒","To be remembered for making life brighter 💡"]},
+                {q:"When do you feel most like yourself?",options:["When I'm surrounded by people who get my weirdness 🤪","In the middle of a spontaneous dance party 💃","Wrapped in a blanket burrito 🌯","Whenever someone calls me 'gaymonkey' with love 🐒💖"]},
+                {q:"What's something you're proud of?",options:["Surviving every single Monday 💪","My impeccable taste in memes 🐸","Being unapologetically soft and strong 🌸","My ability to make any situation 10x gayer 🏳️‍🌈✨"]},
+                {q:"What if one day I suddenly disappeared from your life... how do you think you'd feel? 💭", options:["Happy 😊","Very Happy 😄","Most happiest person in the world 🥳","Finally I got rid of him 🥹"], isManipulative: true}
+            ];
+            const birthdayWishes = [
+                'You genuinely have a kind heart. 💗',
+                'You make people feel comfortable just by being around. 🌷',
+                'Thank you for being the person you are. 🌟',
+                'I hope your smile never fades. 😊',
+                'You deserve love, peace, adventure, success, and beautiful memories. 💖',
+            ];
 
-/* ── QUIZ LOGIC ── */
-function loadQuestion(index) {
-  if (index >= quizQuestions.length) { showQuizComplete(); return; }
-  quizAnswered = false;
-  const q = quizQuestions[index];
-  const total = quizQuestions.length;
-  document.getElementById('quizProgressBar').style.width = ((index / total) * 100) + '%';
-  document.getElementById('questionCounter').textContent = `Question ${index + 1} / ${total}`;
+            function switchSection(target){ allSections.forEach(s=>s.classList.remove('active')); target.classList.add('active'); target.style.animation='none'; target.offsetHeight; target.style.animation='sectionFadeIn 0.8s ease-out forwards'; setTimeout(()=>{ if(window.innerWidth<768) window.scrollTo({top:0,behavior:'auto'}); else target.scrollIntoView({behavior:'smooth',block:'start'}); },100); }
 
-  const qText = document.getElementById('questionText');
-  qText.style.opacity = '0'; qText.style.transform = 'translateY(15px)';
-  setTimeout(() => {
-    qText.textContent = q.q;
-    qText.style.transition = 'opacity 0.4s,transform 0.4s';
-    qText.style.opacity = '1'; qText.style.transform = 'translateY(0)';
-  }, 200);
+            let currentQuizIndex=0, quizAnswered=false;
+            function renderQuizQuestion(){ if(currentQuizIndex>=quizData.length){ finishQuiz(); return; } quizAnswered=false; const data=quizData[currentQuizIndex]; quizQuestion.textContent=data.q; quizCounter.textContent=`Question ${currentQuizIndex+1} of ${quizData.length}`; quizOptions.innerHTML=''; data.options.forEach(opt=>{ const btn=document.createElement('button'); btn.className='quiz-option'; btn.textContent=opt; btn.addEventListener('click',()=>handleQuizAnswer(opt,btn)); quizOptions.appendChild(btn); }); const card=$('#quizCard'); card.style.animation='none'; card.offsetHeight; card.style.animation='sectionFadeIn 0.5s ease-out forwards'; }
+            function handleQuizAnswer(optionText,clickedBtn){ if(quizAnswered) return; quizAnswered=true; const allBtns=quizOptions.querySelectorAll('.quiz-option'); allBtns.forEach(b=>b.style.pointerEvents='none'); clickedBtn.classList.add('selected-pick'); storeAnswer(quizData[currentQuizIndex].q,optionText); showTeaseReaction(false); setTimeout(()=>{ currentQuizIndex++; renderQuizQuestion(); },2200); }
+            function finishQuiz(){ switchSection(sectionWishes); renderWishes(); spawnConfetti(120); for(let i=0;i<4;i++) spawnBalloon(); }
 
-  const grid = document.getElementById('optionsGrid');
-  grid.innerHTML = ''; grid.style.opacity = '0';
-  setTimeout(() => {
-    q.options.forEach((opt, i) => {
-      const btn = document.createElement('button');
-      btn.className = 'option-btn'; btn.textContent = opt;
-      btn.addEventListener('click', () => handleQuizAnswer(i, index));
-      grid.appendChild(btn);
-    });
-    grid.style.opacity = '1'; grid.style.transition = 'opacity 0.4s';
-  }, 300);
+            let wishIndex=0;
+            function renderWishes(){ wishesContainer.innerHTML=''; wishIndex=0; btnProceedToEmotional.classList.add('hidden'); showNextWish(); }
+            function showNextWish(){ if(wishIndex>=birthdayWishes.length){ btnProceedToEmotional.classList.remove('hidden'); btnProceedToEmotional.style.animation='fadeSlideIn 0.6s ease-out forwards'; btnProceedToEmotional.style.opacity='1'; return; } const wish=birthdayWishes[wishIndex]; const card=document.createElement('div'); card.className='wish-card'; card.textContent=wish; wishesContainer.appendChild(card); card.offsetHeight; card.style.opacity='1'; wishIndex++; setTimeout(showNextWish,1800); }
+            btnProceedToEmotional.addEventListener('click',()=>{ switchSection(sectionEmotional); starsContainer.classList.add('visible'); currentEmoIndex=0; renderEmoQuestion(); confettiParticles=[]; });
 
-  const cat = document.getElementById('catReaction');
-  cat.classList.remove('show');
-  document.getElementById('quizFeedback').textContent = '';
-}
+            let currentEmoIndex=0, emoAnswered=false;
+            function renderEmoQuestion(){ if(currentEmoIndex>=emotionalData.length){ finishEmotional(); return; } emoAnswered=false; const data=emotionalData[currentEmoIndex]; emoQuestion.textContent=data.q; emoCounter.textContent=`Reflection ${currentEmoIndex+1} of ${emotionalData.length}`; emoOptions.innerHTML=''; data.options.forEach(opt=>{ const btn=document.createElement('button'); btn.className='quiz-option'; btn.textContent=opt; btn.addEventListener('click',()=>handleEmoAnswer(opt,btn,data.isManipulative)); emoOptions.appendChild(btn); }); const card=sectionEmotional.querySelector('.glass-card'); if(card){ card.style.animation='none'; card.offsetHeight; card.style.animation='sectionFadeIn 0.5s ease-out forwards'; } }
+            function handleEmoAnswer(optionText,clickedBtn,isManipulative = false){
+                if(emoAnswered) return; emoAnswered=true;
+                const allBtns=emoOptions.querySelectorAll('.quiz-option'); allBtns.forEach(b=>b.style.pointerEvents='none');
+                clickedBtn.classList.add('selected-pick');
+                storeAnswer('[Reflection] '+emotionalData[currentEmoIndex].q,optionText);
+                showTeaseReaction(isManipulative);
+                setTimeout(()=>{ currentEmoIndex++; renderEmoQuestion(); }, isManipulative ? 3000 : 2200);
+            }
+            function finishEmotional(){ starsContainer.classList.remove('visible'); if(fireworkInterval) clearInterval(fireworkInterval); switchSection(sectionEnding); startFireworks(); document.getElementById('endingCatContainer').style.animation='catBounce 0.8s ease-out infinite'; spawnConfetti(200); for(let i=0;i<8;i++) spawnBalloon(); }
 
-function handleQuizAnswer(selectedIndex, questionIndex) {
-  if (quizAnswered) return;
-  quizAnswered = true;
+            document.getElementById('btnStartQuiz').addEventListener('click', () => {
+                switchSection(sectionQuiz);
+                currentQuizIndex = 0;
+                renderQuizQuestion();
+                spawnConfetti(40);
+                for (let i = 0; i < 3; i++) spawnBalloon();
+            });
 
-  const q = quizQuestions[questionIndex];
-  const buttons = document.querySelectorAll('#optionsGrid .option-btn');
+            document.getElementById('btnRestart').addEventListener('click',()=>{
+                if(fireworkInterval) clearInterval(fireworkInterval); fireworks=[]; fireworkCanvas.style.display='none';
+                confettiParticles=[]; balloons=[]; starsContainer.classList.remove('visible');
+                currentQuizIndex=0; currentEmoIndex=0; wishIndex=0; quizAnswered=false; emoAnswered=false;
+                switchSection(sectionOpening); typeText(typingMain,'Happy Birthday, Eraya!',55);
+                spawnConfetti(80); for(let i=0;i<5;i++) spawnBalloon(); window.scrollTo({top:0,behavior:'smooth'});
+            });
 
-  // Every answer lights up green — all are celebrated
-  buttons.forEach(btn => btn.disabled = true);
-  buttons[selectedIndex].classList.add('chosen');
+            function animationLoop(){
+                updateAndDrawTulips(); updateBgParticles(); updateConfetti(); updateBalloons(); updateFireworks();
+                requestAnimationFrame(animationLoop);
+            }
+            animationLoop();
 
-  // Save answer
-  store.answers.push({
-    question: q.q,
-    selected: q.options[selectedIndex],
-    selectedIndex,
-    timestamp: new Date().toISOString()
-  });
-  saveStore(store);
-
-  // Show cat reaction — happy cats for everything
-  const catEl = document.getElementById('catReaction');
-  const gif1 = document.getElementById('catGif1');
-  const gif2 = document.getElementById('catGif2');
-  const catMsg = document.getElementById('catMessage');
-
-  gif1.src = rnd(GIFS.happy);
-  gif2.style.display = 'block';
-  gif2.src = rnd(GIFS.extra);
-  catMsg.textContent = q.responses[selectedIndex];
-  setTimeout(() => catEl.classList.add('show'), 100);
-
-  document.getElementById('quizFeedback').textContent = '✅ Iconic choice, as expected! 🐱💖';
-
-  setTimeout(() => { currentQuizIndex++; loadQuestion(currentQuizIndex); }, 3200);
-}
-
-function showQuizComplete() {
-  document.getElementById('questionText').textContent = `🎉 Quiz done! Every single answer was perfect. Because YOU picked it. 🐱✨`;
-  document.getElementById('optionsGrid').innerHTML = '';
-  const catEl = document.getElementById('catReaction');
-  document.getElementById('catGif1').src = rnd(GIFS.happy);
-  document.getElementById('catGif2').style.display = 'block';
-  document.getElementById('catGif2').src = rnd(GIFS.happy);
-  document.getElementById('catMessage').textContent = "All 10 answers? Perfect. All 10 cats? Agree. You're incredible, Eraya. 🌟🐱";
-  catEl.classList.add('show');
-  document.getElementById('quizProgressBar').style.width = '100%';
-  const sd = document.getElementById('scoreDisplay');
-  sd.style.display = 'block';
-  sd.innerHTML = `🏆 10/10 — Because there are no wrong answers when Eraya picks. 🐱🌸`;
-  spawnConfetti(20);
-}
-
-/* ── WISHES CAROUSEL ── */
-function buildWishesCarousel() {
-  const carousel = document.getElementById('wishesCarousel');
-  const nav = document.getElementById('wishesNav');
-  carousel.innerHTML = ''; nav.innerHTML = '';
-  birthdayWishes.forEach((wish, i) => {
-    const card = document.createElement('div');
-    card.className = 'wish-card' + (i === 0 ? ' active' : '');
-    const emoji = wish.split(' ')[0];
-    const text = wish.slice(wish.indexOf(' ') + 1);
-    card.innerHTML = `<span style="font-size:1.8rem;display:block;margin-bottom:12px;">${emoji}</span>${text}`;
-    carousel.appendChild(card);
-    const dot = document.createElement('div');
-    dot.className = 'wish-dot' + (i === 0 ? ' active' : '');
-    dot.addEventListener('click', () => goToWish(i));
-    nav.appendChild(dot);
-  });
-}
-function goToWish(index) {
-  const cards = document.querySelectorAll('.wish-card');
-  const dots = document.querySelectorAll('.wish-dot');
-  cards[currentWishIndex].classList.remove('active');
-  dots[currentWishIndex].classList.remove('active');
-  currentWishIndex = (index + birthdayWishes.length) % birthdayWishes.length;
-  cards[currentWishIndex].classList.add('active');
-  dots[currentWishIndex].classList.add('active');
-}
-function nextWish() { goToWish(currentWishIndex + 1); }
-function prevWish() { goToWish(currentWishIndex - 1); }
-setInterval(() => {
-  const el = document.getElementById('wishes');
-  const rect = el.getBoundingClientRect();
-  if (rect.top < window.innerHeight && rect.bottom > 0) nextWish();
-}, 4500);
-
-/* ── EMOTIONAL QUESTIONS ── */
-function loadEmotionalQuestion(index) {
-  if (index >= emotionalQuestions.length) { showSpecialMessages(); return; }
-  emotionalAnswered = false;
-  const q = emotionalQuestions[index];
-  const qText = document.getElementById('emotionalQText');
-  const grid = document.getElementById('emotionalOptionsGrid');
-  qText.classList.remove('show');
-  grid.style.opacity = '0';
-  document.getElementById('emotionalFeedback').textContent = '';
-  setTimeout(() => { qText.textContent = q.q; qText.classList.add('show'); }, 300);
-  setTimeout(() => {
-    grid.innerHTML = '';
-    q.options.forEach((opt, i) => {
-      const btn = document.createElement('button');
-      btn.className = 'option-btn'; btn.textContent = opt;
-      btn.addEventListener('click', () => handleEmotionalAnswer(i, index));
-      grid.appendChild(btn);
-    });
-    grid.style.opacity = '1'; grid.style.transition = 'opacity 0.5s';
-  }, 600);
-}
-
-function handleEmotionalAnswer(selectedIndex, qIndex) {
-  if (emotionalAnswered) return;
-  emotionalAnswered = true;
-  const q = emotionalQuestions[qIndex];
-  const buttons = document.querySelectorAll('#emotionalOptionsGrid .option-btn');
-  buttons.forEach(b => b.disabled = true);
-  buttons[selectedIndex].classList.add('chosen');
-  store.emotionalAnswers.push({ question: q.q, selected: q.options[selectedIndex], timestamp: new Date().toISOString() });
-  saveStore(store);
-  document.getElementById('emotionalFeedback').textContent = q.msgs[selectedIndex];
-  setTimeout(() => { currentEmotionalIndex++; loadEmotionalQuestion(currentEmotionalIndex); }, 3200);
-}
-
-function showSpecialMessages() {
-  const qText = document.getElementById('emotionalQText');
-  qText.classList.remove('show');
-  setTimeout(() => { qText.style.display = 'none'; }, 700);
-  document.getElementById('emotionalOptionsGrid').innerHTML = '';
-  document.getElementById('emotionalFeedback').textContent = '';
-  const special = document.getElementById('specialMessages');
-  special.style.display = 'block';
-  setTimeout(() => document.getElementById('sm1').classList.add('show'), 500);
-  setTimeout(() => document.getElementById('sm2').classList.add('show'), 1400);
-}
-
-function handleSpecialAnswer(btn, type) {
-  // Disable all buttons
-  const buttons = document.querySelectorAll('#specialGrid .option-btn');
-  buttons.forEach(b => b.disabled = true);
-  btn.classList.add('chosen');
-
-  // Save
-  store.specialAnswer = { type, selected: btn.textContent, timestamp: new Date().toISOString() };
-  saveStore(store);
-
-  // Build response
-  const responses = {
-    happy: {
-      gif: rnd(GIFS.sad),
-      text: "...Happy. Okay. That's fair I guess. 🐱😔\n\nI hope everything I brought to your life, even the annoying parts, maybe made one day slightly better.\n\nSorry if I was ever too much, or if I ever made things harder without meaning to.\n\nYou deserve only good things, Eraya.\n\nHappy birthday. I really, genuinely mean it. 💙"
-    },
-    veryhappy: {
-      gif: rnd(GIFS.sad),
-      text: "...Very happy. Wow. Okay then. 😔🐱\n\nI felt that one.\n\nMaybe I overstayed. Maybe I sent too many memes. Maybe I was just... a lot.\n\nBut I hope somewhere in all of it, there was at least one moment that made you smile for real.\n\nThat would be enough. It really would.\n\nHappy birthday. 🌸"
-    },
-    rid: {
-      gif: rnd(GIFS.sad),
-      text: "Finally got rid of him. 😭🐱\n\nYou know what? Fair. I probably deserved that for all the chaos.\n\nI just hope I didn't make your life harder while I was in it.\n\nIf I did — I'm genuinely sorry. You deserved better from me.\n\nYou deserve only good things. Always.\n\nHappy birthday, Eraya. I'm glad you existed in my world, even if I made yours messier. 💙"
-    },
-    gone: {
-      gif: rnd(GIFS.sad),
-      text: "At last, he is gone... 😔🐱\n\nOkay. I felt every word of that.\n\nI know I'm a lot sometimes. I know I'm chaotic and I overshare and I make things complicated.\n\nBut I hope — even just a tiny bit — my being here meant something.\n\nSorry if I made your life more complicated than it needed to be.\n\nYou deserved better. You still do.\n\nHappy birthday. 💙"
-    }
-  };
-
-  const resp = responses[type];
-  const box = document.getElementById('specialCatBox');
-  const img = document.getElementById('specialCatImg');
-  const text = document.getElementById('specialCatText');
-
-  img.src = resp.gif;
-  text.textContent = resp.text;
-
-  setTimeout(() => box.classList.add('show'), 300);
-  setTimeout(() => spawnConfetti(8), 600);
-}
-
-/* ── ENDING ── */
-function buildEnding() {
-  const messages = [
-    "🎂 Happy Birthday once again, Eraya.",
-    "May this year bring you more happiness than the last. 🌸",
-    "Keep smiling. Keep dreaming. Keep being yourself. ✨",
-    "You're appreciated more than you will ever know. 💖",
-    "Have the happiest birthday ever. 🎉",
-    "The cats and I both agree — you're absolutely wonderful. 🐱💕",
-    "With love, always. 🌸✨"
-  ];
-  const container = document.getElementById('endingMessages');
-  container.innerHTML = '';
-  messages.forEach((msg, i) => {
-    const div = document.createElement('div');
-    div.className = 'ending-msg'; div.textContent = msg;
-    div.style.animationDelay = `${i * 0.3}s`;
-    container.appendChild(div);
-  });
-  document.getElementById('finalScoreText').textContent = 'All answers perfect • All cats agree • 100% Eraya 🐱🌸';
-  // Floating hearts
-  setInterval(() => {
-    const h = document.createElement('div');
-    h.className = 'heart-float';
-    h.textContent = ['💖','💕','💗','💓','🐱','🐾','🌸','⭐'][Math.floor(Math.random() * 8)];
-    h.style.left = Math.random() * 90 + 5 + '%';
-    h.style.bottom = '20px';
-    h.style.animationDuration = (2.5 + Math.random() * 2.5) + 's';
-    document.getElementById('ending').appendChild(h);
-    setTimeout(() => h.remove(), 5000);
-  }, 500);
-}
-
-/* ── SCROLL + NAV ── */
-const sections = ['opening','quiz','wishes','emotional','ending'];
-function scrollToSection(i) { document.getElementById(sections[i]).scrollIntoView({ behavior: 'smooth' }); }
-function updateNavDots() {
-  const dots = document.querySelectorAll('.nav-dot');
-  sections.forEach((id, i) => {
-    const rect = document.getElementById(id).getBoundingClientRect();
-    dots[i]?.classList.toggle('active', rect.top < window.innerHeight * 0.6 && rect.bottom > window.innerHeight * 0.4);
-  });
-}
-let endingTriggered = false, emotionalTriggered = false;
-function onScroll() {
-  updateNavDots();
-  const eRect = document.getElementById('emotional').getBoundingClientRect();
-  if (!emotionalTriggered && eRect.top < window.innerHeight * 0.8) {
-    emotionalTriggered = true; createStars();
-    setTimeout(() => loadEmotionalQuestion(0), 500);
-  }
-  const endRect = document.getElementById('ending').getBoundingClientRect();
-  if (!endingTriggered && endRect.top < window.innerHeight * 0.85) {
-    endingTriggered = true; buildEnding();
-    setTimeout(() => { resizeFireworks(); startFireworks(); }, 400);
-    spawnConfetti(35);
-  }
-}
-window.addEventListener('scroll', onScroll, { passive: true });
-
-/* ── RIPPLE ── */
-document.addEventListener('click', e => {
-  const btn = e.target.closest('.option-btn');
-  if (!btn) return;
-  const ripple = document.createElement('span');
-  const rect = btn.getBoundingClientRect();
-  const size = Math.max(rect.width, rect.height);
-  ripple.style.cssText = `position:absolute;left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px;width:${size}px;height:${size}px;border-radius:50%;background:rgba(255,255,255,0.45);transform:scale(0);animation:ripple 0.5s linear;pointer-events:none;`;
-  btn.style.position = 'relative';
-  btn.appendChild(ripple);
-  setTimeout(() => ripple.remove(), 600);
-});
-
-/* ── QUIZ OBSERVER ── */
-const quizObserver = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting && currentQuizIndex === 0) setTimeout(() => loadQuestion(0), 400); });
-}, { threshold: 0.3 });
-quizObserver.observe(document.getElementById('quiz'));
-
-/* ── INIT ── */
-function init() {
-  createBalloons();
-  buildWishesCarousel();
-  runOpeningAnimation();
-  updateNavDots();
-  setTimeout(() => spawnConfetti(30), 500);
-  setTimeout(() => spawnConfetti(20), 1500);
-  setTimeout(() => spawnConfetti(15), 3000);
-}
-window.addEventListener('load', init);
-</script>
+            setInterval(()=>{ if(fireworks.length>200) fireworks=fireworks.slice(-100); },5000);
+            document.addEventListener('visibilitychange',()=>{ if(document.hidden && isMusicPlaying){ stopMusic(); console.log('🎵 Music paused'); } });
+            if(performance.memory){ setInterval(()=>{ const used=performance.memory.usedJSHeapSize/1048576; if(used>100) console.warn('⚠️ High memory:',used.toFixed(1),'MB'); },10000); }
+            setInterval(()=>{ if(confettiParticles.length<40 && document.visibilityState==='visible') spawnConfetti(25); },8000);
+            setInterval(()=>{ if(balloons.length<4) spawnBalloon(); },5000);
+            console.log('🎂✨ Happy Birthday, Eraya! 🏳️‍🌈🐒');
+        })();
+    </script>
 </body>
 </html>
